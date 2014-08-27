@@ -4,15 +4,15 @@ Hier werden offene Punkte und Dokus zu Gateway, Software und Netzwerk verwaltet.
 
 ##Struktur
 
-Offene Punkte sammeln wir in dem [Ticketsystem](/issues), Dinge die jeder wissen sollte kommen in das [Wiki](/wiki) (Dokumentation).
+Offene Punkte sammeln wir in dem [Ticketsystem](/../../issues), Dinge die jeder wissen sollte kommen in das [Wiki](/../../wiki) (Dokumentation).
 
 ####Daumenregel
 
 * Zukünftiges
-  * [Issues](/issues)
+  * [Issues](/../../issues)
 
 * Vergangenes 
-  * [Wiki](/wiki)
+  * [Wiki](/../../wiki)
   
 ##Milestones
 
