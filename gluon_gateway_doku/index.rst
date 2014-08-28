@@ -9,6 +9,8 @@ Inhalt:
    voraussetzungen
    repositories
    pakete
+   hostname
+   routingtables
 
 
 * :ref:`search`
