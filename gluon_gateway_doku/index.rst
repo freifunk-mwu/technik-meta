@@ -8,6 +8,8 @@ Inhalt:
 
    voraussetzungen
    repositories
+   pakete
+
 
 * :ref:`search`
 
