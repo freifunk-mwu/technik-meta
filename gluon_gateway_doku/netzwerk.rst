@@ -1,4 +1,4 @@
-.. _hostname
+.. _netzwerk
 
 Hostname setzen
 ===============
@@ -15,3 +15,28 @@ Hostname setzen
     ff02::1 ip6-allnodes
     ff02::2 ip6-allrouters
     2a01:4f8:150:8570::2    lotuswurzel.freifunk-wiesbaden.de    lotuswurzel
+
+Routing Tables einrichten
+=========================
+
+/etc/iproute2/rt_tables::
+
+    [...]
+    37      mz
+    56      wi
+    # icvpn
+    370     icvpn-mz
+    560     icvpn-wi
+    [...]
+
+IP Forwarding setzen
+====================
+
+/etc/sysctl.conf::
+
+    net.ipv4.ip_forward = 1
+    net.ipv6.conf.all.forwarding = 1
+
+Danach neuladen::
+
+    sysctl -p /etc/sysctl.conf

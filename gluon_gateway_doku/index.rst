@@ -7,10 +7,8 @@ Inhalt:
    :maxdepth: 3
 
    voraussetzungen
-   repositories
-   pakete
-   hostname
-   routingtables
+   repos_und_pakete
+   netzwerk
 
 
 * :ref:`search`

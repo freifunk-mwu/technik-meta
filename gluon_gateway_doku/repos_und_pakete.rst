@@ -1,4 +1,4 @@
-.. _repositories
+.. _repos_und_pakete
 
 Benötigte Repositories
 ======================
@@ -24,3 +24,41 @@ Zum Schluss::
 
     apt-get update
     apt-get dist-upgrade
+
+
+Pakete
+======
+
+Pakete aus den Standard-Repos installieren::
+
+    xargs apt-get install -y
+
+        bridge-utils
+        git
+        iproute
+        iptables
+        iptables-persistent
+        isc-dhcp-server
+        ntp
+        #openssl
+        openvpn
+        python3
+        python-argparse
+        radvd
+        rrdtool
+        bind9
+        mosh
+        man-db
+        vim
+        tinc
+        bird
+
+Pakete aus den eigenen Repositories installieren::
+
+    xargs apt-get install -y
+
+        fastd
+        batctl
+        batman-adv-dkms
+        alfred
+
