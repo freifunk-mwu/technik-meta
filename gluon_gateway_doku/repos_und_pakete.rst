@@ -3,13 +3,9 @@
 Benötigte Repositories
 ======================
 
-* FFMZWI Repository einbinden (B.A.T.M.A.M Advanced Kernel Modul + batctl)::
+* Freifunk MWU Repository einbinden::
 
-    add-apt-repository ppa:ffmzwi/batman-adv-2014
-
-* ALFRED Repository einbinden (momentan noch im launchpad account von tobias)::
-
-    add-apt-repository ppa:kokelnet/a.l.f.r.e.d
+    add-apt-repository ppa:freifunk-mwu/freifunk-ppa
 
 * Neoraiders Repository einbinden (für fastd)::
 
@@ -61,4 +57,5 @@ Pakete aus den eigenen Repositories installieren::
         batctl
         batman-adv-dkms
         alfred
+        batadv-vis
 
