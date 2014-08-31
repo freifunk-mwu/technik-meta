@@ -9,6 +9,7 @@ Inhalt:
    voraussetzungen
    repos_und_pakete
    netzwerk
+   fastd
 
 
 * :ref:`search`
