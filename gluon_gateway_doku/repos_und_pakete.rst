@@ -1,4 +1,6 @@
-.. _repos_und_pakete
+.. _repos_und_pakete:
+
+.. _repositories:
 
 Benötigte Repositories
 ======================
@@ -21,6 +23,8 @@ Zum Schluss::
     apt-get update
     apt-get dist-upgrade
 
+
+.. _pakete:
 
 Pakete
 ======

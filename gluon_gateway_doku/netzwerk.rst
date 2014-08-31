@@ -1,9 +1,13 @@
-.. _netzwerk
+.. _netzwerk:
+
+.. _hostname:
 
 Hostname setzen
 ===============
 
-``echo "hostname" > /etc/hostname`` nur hostname ohne domain
+Den Hostnamen setzen (ohne Domain)::
+
+    echo "hostname" > /etc/hostname
 
 /etc/hosts (am Beispiel von Lotuswurzel)::
 
@@ -15,6 +19,8 @@ Hostname setzen
     ff02::1 ip6-allnodes
     ff02::2 ip6-allrouters
     2a01:4f8:150:8570::2    lotuswurzel.freifunk-wiesbaden.de    lotuswurzel
+
+.. _routing_table:
 
 Routing Tables einrichten
 =========================
@@ -28,6 +34,8 @@ Routing Tables einrichten
     370     icvpn-mz
     560     icvpn-wi
     [...]
+
+.. _ip_forward:
 
 IP Forwarding setzen
 ====================
