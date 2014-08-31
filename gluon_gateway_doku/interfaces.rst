@@ -1,0 +1,78 @@
+.. _interfaces:
+
+Netzwerk Interfaces
+===================
+
+/etc/network/interfaces
+
+Wir richten uns hier je eine Brücke pro Mesh-Wolke die wir versorgen wollen ein.
+
+Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..) das hoch/runterfahren vom MeshVPN und vom ExitVPN hat auf die Brücken und somit auf die Dienste keinen Einfluss.
+
+Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
+
+    auto wiBR
+    iface wiBR inet static
+        bridge-ports none
+        address 10.56.0.X
+        netmask 255.255.192.0
+        # ip rules for icvpn traffic
+        post-up         /sbin/ip rule add from all table icvpn-wi priority 560
+        post-down       /sbin/ip rule del from all table icvpn-wi priority 560
+        # ip rules to add all traffic entering the bridge to the appropriate rt_table
+        post-up         /sbin/ip rule add iif $IFACE table wi priority 5600
+        pre-down        /sbin/ip rule del iif $IFACE table wi priority 5600
+        # local reachable subnet
+        post-up         /sbin/ip route add 10.56.0.0/18 dev $IFACE table wi
+        post-down       /sbin/ip route del 10.56.0.0/18 dev $IFACE table wi
+        # insert ic-vpn light route for wi network into rt_table mz
+        post-up         /sbin/ip route add 10.56.0.0/18 dev $IFACE src 10.56.0.X table mz
+        post-down       /sbin/ip route del 10.56.0.0/18 dev $IFACE src 10.56.0.X table mz
+
+    iface wiBR inet6 static
+        address fd56:b4dc:4b1e::a38:X
+        netmask 64
+        # ip rules for icvpn traffic
+        post-up         /sbin/ip -6 rule add from all table icvpn-wi priority 560
+        post-down       /sbin/ip -6 rule del from all table icvpn-wi priority 560
+        # ip rules to add all traffic entering the bridge to the appropriate rt_table
+        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5600
+        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5600
+        # link-local subnet
+        post-up         /sbin/ip -6 route add fe80::/64 dev $IFACE table wi
+        post-down       /sbin/ip -6 route del fe80::/64 dev $IFACE table wi
+        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 dev $IFACE table wi
+        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 dev $IFACE table wi
+        # insert ic-vpn light route for wi network into rt_table mz
+        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 dev $IFACE table mz
+        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 dev $IFACE table mz
+
+.. TODO: Warum wird unter *inet* bridge-ports none definiert, unter *inet6* aber nicht?
+
+Hilfreich:
+
+* Routing - :ref:`routing_table`
+* Adressen - :ref:`gateway_schema`
+
+Wir haben uns dazu entschieden jeglichs Up- & Downscript in der /etc/network/interfaces zu verwalten.
+Dies gestaltet alles übersichtlicher.
+
+Scripte für :ref:`fastd`::
+
+    allow-hotplug wiVPN
+    iface wiVPN inet6 manual
+        pre-up          /sbin/modprobe batman_adv
+        pre-up          /sbin/ip link set address 02:00:0a:38:00:X dev $IFACE
+        post-up         /usr/sbin/batctl -m wiBAT if add $IFACE
+        post-up         /sbin/ip link set dev wiBAT up
+
+Zum Schluss noch für das B.A.T.M.A.N. Interface::
+
+    allow-hotplug wiBAT
+    iface wiBAT inet6 manual
+        pre-up          /sbin/modprobe batman-adv
+        post-up         /sbin/brctl addif wiBR $IFACE
+        post-up         /usr/sbin/batctl -m $IFACE it 10000
+        post-up         /usr/sbin/batctl -m $IFACE vm server
+        post-up         /usr/sbin/batctl -m $IFACE gw server  96mbit/96mbit
+        pre-down        /sbin/brctl delif wiBR $IFACE || true

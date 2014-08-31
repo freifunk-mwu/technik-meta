@@ -21,7 +21,7 @@ Bevor wir ein Gateway aufsetzen definieren wir einen Namen (leichter zu merken) 
 Wir haben von der Freifunkcommunity folgende Netze zugewiesen bekommen:
 
 * Mainz - ``10.37.0.0/16`` = **37**
-* Wiesbaden - `10.56.0.0/16`` = **56**
+* Wiesbaden - ``10.56.0.0/16`` = **56**
 
 Mit der uns zugewiesenen Netznummer sowie der Gateway-Nummer und dem -Namen werden alle benötigten Informationen abgeleitet:
 
