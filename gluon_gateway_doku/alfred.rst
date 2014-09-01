@@ -7,76 +7,34 @@ A.L.F.R.E.D. soll auf allen Gateways im Master Modus laufen, A.L.F.R.E.D. daemon
 
 Dadurch wird sichergestellt, dass jedes Gateway immer alle A.L.F.R.E.D. Daten hat.
 
-Darüber hinaus muss auf alles Gateways zusätzlich ``batadv-vis`` im Server Modus laufen.
+Darüber hinaus muss auf allen Gateways zusätzlich ``batadv-vis`` im Server Modus laufen.
 
 Dies sorgt dafür, dass jedes Gate seine ``batman_adv`` neighbors und local client table über A.L.F.R.E.D. bekannt gibt.
 
 Leider sind die von der Distribution mitgelieferten Pakete kaputt, wir müssen uns unsere eigenen :ref:`pakete` installieren.
 
-Altes System V Init Zeugs löschen::
+In unseren Paketen liefern wir für Mainz und Wiesbaden schon vorgefertigte Beispiele.
 
-    update-rc.d -f alfred remove
+Defaults beseitigen::
+
+    service alfred stop
+    service batadv-vis stop
     rm /etc/default/alfred
-    rm /etc/init.d/alfred
+    rm /etc/init/alfred.conf
+    rm /etc/init/batadv-vis.conf
 
-Danach schreiben wir pro Mesh-Wolke ein Configfile (muss man ggf. neu erstellen).
+Danach kopieren wir die vorgefertigten Beispiele an die richige Stelle::
 
-/etc/default/alfred-mz z.B. für Mainz::
+    cp /usr/share/doc/alfred/examples/alfred-mz.default /etc/default/alfred-mz
+    cp /usr/share/doc/alfred/examples/alfred-wi.default /etc/default/alfred-wi
+    cp /usr/share/doc/alfred/examples/alfred-mz.upstart /etc/init/alfred-mz.conf
+    cp /usr/share/doc/alfred/examples/alfred-wi.upstart /etc/init/alfred-wi.conf
+    cp /usr/share/doc/batadv-vis/examples/batadv-vis-mz.upstart /etc/init/batadv-vis-mz.conf
+    cp /usr/share/doc/batadv-vis/examples/batadv-vis-wi.upstart /etc/init/batadv-vis-wi.conf
 
-    #
-    # /etc/default/alfred-mz
-    #
+Und anschließend die beiden A.L.F.R.E.D. Instanzen starten::
 
-    # Additional command line options
-    DAEMON_OPTS=""
+    service alfred-mz start
+    service alfred-wi start
 
-    # Interface for A.L.F.R.E.D. to listen on. Has to be specified.
-    INTERFACE="mzBR"
-
-    # Specify the batman-adv interface configured on the system (default: bat0).
-    # Use 'none' to disable the batman-adv based best server selection.
-    BATMANIF="mzBAT"
-
-    # Unix socket to use (default: /var/run/alfred.sock)
-    UNIX_SOCKET="/var/run/alfred-mz.sock"
-
-Dazu kommt jeweils ein Upstart Script.
-
-/etc/init/alfred-mz.conf z.B. für Mainz::
-
-    # Starts A.L.F.R.E.D
-    #
-
-    description     "A.L.F.R.E.D"
-    author          "Tobias Hachmer <tobias@hachmer.de>"
-
-    start on started networking
-    stop on stopped networking
-
-    respawn
-
-    script
-    . /etc/default/alfred-mz
-    exec /usr/sbin/alfred -i ${INTERFACE} -b ${BATMANIF:-bat0} -u ${UNIX_SOCKET} -m ${DAEMON_ARGS}
-    end script
-
-Danach noch je ein Upstart Script für batadv-vis, damit Alfred funktioniert.
-
-/etc/init/batadv-vis-wi.conf diesmal für Wiesbaden::
-
-    # Starts batadv-vis
-    #
-
-    description     "batadv-vis"
-    author          "Tobias Hachmer <tobias@hachmer.de>"
-
-    start on started alfred-wi
-    stop on stopped alfred-wi
-
-    respawn
-    script
-    . /etc/default/alfred-wi
-    exec /usr/sbin/batadv-vis -i ${BATMANIF} -u ${UNIX_SOCKET} -s
-    end script
-
-
+Durch die Abhängigkeiten in den A.L.F.R.E.D. Upstart Scripts wird dafür gesorgt, dass die batadv-vis Instanzen automatisch mitgestartet und gestoppt werden.
