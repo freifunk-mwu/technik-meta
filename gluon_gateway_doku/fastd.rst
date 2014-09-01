@@ -23,7 +23,7 @@ git peers clonen::
 Für Mainz
 ---------
 
-/etc/fastd/mainzVPN/fastd.conf::
+/etc/fastd/mzVPN/fastd.conf::
 
     log to syslog level warn;
     interface "mzVPN";
