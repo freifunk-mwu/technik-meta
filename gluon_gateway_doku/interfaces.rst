@@ -7,7 +7,8 @@ Netzwerk Interfaces
 
 Wir richten uns hier je eine Brücke pro Mesh-Wolke die wir versorgen wollen ein.
 
-Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..) das hoch/runterfahren vom MeshVPN und vom ExitVPN hat auf die Brücken und somit auf die Dienste keinen Einfluss.
+Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
+Das hoch/runterfahren vom MeshVPN bzw. ExitVPN hat auf die Brücken und somit auf die Dienste keinen Einfluss.
 
 Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
 
