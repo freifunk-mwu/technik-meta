@@ -9,7 +9,7 @@ Die jeweils aktuellsten Versionen unserer Configfiles finden sich im gateway-con
 
 Geschrieben in Zusammenarbeit von Freifunk-Mainz_ and Freifunk-Wiesbaden_ als freifunk-mwu_ auf GitHub.
 
-Eine augenfreundliche Version findet sich unter gluon-gateway-doku.readthedocs.org_!
+Eine augenfreundliche Version dieser Dokumentation findet sich unter gluon-gateway-doku.readthedocs.org_!
 
 .. _gateway-configs.git: https://github.com/freifunk-mwu/gateway-configs/
 .. _Freifunk-Mainz: http://www.freifunk-mainz.de/
@@ -24,6 +24,7 @@ Inhalt
    :maxdepth: 2
 
    voraussetzungen
+   netzplan
    repos_und_pakete
    netzwerk
    fastd

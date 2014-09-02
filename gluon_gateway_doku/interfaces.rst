@@ -54,6 +54,7 @@ Hilfreich:
 
 * Routing - :ref:`routing_table`
 * Adressen - :ref:`gateway_schema`
+* Interfaces - :ref:`interface_bezeichnung`
 
 Wir haben uns dazu entschieden jeglichs Up- & Downscript in der /etc/network/interfaces zu verwalten.
 Dies gestaltet alles übersichtlicher.
