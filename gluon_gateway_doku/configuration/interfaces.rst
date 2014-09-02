@@ -10,6 +10,13 @@ Wir richten uns hier je eine Brücke pro Mesh-Wolke die wir versorgen wollen ein
 Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
 Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch unabhängig voneinander geschehen.
 
+:see:
+    - :ref:`fastd`
+    - :ref:`dhcp`
+    - :ref:`routing_table`
+    - :ref:`icvpn`
+    - :ref:`exitvpn`
+
 Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
 
     auto wiBR

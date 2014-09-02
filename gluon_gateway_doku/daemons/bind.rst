@@ -74,6 +74,9 @@ Somit darf man nun die Zone-Files konfigurieren:
 * /etc/bind/ffmz/local.ffmz.org.master.db
 * /etc/bind/ffmz/user.ffmz.org.master.db
 
+
+Die Verwaltung der öffentlichen Domains übernimmt die separate VM *Linse*
+
 DNS-Slave
 ---------
 

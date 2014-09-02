@@ -36,3 +36,4 @@ Inhalt
    daemons/alfred
    daemons/ip
    daemons/bind
+   operations/workflows

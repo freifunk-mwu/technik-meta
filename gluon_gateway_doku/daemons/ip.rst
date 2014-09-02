@@ -45,7 +45,7 @@ Wir wählen die beiden Brücken::
 RAdvD einrichten
 ================
 
-Die Konfigurationsdatei muss man sich selbst erzeugen. Es gibt Beispiele unter ``usr/share/doc/radvd/examples/``.
+Die Konfigurationsdatei muss man sich selbst erzeugen. Es gibt Beispiele unter ``/usr/share/doc/radvd/examples/``.
 
 Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
@@ -69,4 +69,4 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
 Wichtig:
 
-RDNSS auf sich selbst setzen.
+*RDNSS* auf sich selbst setzen.
