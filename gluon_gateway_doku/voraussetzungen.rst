@@ -69,9 +69,9 @@ IPv4        ``10.37.0.23``                    ``10.56.0.23``
 IPv6        ``fd37:b4dc:4b1e:0a25:00017``     ``fd37:b4dc:4b1e:a38:17``
 MAC         ``02:00:0a:25:00:17``             ``02:00:0a:38:00:17``
 DNS1        ``lotuswurzel.freifunk-mainz.de`` ``lotuswurzel.freifunk-wiesbaden.de``
-DNS2        ``lotuswurzel.ffmz.org``          ``lotuswurzel.ffmz.org``
-DNS1        ``gate23.freifunk-mainz.de``      ``gate23.freifunk-wiesbaden.de``
-DNS2        ``gate23.ffmz.org``               ``gate23.ffmz.org``
+DNS2        ``lotuswurzel.ffmz.org``          ``lotuswurzel.ffwi.org``
+CNAME1      ``gate23.freifunk-mainz.de``      ``gate23.freifunk-wiesbaden.de``
+CNAME2      ``gate23.ffmz.org``               ``gate23.ffwi.org``
 =========== ================================= =====================================
 
 Interfaces
