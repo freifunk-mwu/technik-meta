@@ -5,6 +5,8 @@ In dieser Anleitung wird beschrieben, wie wir unsere Gateway-Server für Freifun
 
 Ziel des Ganzen soll *nicht* eine Auflistung von Konfigurationen sein, eher wollen wir am Beispiel derer unsere Gedankengänge und Hintergründe dazu beleuchten.
 
+.. note:: Diese Dokumentation ist noch nicht komplett.
+
 Die jeweils aktuellsten Versionen unserer Configfiles finden sich im gateway-configs.git_
 
 Geschrieben in Zusammenarbeit von Freifunk-Mainz_ and Freifunk-Wiesbaden_ als freifunk-mwu_ auf GitHub.
@@ -23,10 +25,10 @@ Inhalt
 .. toctree::
    :maxdepth: 2
 
-   voraussetzungen
-   netzplan
-   repos_und_pakete
-   netzwerk
-   fastd
-   interfaces
-   alfred
+   prerequisites/voraussetzungen
+   prerequisites/netzplan
+   configuration/repos_und_pakete
+   configuration/netzwerk
+   daemons/fastd
+   configuration/interfaces
+   daemons/alfred
