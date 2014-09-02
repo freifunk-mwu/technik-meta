@@ -29,6 +29,7 @@ Inhalt
 
    prerequisites/voraussetzungen
    prerequisites/netzplan
+   prerequisites/gluon
    configuration/repos_und_pakete
    configuration/netzwerk
    daemons/fastd
