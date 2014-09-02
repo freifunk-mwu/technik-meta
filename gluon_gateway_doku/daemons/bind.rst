@@ -21,11 +21,66 @@ Bind einrichten
 
 **Wichtig**: *listen-on*, *listen-on-v6* auf sich selbst zeigen lassen.
 
-Danach Ordner für die zone files erstellen::
+Jedes Gate ist ein Slave für DNS (Das Vereins-Gate ist Master).
+
+DNS-Master ist mangels Vereins-Gate erstmal auf Hinterschinken.
+
+DNS-Master
+----------
+
+Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Mainz)::
+
+    acl "ns-slaves-mz" {
+        10.37.0.7/32;
+        10.37.0.23/32;
+        fd37:b4dc:4b1e::a25:7/128;
+        fd37:b4dc:4b1e::a25:17/128;
+    };
+
+    acl "intern-mz" {
+        10.37.0.0/16;
+        fd37:b4dc:4b1e::/48;
+    };
+
+    // Intern Zones for Freifunk
+
+    zone "ffmz.org." {
+        type master;
+        file "/etc/bind/ffmz/ffmz.org.master.db";
+    };
+
+    zone "user.ffmz.org." {
+        type master;
+        file "/etc/bind/ffmz/user.ffmz.org.master.db";
+    };
+
+    // Reverse Zones
+
+    zone "37.10.in-addr.arpa" {
+        type master;
+        file "/etc/bind/ffmz/37.10.in-addr.arpa.master.db";
+    };
+
+    zone "e.1.b.4.c.d.4.b.7.3.d.f.ip6.arpa" {
+        type master;
+        file "/etc/bind/ffmz/fd37:b4dc:4b1e_48.ip6.arpa.master.db";
+    };
+
+Somit darf man nun die Zone-Files konfigurieren:
+
+* /etc/bind/ffmz/37.10.in-addr.arpa.master.db
+* /etc/bind/ffmz/fd37:b4dc:4b1e_48.ip6.arpa.master.db
+* /etc/bind/ffmz/ffmz.org.master.db
+* /etc/bind/ffmz/local.ffmz.org.master.db
+* /etc/bind/ffmz/user.ffmz.org.master.db
+
+DNS-Slave
+---------
+
+Die benötigten Ordner für die Zone-Files erstellen::
 
     mkdir /etc/bind/ffmz /etc/bind/ffwi
     chown -R bind:bind /etc/bind/ffmz /etc/bind/ffwi
-
 
 Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
 
