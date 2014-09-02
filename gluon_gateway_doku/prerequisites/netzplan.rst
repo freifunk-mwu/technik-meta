@@ -76,6 +76,12 @@ Wir vergeben unsere Interface-Bezeichnungen einheitlich!
 
 Dies erleichtert das Scripten und Debuggen.
 
+Namenskonvention
+----------------
+
+Als *Hostname* der Gateways kommt **"irgendwas mit Nahrung"** zum Einsatz :)
+
+
 .. _next_node:
 
 Next Node Adressen
@@ -94,6 +100,8 @@ Wir nutzen dazu die jeweils niedrigsten Adressen
 * Wiesbaden:
     * IPv4: ``10.56.0.1``
     * IPv6: ``fd56:b4dc:4b1e::1``
+
+    .
 
 .. _gateway_schema:
 

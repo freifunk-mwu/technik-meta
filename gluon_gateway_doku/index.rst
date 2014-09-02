@@ -7,7 +7,9 @@ Ziel des Ganzen soll *nicht* eine Auflistung von Konfigurationen sein, eher woll
 
 .. note:: Diese Dokumentation ist noch nicht komplett.
 
-Die jeweils aktuellsten Versionen unserer Configfiles finden sich im gateway-configs.git_
+Die aktuelle Konfiguration der Gates ist jederzeit im gateway-configs.git_ zu finden.
+
+Grundsätzlich dienen bei der Konfiguration eines neuen Gate die bekannten Konfiguration der bestehenden Gates als Vorbilder. Trotzdem werden hier wichtige Punkte explizit beschrieben und zusammengefasst.
 
 Geschrieben in Zusammenarbeit von Freifunk-Mainz_ and Freifunk-Wiesbaden_ als freifunk-mwu_ auf GitHub.
 
