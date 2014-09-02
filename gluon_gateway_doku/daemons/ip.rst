@@ -31,6 +31,15 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         option domain-search "local.ffwi.org", "ffwi.org", "user.ffwi.org";
     }
 
+Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
+
+:see:
+    - :ref:`interfaces`
+
+Wir wählen die beiden Brücken::
+
+    INTERFACES="mzBR wiBR"
+
 .. _radvd:
 
 RAdvD einrichten

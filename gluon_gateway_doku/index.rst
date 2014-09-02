@@ -34,3 +34,4 @@ Inhalt
    daemons/fastd
    configuration/interfaces
    daemons/alfred
+   daemons/ip
