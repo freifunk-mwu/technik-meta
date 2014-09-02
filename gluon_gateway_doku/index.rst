@@ -35,3 +35,4 @@ Inhalt
    configuration/interfaces
    daemons/alfred
    daemons/ip
+   daemons/bind
