@@ -71,7 +71,7 @@ release = '0.1 alpha'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', '_templates']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -103,6 +103,15 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 html_theme = 'default'
+
+# on_rtd is whether we are on readthedocs.org
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    import sphinx_rtd_theme
+    html_theme = 'sphinx_rtd_theme'
+    html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+# otherwise, readthedocs.org uses their theme by default, so no need to specify it
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -154,7 +163,7 @@ html_static_path = ['_static']
 #html_additional_pages = {}
 
 # If false, no module index is generated.
-#html_domain_indices = True
+html_domain_indices = False
 
 # If false, no index is generated.
 #html_use_index = True
@@ -200,7 +209,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'GluonGatewayDoku.tex', 'Gluon Gateway Doku Documentation',
+  ('index', 'GluonGatewayDoku.tex', 'Gluon Gateway Doku',
    'Freifunk-MWU', 'manual'),
 ]
 
@@ -230,7 +239,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'gluongatewaydoku', 'Gluon Gateway Dokumentation',
+    ('index', 'gluongatewaydoku', 'Gluon Gateway Doku',
      ['freifunk-mwu'], 1)
 ]
 
@@ -244,7 +253,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'GluonGatewayDoku', 'Gluon Gateway Dokumentation',
+  ('index', 'GluonGatewayDoku', 'Gluon Gateway Doku',
    'freifunk-mwu', 'GluonGatewayDoku', 'One line description of project.',
    'Miscellaneous'),
 ]
