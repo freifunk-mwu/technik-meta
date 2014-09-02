@@ -17,28 +17,28 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         bridge-ports none
         address 10.56.0.X
         netmask 255.255.192.0
-        # ip rules for icvpn traffic
-        post-up         /sbin/ip rule add from all table icvpn-wi priority 560
-        post-down       /sbin/ip rule del from all table icvpn-wi priority 560
-        # ip rules to add all traffic entering the bridge to the appropriate rt_table
+        # add all marked traffic to the appropriate rt_table
         post-up         /sbin/ip rule add iif $IFACE table wi priority 5600
         pre-down        /sbin/ip rule del iif $IFACE table wi priority 5600
+        # default route is unreachable
+        post-up         /sbin/ip route add unreachable default table wi
+        post-down       /sbin/ip route del unreachable default table wi
         # local reachable subnet
-        post-up         /sbin/ip route add 10.56.0.0/18 dev $IFACE table wi
-        post-down       /sbin/ip route del 10.56.0.0/18 dev $IFACE table wi
+        post-up         /sbin/ip route add 10.56.0.0/18 src 10.56.0.X dev $IFACE table wi
+        post-down       /sbin/ip route del 10.56.0.0/18 src 10.56.0.X dev $IFACE table wi
         # insert ic-vpn light route for wi network into rt_table mz
-        post-up         /sbin/ip route add 10.56.0.0/18 dev $IFACE src 10.56.0.X table mz
-        post-down       /sbin/ip route del 10.56.0.0/18 dev $IFACE src 10.56.0.X table mz
+        post-up         /sbin/ip route add 10.56.0.0/18 src 10.56.0.X dev $IFACE table mz
+        post-down       /sbin/ip route del 10.56.0.0/18 src 10.56.0.X dev $IFACE table mz
 
     iface wiBR inet6 static
         address fd56:b4dc:4b1e::a38:X
         netmask 64
-        # ip rules for icvpn traffic
-        post-up         /sbin/ip -6 rule add from all table icvpn-wi priority 560
-        post-down       /sbin/ip -6 rule del from all table icvpn-wi priority 560
-        # ip rules to add all traffic entering the bridge to the appropriate rt_table
+        # add all marked traffic to the appropriate rt_table
         post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5600
         pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5600
+        # default route is unreachable
+        post-up         /sbin/ip -6 route add unreachable default table wi
+        post-down       /sbin/ip -6 route del unreachable default table wi
         # link-local subnet
         post-up         /sbin/ip -6 route add fe80::/64 dev $IFACE table wi
         post-down       /sbin/ip -6 route del fe80::/64 dev $IFACE table wi
