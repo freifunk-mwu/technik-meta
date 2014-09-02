@@ -101,7 +101,7 @@ Wir nutzen dazu die jeweils niedrigsten Adressen
     * IPv4: ``10.56.0.1``
     * IPv6: ``fd56:b4dc:4b1e::1``
 
-    .
+    ..
 
 .. _gateway_schema:
 
