@@ -10,6 +10,9 @@ fastd-keys
 
 Damit die Nodes eine VPN-Verbindung aufbauen können, muss der *öffentliche* **fastd** *Schlüssel* auf die Gateways gelangen.
 
+:see:
+    - :ref:`fastd`
+
 Wir verwalten diese Keys in Git-Repositories:
 
 * Mainz: peers-ffmz.git_
@@ -91,3 +94,57 @@ Der bekannte, ehemalige Hobbyfunker *Roy Kabel* - jetzt Freifunker hat zum Beisp
 
     key "abcdef01234567890123456789abcdefabcdef01234567890123456789abcdef"; # Mobile Node
     # TL-MR2342
+
+
+.. _exitvpn_accounts:
+
+exitVPN Accounts
+----------------
+
+Anfragen aus dem Freifunknetz in das weltweite Internet tunneln wir durch das sog. **exitVPN**, um die Störerhaftung zu umgehen.
+
+Dies hat den Vorteil, dass Anfragen in das Internet anonymisiert werden, Anbieter sehen nur dass die Anfrage aus dem Freifunk-Netz kommt.
+
+:see:
+    - :ref:`openvpn`
+
+Hierbei handelt es sich um **OpenVPN** Angebote, meist in Schweden oder Niederlande.
+
+Diese werden im Vorraus gezahlt, und müssen von Hand aufgeladen werden.
+
+**Problem** - Dies wird all zu gerne verpeilt!
+
+Im `gateway-configs.git`_ findet sich eine ``exitVPN.md``
+
+.. _gateway-configs.git: https://github.com/freifunk-mwu/gateway-configs/
+
+Dort wird pro Gateway hinterlegt, welcher VPN-Account hinterlegt ist, und bis zu welchem Datum dieser bezahlt ist.
+
+Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen.
+
+1. ## Gateway-Name
+2. ### Account-Nr/Login - VPN-Anbieter (mullvad/ipredator)
+3. * Datum bis zu dem gezahlt wurde: DD.MM.YYYY
+4. Leerzeile
+5. Leerzeile
+
+.. note:: Dieses Script sowie die ``exitVPN.md`` ist noch in Arbeit. Bitte etwas geduld.
+
+Beispiel
+^^^^^^^^
+
+In etwa so::
+
+    ## Hartwurstsuppe
+    ### abcdef0123 - ipredator
+    * 23.05.2023
+
+
+    ## Popcorn
+    ### 0123456789 - mullvad
+    * 23.05.2042
+
+
+    # ...
+
+.. TODO Script schreiben.
