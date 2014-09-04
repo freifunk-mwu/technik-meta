@@ -37,13 +37,27 @@ Routing Tables einrichten
 
 .. _ip_forward:
 
-IP Forwarding setzen
-====================
+Wichtige Kernel Parameter
+=========================
 
 /etc/sysctl.conf::
 
-    net.ipv4.ip_forward = 1
-    net.ipv6.conf.all.forwarding = 1
+    # Freifunk specific settings
+    net.ipv4.ip_forward=1
+
+    net.bridge.bridge-nf-call-arptables = 0
+    net.bridge.bridge-nf-call-ip6tables = 0
+    net.bridge.bridge-nf-call-iptables = 0
+
+    net.ipv6.conf.all.forwarding=1
+
+    net.ipv6.conf.all.autoconf = 0
+    net.ipv6.conf.default.autoconf = 0
+    net.ipv6.conf.eth0.autoconf = 0
+
+    net.ipv6.conf.all.accept_ra = 0
+    net.ipv6.conf.default.accept_ra = 0
+    net.ipv6.conf.eth0.accept_ra = 0
 
 Danach neuladen::
 

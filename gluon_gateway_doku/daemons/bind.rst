@@ -19,7 +19,7 @@ Bind einrichten
     };
 
 
-**Wichtig**: *listen-on*, *listen-on-v6* auf sich selbst zeigen lassen.
+**Wichtig**: *listen-on*, *listen-on-v6* ausschließlich auf die lokalen Interfaces zeigen lassen.
 
 Jedes Gate ist ein Slave für DNS (Das Vereins-Gate ist Master).
 

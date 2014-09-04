@@ -5,7 +5,7 @@ Netzwerk Interfaces
 
 /etc/network/interfaces
 
-Wir richten uns hier je eine Brücke pro Mesh-Wolke die wir versorgen wollen ein.
+Wir richten uns hier je eine Brücke pro Mesh-Wolke, die wir versorgen wollen, ein.
 
 Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
 Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch unabhängig voneinander geschehen.
@@ -56,13 +56,14 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 dev $IFACE table mz
 
 .. TODO: Warum wird unter *inet* bridge-ports none definiert, unter *inet6* aber nicht?
+.. Antwort: Weil die bridge_* Direktiven nur einmal pro Interface-Stanza definiert werden können, siehe http://bugs.debian.org/319832 .
 
 :see:
     - :ref:`routing_table`
     - :ref:`gateway_schema`
     - :ref:`interface_bezeichnung`
 
-Wir haben uns dazu entschieden jeglichs Up- & Downscript in der /etc/network/interfaces zu verwalten.
+Wir haben uns dazu entschieden jegliche Up- & Down Scripte in der /etc/network/interfaces zu verwalten.
 Dies gestaltet alles übersichtlicher.
 
 Scripte für :ref:`fastd`::
@@ -90,7 +91,7 @@ Zum Schluss noch für das B.A.T.M.A.N. Interface::
 DNS-Eintrag für das System selbst
 ---------------------------------
 
-Nach dem die Konfiguration von Bind abgeschlossen wird ein DNS-Eintrag auf sich gesetzt.
+Nach dem die Konfiguration von BIND abgeschlossen wird der DNS-Eintrag auf sich selbst gesetzt.
 
 Dies kommt in die inet Section des Internet Interfaces, i.d.R. eth0.
 
