@@ -27,8 +27,8 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         address 10.56.0.X
         netmask 255.255.192.0
         # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip rule add iif $IFACE table wi priority 5601
-        pre-down        /sbin/ip rule del iif $IFACE table wi priority 5601
+        post-up         /sbin/ip rule add iif $IFACE table wi priority 5600
+        pre-down        /sbin/ip rule del iif $IFACE table wi priority 5600
         # default route is unreachable
         post-up         /sbin/ip route add unreachable default table wi
         post-down       /sbin/ip route del unreachable default table wi
@@ -40,8 +40,8 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         address fd56:b4dc:4b1e::a38:X
         netmask 64
         # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5601
-        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5601
+        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5600
+        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5600
         # default route is unreachable
         #post-up                /sbin/ip -6 route add unreachable default table wi
         #post-down      /sbin/ip -6 route del unreachable default table wi
