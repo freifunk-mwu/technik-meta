@@ -26,9 +26,6 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         bridge_maxwait 0
         address 10.56.0.X
         netmask 255.255.192.0
-        # add all wi traffic to the appropriate rt_table
-        post-up         /sbin/ip rule add from 10.56.0.0/18 table wi priority 5600
-        pre-down        /sbin/ip rule del from 10.56.0.0/18 table wi priority 5600
         # be sure all incoming traffic is handled by the appropriate rt_table
         post-up         /sbin/ip rule add iif $IFACE table wi priority 5601
         pre-down        /sbin/ip rule del iif $IFACE table wi priority 5601
@@ -42,9 +39,6 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
     iface wiBR inet6 static
         address fd56:b4dc:4b1e::a38:X
         netmask 64
-        # add all wi traffic to the appropriate rt_table
-        post-up         /sbin/ip -6 rule add from fd56:b4dc:4b1e::/64 table wi priority 5600
-        pre-down        /sbin/ip -6 rule del from fd56:b4dc:4b1e::/64 table wi priority 5600
         # be sure all incoming traffic is handled by the appropriate rt_table
         post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5601
         pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5601
