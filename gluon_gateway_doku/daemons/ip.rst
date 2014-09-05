@@ -23,12 +23,12 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         option routers 10.56.0.X;
 
         # DNS servers to be pushed to our clients.
-        # This will usually be our IP address and maybe some additional
-        # DNS recursers provided in the configuration file.
-        option domain-name-servers 10.56.0.X;
+        # This will usually be our IP address and all other
+        # gateways, too.
+        option domain-name-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
 
         option domain-name ".ffwi.org";
-        option domain-search "local.ffwi.org", "ffwi.org", "user.ffwi.org";
+        option domain-search "ffwi.org", "user.ffwi.org";
     }
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
@@ -63,10 +63,10 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
         prefix fd37:b4dc:4b1e::/64
         {};
 
-        RDNSS fd37:b4dc:4b1e::a25:X
+        RDNSS fd37:b4dc:4b1e::a25:X fd37:b4dc:4b1e::a25:Y fd37:b4dc:4b1e::a25:Z
         {};
     };
 
 Wichtig:
 
-*RDNSS* auf sich selbst setzen.
+*RDNSS* auf sich selbst und alle anderen Gates setzen.
