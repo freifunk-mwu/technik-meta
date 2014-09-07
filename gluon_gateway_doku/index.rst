@@ -37,4 +37,5 @@ Inhalt
    daemons/alfred
    daemons/ip
    daemons/bind
+   daemons/openvpn
    operations/workflows
