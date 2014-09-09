@@ -61,5 +61,6 @@ Pakete aus den eigenen Repositories installieren::
         batctl
         batman-adv-dkms
         alfred
+        alfred-json
         batadv-vis
 
