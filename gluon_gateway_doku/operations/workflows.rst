@@ -114,7 +114,7 @@ Diese werden im Vorraus gezahlt, und müssen von Hand aufgeladen werden.
 
 **Problem** - Dies wird all zu gerne verpeilt!
 
-Im `gateway-configs.git`_ findet sich eine ``exitVPN.md``
+Im `gateway-configs.git`_ findet sich eine ``exitVPN.yaml``
 
 .. _gateway-configs.git: https://github.com/freifunk-mwu/gateway-configs/
 
@@ -122,29 +122,28 @@ Dort wird pro Gateway hinterlegt, welcher VPN-Account hinterlegt ist, und bis zu
 
 Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen.
 
-1. ## Gateway-Name
-2. ### Account-Nr/Login - VPN-Anbieter (mullvad/ipredator)
-3. * Datum bis zu dem gezahlt wurde: DD.MM.YYYY
-4. Leerzeile
-5. Leerzeile
+1. **Gateway-Name** ``:``
+    2. ``account:``  **Account-Nr/Login**
+    3. ``provider:``  **VPN-Anbieter** (mullvad/ipredator)
+    4. ``until:``  Datum bis zu dem gezahlt wurde: **DD.MM.YYYY**
+    5. Leerzeile
 
-.. note:: Dieses Script sowie die ``exitVPN.md`` ist noch in Arbeit. Bitte etwas geduld.
+.. note:: Dieses Script sowie die ``exitVPN.yaml`` ist noch in Arbeit. Bitte etwas Geduld.
 
 Beispiel
 ^^^^^^^^
 
-In etwa so::
+Also so::
 
-    ## Hartwurstsuppe
-    ### abcdef0123 - ipredator
-    * 23.05.2023
+    Hartwurstsuppe:
+        account: abcdef0123
+        provider: ipredator
+        until: 23.05.2023
 
+    Popcorn:
+        account: 0123456789
+        provider: mullvad
+        until: 23.05.2042
 
-    ## Popcorn
-    ### 0123456789 - mullvad
-    * 23.05.2042
-
-
-    # ...
 
 .. TODO Script schreiben.
