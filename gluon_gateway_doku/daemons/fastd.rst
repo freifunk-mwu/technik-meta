@@ -10,7 +10,7 @@ Ordnerstruktur::
     /etc/fastd/wiVPN - Config für Wiesbaden
     /etc/fastd/wiVPN/peers - Peers für Wiesbaden
 
-    sudo chmod -R admin:admin /etc/fastd/*/peers/
+    sudo chown -R admin:admin /etc/fastd/*/peers/
 
 Als Benutzer admin ausführen (für FFctl)!
 
