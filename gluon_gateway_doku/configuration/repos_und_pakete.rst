@@ -9,6 +9,11 @@ Benötigte Repositories
 
     add-apt-repository ppa:freifunk-mwu/freifunk-ppa
 
+    add-apt-repository kann mittels::
+    
+    apt-get install software-properties-common 
+    
+    installiert werden 
 * Neoraiders Repository einbinden (für fastd)::
 
     echo "deb http://repo.universe-factory.net/debian/ sid main" > /etc/apt/sources.list.d/freifunk.list
