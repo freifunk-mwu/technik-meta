@@ -11,7 +11,7 @@ Darüber hinaus muss auf allen Gateways zusätzlich ``batadv-vis`` im Server Mod
 
 Dies sorgt dafür, dass jedes Gate seine ``batman_adv`` neighbors und local client table über A.L.F.R.E.D. bekannt gibt.
 
-Leider sind die von der Distribution mitgelieferten Pakete kaputt, wir müssen uns unsere eigenen :ref:`pakete` installieren.
+Ubuntu liefert keine A.L.F.R.E.D. Pakete mit, daher verwenden wir selbstgebaute :ref:`pakete`.
 
 In unseren Paketen liefern wir für Mainz und Wiesbaden schon vorgefertigte Beispiele.
 
