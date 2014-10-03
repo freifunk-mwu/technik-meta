@@ -106,6 +106,7 @@ An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-util
     - :ref:`openvpn`
 
 Übergang zu anderen Freifunk-Communities (InterCityVPN)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Wie auch bei uns, so sind auch die IPv4-Netze der anderen Freifunk-Communities nicht über das restliche Internet zu erreichen.
 
@@ -117,7 +118,9 @@ Als Software benutzen wir hier **tinc** und **bird6**.
     - :ref:`pakete`
     - :ref:`interfaces`
     - :ref:`routing_table`
-    - :ref:`icvpn`
+    - icvpn
+        - :ref:`tinc`
+        - :ref:`bird`
 
 Datenschutz auf dem Gateway
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^

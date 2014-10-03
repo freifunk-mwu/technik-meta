@@ -38,4 +38,6 @@ Inhalt
    daemons/ip
    daemons/bind
    daemons/openvpn
+   daemons/tinc
+   daemons/bird
    operations/workflows
