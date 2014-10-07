@@ -13,7 +13,7 @@ manuell, sondern per `BGP`_ gepflegt (die `ASN`_ für Wiesbaden und Mainz sind 6
 Es gibt zwei etablierte BGP-Implmentationen:
 quagga_ und bird_; wir haben uns für letztere entschieden. Auch hier folgen
 wir grob der zentralen `Dokumentation`_ und es sei auf das im Aufbau befindliche
-`IC-VPN-Meta-repository`_ für die Konfigurationsdaten verwiesen.
+`IC-VPN-Meta-repository`_ für die Metainformationen sowie auf das `IC-VPN-scripts-repository`_ für die Erzeugung der bgp peers sowie DNS Config verwiesen.
 
 bird config
 ^^^^^^^^^^^
