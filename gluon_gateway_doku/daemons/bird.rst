@@ -54,7 +54,8 @@ tbc...
 .. _quagga: http://www.nongnu.org/quagga/
 .. _bird: http://bird.network.cz/
 .. _Dokumentation: http://wiki.freifunk.net/IC-VPN#BGP_Einrichten
-.. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn_meta
+.. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn-meta
+.. _IC-VPN-Scripts-repository: https://github.com/freifunk/icvpn-scripts
 
 
 
