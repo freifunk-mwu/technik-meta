@@ -56,6 +56,8 @@ Damit der **fastd**-daemon den Schlüssel lesen kann, muss noch etwas Syntax dru
 Bei Start oder Neuladen des **fastd**-daemons wird das Config-File neu eingelesen.
 In diesem steht, **fastd** möge zusätzlich noch alle Dateien aus dem ``peers``-Ordner mit einlesen (== *peers-... .git* Repository).
 
+.. warning:: Ablegeformat der fastd keys muss überarbeitet werden, da man lediglich einen key pro peer datei ablegen kann!
+
 Es ist unerheblich wie viele Nodes pro Datei im ``peers``-Ordner hinterlegt sind.
 
 Wir gruppieren die Nodes nach Nutzern (weitere Gruppen sind ``backbone``, ``event`` und ``whatever``).
