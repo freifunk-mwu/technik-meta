@@ -12,13 +12,13 @@ Den Hostnamen setzen (ohne Domain)::
 /etc/hosts (am Beispiel von Lotuswurzel)::
 
     127.0.0.1       localhost
-    176.9.204.70    lotuswurzel.freifunk-wiesbaden.de       lotuswurzel
+    144.76.209.100    lotuswurzel.freifunk-mwu.de       lotuswurzel
 
     # The following lines are desirable for IPv6 capable hosts
     ::1     localhost ip6-localhost ip6-loopback
     ff02::1 ip6-allnodes
     ff02::2 ip6-allrouters
-    2a01:4f8:150:8570::2    lotuswurzel.freifunk-wiesbaden.de    lotuswurzel
+    2a01:4f8:192:520::b4dc:4b1e    lotuswurzel.freifunk-mwu.de    lotuswurzel
 
 .. _routing_table:
 
@@ -31,8 +31,7 @@ Routing Tables einrichten
     37      mz
     56      wi
     # icvpn
-    370     icvpn-mz
-    560     icvpn-wi
+    700     icvpn
     [...]
 
 .. _ip_forward:

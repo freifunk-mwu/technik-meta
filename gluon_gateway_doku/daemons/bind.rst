@@ -11,31 +11,25 @@ Bind einrichten
         dnssec-validation auto;
 
         auth-nxdomain no;    # conform to RFC1035
-        listen-on { 127.0.0.1; 10.37.0.X; 10.56.0.X; };
-        listen-on-v6 { ::1; fd37:b4dc:4b1e::0a25:17; fd56:b4dc:4b1e::0a38:17; };
+        listen-on { 127.0.0.1; 10.37.0.X; 10.56.0.X; 10.207.0.X; };
+        listen-on-v6 { ::1; fd37:b4dc:4b1e::0a25:17; fd56:b4dc:4b1e::0a38:17; fec0::a:cf:0:X; };
 
-        allow-query { 127.0.0.1; ::1; intern-mz; intern-wi; };
+        allow-query { any; };
         allow-recursion { 127.0.0.1; ::1; intern-mz; intern-wi; };
+        allow-transfer { any; };
     };
 
 
-**Wichtig**: *listen-on*, *listen-on-v6* ausschließlich auf die lokalen Interfaces zeigen lassen.
+**Wichtig**: *listen-on*, *listen-on-v6* ausschließlich auf die lokalen Interfaces und die IC-VPN Interfaces zeigen lassen.
 
 Jedes Gate ist ein Slave für DNS (Das Vereins-Gate ist Master).
-
-DNS-Master ist mangels Vereins-Gate erstmal auf Hinterschinken.
 
 DNS-Master
 ----------
 
 Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Mainz)::
 
-    acl "ns-slaves-mz" {
-        10.37.0.7/32;
-        10.37.0.23/32;
-        fd37:b4dc:4b1e::a25:7/128;
-        fd37:b4dc:4b1e::a25:17/128;
-    };
+    // ACL for recursion
 
     acl "intern-mz" {
         10.37.0.0/16;
@@ -71,24 +65,21 @@ Somit darf man nun die Zone-Files konfigurieren:
 * /etc/bind/ffmz/37.10.in-addr.arpa.master.db
 * /etc/bind/ffmz/fd37:b4dc:4b1e_48.ip6.arpa.master.db
 * /etc/bind/ffmz/ffmz.org.master.db
-* /etc/bind/ffmz/local.ffmz.org.master.db
 * /etc/bind/ffmz/user.ffmz.org.master.db
 
-
-Die Verwaltung der öffentlichen Domains übernimmt die separate VM *Linse*
 
 DNS-Slave
 ---------
 
 Die benötigten Ordner für die Zone-Files erstellen::
 
-    mkdir /etc/bind/ffmz /etc/bind/ffwi
-    chown -R bind:bind /etc/bind/ffmz /etc/bind/ffwi
+    mkdir /etc/bind/slave-zones
+    chown -R bind:bind /etc/bind/slave-zones
 
 Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
 
     masters "ns-master-wi" {
-        10.56.0.5;
+        10.56.0.7;
     };
 
     acl "intern-wi" {
@@ -99,26 +90,26 @@ Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
     // Intern Zones for Freifunk
     zone "ffwi.org." {
         type slave;
-        file "/etc/bind/ffwi/ffwi.org.db";
+        file "/etc/bind/slave-zones/ffwi.org.db";
         masters { ns-master-wi; };
     };
 
     zone "user.ffwi.org." {
         type slave;
-        file "/etc/bind/ffwi/user.ffwi.org.db";
+        file "/etc/bind/slave-zones/user.ffwi.org.db";
         masters { ns-master-wi; };
     };
 
     // Reverse Zones
     zone "56.10.in-addr.arpa" {
         type slave;
-        file "/etc/bind/ffwi/56.10.in-addr.arpa.db";
+        file "/etc/bind/slave-zones/56.10.in-addr.arpa.db";
         masters { ns-master-wi; };
     };
 
     zone "e.1.b.4.c.d.4.b.6.5.d.f.ip6.arpa" {
         type slave;
-        file "/etc/bind/ffwi/fd56:b4dc:4b1e_48.ip6.arpa.db";
+        file "/etc/bind/slave-zones/fd56:b4dc:4b1e_48.ip6.arpa.db";
         masters { ns-master-wi; };
     };
 

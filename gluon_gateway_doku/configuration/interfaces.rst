@@ -40,17 +40,15 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         address fd56:b4dc:4b1e::a38:X
         netmask 64
         # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 5600
-        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 5600
-        # default route is unreachable
-        #post-up                /sbin/ip -6 route add unreachable default table wi
-        #post-down      /sbin/ip -6 route del unreachable default table wi
-        # ULA route wi fort rt_table mz
-        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
-        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
-
-.. TODO: Warum wird unter *inet* bridge-ports none definiert, unter *inet6* aber nicht?
-.. Antwort: Weil die bridge_* Direktiven nur einmal pro Interface-Stanza definiert werden können, siehe http://bugs.debian.org/319832 .
+        post-up         /sbin/ip -6 rule add iif $IFACE table mz priority 3700
+        pre-down        /sbin/ip -6 rule del iif $IFACE table mz priority 3700
+        post-up         /sbin/ip -6 route add fe80::/64 proto static dev $IFACE table mz
+        post-down       /sbin/ip -6 route del fe80::/64 proto static dev $IFACE table mz
+        post-up         /sbin/ip -6 route add fd37:b4dc:4b1e::/64 proto static dev $IFACE table mz
+        post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table mz
+        # ULA route mz for rt_table wi
+        post-up         /sbin/ip -6 route add fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
+        post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
 
 :see:
     - :ref:`routing_table`
@@ -78,6 +76,7 @@ Zum Schluss noch für das B.A.T.M.A.N. Interface::
         post-up         /usr/sbin/batctl -m $IFACE it 10000
         post-up         /usr/sbin/batctl -m $IFACE vm server
         post-up         /usr/sbin/batctl -m $IFACE gw server  96mbit/96mbit
+        post-up         /bin/echo "0" > /sys/class/net/$IFACE/mesh/multicast_mode
         pre-down        /sbin/brctl delif wiBR $IFACE || true
 
 .. _self_dns:

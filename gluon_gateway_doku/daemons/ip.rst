@@ -29,7 +29,13 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
 
         option domain-name ".ffwi.org";
         option domain-search "ffwi.org", "user.ffwi.org";
+
+        # ntp servers
+        option ntp-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
     }
+
+Wichtig:
+*domain-name-server* und *ntp-servers* auf sich selbst und alle anderen Gates setzen.
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
 
@@ -56,9 +62,6 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
         AdvSendAdvert on;
         IgnoreIfMissing on;
         MaxRtrAdvInterval 200;
-
-        # don't advertise default router
-        AdvDefaultLifetime 0;
 
         prefix fd37:b4dc:4b1e::/64
         {};

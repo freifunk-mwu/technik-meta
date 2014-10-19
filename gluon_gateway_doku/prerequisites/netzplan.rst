@@ -144,12 +144,9 @@ Mit den uns zugewiesenen Netznummern sowie der Gateway-Nummer und dem Gateway-Na
         * gate23 -> ``fd56:b4dc:4b1e::a38:17/64``
 
 * DNS
-    * ``xxxx.freifunk-mainz.de`` -> A- + AAAA-Record
-    * ``xxxx.freifunk-wiesbaden.de`` -> A- + AAAA-Record
-    * ``gateXX.freifunk-mainz.de`` -> CNAME auf s.o.
-    * ``gateXX.freifunk-wiesbaden.de`` -> CNAME auf s.o.
-
-    * Reverse DNS Eintrag korrekt setzen für Haupt DNS Namen, es geht nur einer -> Mainz
+    * ``xxxx.freifunk-mwu.de`` -> A- + AAAA-Record
+    * ``gateXX.freifunk-mwu.de`` -> CNAME auf s.o.
+    * Reverse DNS Eintrag korrekt setzen für Haupt DNS Namen: ``xxxx.freifunk-mwu.de``
 
 
 Beispiel
@@ -177,8 +174,8 @@ Lotuswurzel Mainz                             Wiesbaden
 IPv4        ``10.37.0.23``                    ``10.56.0.23``
 IPv6        ``fd37:b4dc:4b1e:0a25:00017``     ``fd37:b4dc:4b1e:a38:17``
 MAC         ``02:00:0a:25:00:17``             ``02:00:0a:38:00:17``
-DNS1        ``lotuswurzel.freifunk-mainz.de`` ``lotuswurzel.freifunk-wiesbaden.de``
+DNS1        ``lotuswurzel.freifunk-mwu.de``   ``lotuswurzel.freifunk-mwu.de``
 DNS2        ``lotuswurzel.ffmz.org``          ``lotuswurzel.ffwi.org``
-CNAME1      ``gate23.freifunk-mainz.de``      ``gate23.freifunk-wiesbaden.de``
+CNAME1      ``gate23.freifunk-mwu.de``        ``gate23.freifunk-mwu.de``
 CNAME2      ``gate23.ffmz.org``               ``gate23.ffwi.org``
 =========== ================================= =====================================

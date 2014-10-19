@@ -17,13 +17,17 @@ Dazu nutzen wir unsere eigenen Hook-Scripte. /etc/openvpn/openvpn-up::
 
     #!/bin/sh
 
+    # http://manpages.ubuntu.com/manpages/maverick/en/man8/openvpn.8.html#contenttoc5
+
     # ip rules for maintenance
     ip rule add from $ifconfig_local table mz priority 9937
     ip rule add from $ifconfig_local table wi priority 9956
 
     # default route into appropriate rt_table
-    ip route add default via $route_vpn_gateway dev $dev table mz
-    ip route add default via $route_vpn_gateway dev $dev table wi
+    ip route replace 0.0.0.0/1 via $route_vpn_gateway dev $dev table mz
+    ip route replace 128.0.0.0/1 via $route_vpn_gateway dev $dev table mz
+    ip route replace 0.0.0.0/1 via $route_vpn_gateway dev $dev table wi
+    ip route replace 128.0.0.0/1 via $route_vpn_gateway dev $dev table wi
 
     exit 0
 
