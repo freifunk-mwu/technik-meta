@@ -3,7 +3,10 @@
 Logging
 ===================
 
-Die Freifunk Gateway dürfen keine relevanten Log-Files anlegen. Hier wird beschrieben, wie man das für die jeweiligen Daemons erreicht.
+Freifunk steht unter Anderem für Netzneutralität und ist in keinster Weise an irgendwelchen Nutzer-, Meta-, Irgendwasdaten interessiert.
+Aus diesem Grund muss den sonst so redseligen Linux Daemonen das Logging abgewöhnt werden.
+
+Hier wird beschrieben, wie man das für die jeweiligen Daemons erreicht.
 
 Rsyslog
 -------
@@ -14,19 +17,21 @@ Wir legen uns auf eine Log Facility fest, deren Ziel ein schwarzes Loch ist.
 
 /etc/rsyslog.d/50-default.conf
 
-Die Zeile::
+Die folgende Zeile::
 
     *.*;auth,authpriv.none              -/var/log/syslog
 
-muss durch::
+durch diese ersetzen::
 
     *.*;auth,authpriv.none;local6.none              -/var/log/syslog
-
-ersetzt werden.
 
 /etc/rsyslog.d/99-freifunk.conf::
 
     local6.*        /dev/null
+
+Nun kann jeder Daemon, der per default syslog für das Loggen benutzt angewiesen werden, die Log Facility ``local6`` zu nutzen.
+Dadurch wird bewirkt, dass jegliche Infos im Nirvana landen.
+
 
 DHCP Server
 -----------
