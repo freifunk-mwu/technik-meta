@@ -12,11 +12,11 @@ Bind einrichten
 
         auth-nxdomain no;    # conform to RFC1035
         listen-on { 127.0.0.1; 10.37.0.X; 10.56.0.X; 10.207.0.X; };
-        listen-on-v6 { ::1; fd37:b4dc:4b1e::0a25:17; fd56:b4dc:4b1e::0a38:17; fec0::a:cf:0:X; };
+        listen-on-v6 { ::1; fd37:b4dc:4b1e::a25:17; fd56:b4dc:4b1e::a38:17; fec0::a:cf:0:38; };
 
+        allow-transfer { any; };
         allow-query { any; };
         allow-recursion { 127.0.0.1; ::1; intern-mz; intern-wi; };
-        allow-transfer { any; };
     };
 
 
@@ -71,15 +71,10 @@ Somit darf man nun die Zone-Files konfigurieren:
 DNS-Slave
 ---------
 
-Die benötigten Ordner für die Zone-Files erstellen::
-
-    mkdir /etc/bind/slave-zones
-    chown -R bind:bind /etc/bind/slave-zones
-
 Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
 
     masters "ns-master-wi" {
-        10.56.0.7;
+        fd56:b4dc:4b1e::a38:7;
     };
 
     acl "intern-wi" {
@@ -90,26 +85,26 @@ Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
     // Intern Zones for Freifunk
     zone "ffwi.org." {
         type slave;
-        file "/etc/bind/slave-zones/ffwi.org.db";
+        file "ffwi.org.db";
         masters { ns-master-wi; };
     };
 
     zone "user.ffwi.org." {
         type slave;
-        file "/etc/bind/slave-zones/user.ffwi.org.db";
+        file "user.ffwi.org.db";
         masters { ns-master-wi; };
     };
 
     // Reverse Zones
     zone "56.10.in-addr.arpa" {
         type slave;
-        file "/etc/bind/slave-zones/56.10.in-addr.arpa.db";
+        file "56.10.in-addr.arpa.db";
         masters { ns-master-wi; };
     };
 
     zone "e.1.b.4.c.d.4.b.6.5.d.f.ip6.arpa" {
         type slave;
-        file "/etc/bind/slave-zones/fd56:b4dc:4b1e_48.ip6.arpa.db";
+        file "fd56:b4dc:4b1e_48.ip6.arpa.db";
         masters { ns-master-wi; };
     };
 
