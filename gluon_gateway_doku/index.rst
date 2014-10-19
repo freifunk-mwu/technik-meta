@@ -40,4 +40,5 @@ Inhalt
    daemons/openvpn
    daemons/tinc
    daemons/bird
+   configuration/logging
    operations/workflows
