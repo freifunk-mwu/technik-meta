@@ -21,9 +21,6 @@ Grobe Liste der [Milestones](/../../milestones):
 1. Testphase 
   * Labortest mit Hilfe der Wissenschaftlichen Mittarbeiter.
 
-2. Closed Beta
-  * Tests unter Praxisbedingungen mit ausgesuchten Betreibern oder Routern an technisch interessanten Positionen.
-
 3. Public Beta
   * Beta klingt jung und modern ~ alle Mitglieder umligender Communities die gerne möchten dürfen mitmachen.
 
