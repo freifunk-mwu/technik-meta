@@ -131,3 +131,5 @@ Alles was existiert sind die zur Laufzeit benötigten Verbindungsdaten. DHCP-Lea
 
 Diese werden nur im Arbeitsspeicher vorgehalten, ist das Gateway aus (z.B. die Herren in Grün nehmen den Server mit), sind diese weg.
 
+:see:
+    - :ref:`logging`
