@@ -79,22 +79,3 @@ Zum Schluss noch für das B.A.T.M.A.N. Interface::
         post-up         /bin/echo "0" > /sys/class/net/$IFACE/mesh/multicast_mode
         pre-down        /sbin/brctl delif wiBR $IFACE || true
 
-.. _self_dns:
-
-DNS-Eintrag für das System selbst
----------------------------------
-
-Nach dem die Konfiguration von BIND abgeschlossen wird der DNS-Eintrag auf sich selbst gesetzt.
-
-Dies kommt in die inet Section des Internet Interfaces, i.d.R. eth0.
-
-Dadurch wird der Nameserver-Eintrag durch **resolvconf** beim Hochkommen des Interfaces nach ``/etc/resolv.conf`` geschrieben
-
-in die /etc/network/interfaces kommt also folgendes::
-
-    iface eth0 inet static
-        [...]
-        dns-nameservers 127.0.0.1
-
-:see:
-    - :ref:`bind`

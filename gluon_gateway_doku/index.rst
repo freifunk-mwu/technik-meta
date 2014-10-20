@@ -38,5 +38,5 @@ Inhalt
    configuration/daemons/exitvpn
    configuration/daemons/tinc
    configuration/daemons/bird
-   configuration/logging
+   configuration/cleanup
    operations/workflows
