@@ -13,7 +13,7 @@ Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch 
 :see:
     - :ref:`fastd`
     - :ref:`dhcp`
-    - :ref:`routing_table`
+    - :ref:`routing_tables`
     - :ref:`icvpn`
     - :ref:`openvpn`
 
@@ -51,7 +51,7 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
 
 :see:
-    - :ref:`routing_table`
+    - :ref:`routing_tables`
     - :ref:`gateway_schema`
     - :ref:`interface_bezeichnung`
 

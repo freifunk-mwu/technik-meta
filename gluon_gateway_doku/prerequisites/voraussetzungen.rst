@@ -32,7 +32,7 @@ Momentan kommen auf allen Gateways eine Ubuntu Server 14.04 LTS Installation zum
 Für viele der Gate-Funktionen wird weitere Software benötigt, die größtenteils als Pakete aus den Ubuntu- und weiteren Repositories nachinstalliert werden kann.
 
 :see:
-    - :ref:`pakete`
+    - :ref:`packages`
     - :ref:`repositories`
 
 Verbindung der Teilwolken
@@ -51,7 +51,7 @@ Alle Gates verbinden sich für das VPN auch vollständig untereinander. So entst
 Auf den Gates werden hierzu **fastd** sowie das Kernel Modul **batman_adv** benötigt.
 
 :see:
-    - :ref:`pakete`
+    - :ref:`packages`
     - :ref:`fastd`
 
 Mainz und Wiesbaden
@@ -100,9 +100,9 @@ Damit dies gelingt muss auch dem Gate, in Richtung des Anbieters auch ein NATing
 An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-utils**, **iproute**, **iptables** & **openvpn**.
 
 :see:
-    - :ref:`pakete`
+    - :ref:`packages`
     - :ref:`interfaces`
-    - :ref:`routing_table`
+    - :ref:`routing_tables`
     - :ref:`openvpn`
 
 Übergang zu anderen Freifunk-Communities (InterCityVPN)
@@ -115,9 +115,9 @@ Damit interne Dienste auch aus anderen Städten genutzt werden können, wurde da
 Als Software benutzen wir hier **tinc** und **bird6**.
 
 :see:
-    - :ref:`pakete`
+    - :ref:`packages`
     - :ref:`interfaces`
-    - :ref:`routing_table`
+    - :ref:`routing_tables`
     - icvpn
         - :ref:`tinc`
         - :ref:`bird`

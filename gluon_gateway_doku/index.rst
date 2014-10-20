@@ -30,15 +30,14 @@ Inhalt
    prerequisites/voraussetzungen
    prerequisites/netzplan
    prerequisites/gluon
-   configuration/repos_und_pakete
-   configuration/netzwerk
-   daemons/fastd
+   configuration/basics
+   configuration/daemons/fastd
    configuration/interfaces
-   daemons/alfred
-   daemons/ip
-   daemons/bind
-   daemons/openvpn
-   daemons/tinc
-   daemons/bird
+   configuration/daemons/alfred
+   configuration/daemons/ip
+   configuration/daemons/bind
+   configuration/daemons/openvpn
+   configuration/daemons/tinc
+   configuration/daemons/bird
    configuration/logging
    operations/workflows
