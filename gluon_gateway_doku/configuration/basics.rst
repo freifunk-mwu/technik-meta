@@ -6,7 +6,7 @@ Grundkonfiguration
 .. _hostname:
 
 Hostname
-========
+--------
 
 Den Hostnamen setzen (ohne Domain)::
 
@@ -26,7 +26,7 @@ Den Hostnamen setzen (ohne Domain)::
 .. _routing_tables:
 
 Routing Tabellen
-================
+----------------
 
 /etc/iproute2/rt_tables::
 
@@ -40,7 +40,7 @@ Routing Tabellen
 .. _kernel_parameters:
 
 Wichtige Kernel Parameter
-=========================
+-------------------------
 
 /etc/sysctl.conf::
 
@@ -68,7 +68,7 @@ Danach neuladen::
 .. _repositories:
 
 Benötigte Repositories
-======================
+----------------------
 
 * Freifunk MWU Repository einbinden::
 
@@ -96,7 +96,7 @@ Zum Schluss::
 .. _packages:
 
 Pakete
-======
+------
 
 Pakete aus den Standard-Repos installieren::
 
