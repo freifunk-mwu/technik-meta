@@ -1,7 +1,7 @@
 .. _alfred:
 
-A.L.F.R.E.D. konfigurieren
-==========================
+A.L.F.R.E.D.
+============
 
 A.L.F.R.E.D. soll auf allen Gateways im Master Modus laufen, A.L.F.R.E.D. daemons im Master Modus replizieren ihre Daten gegenseitig.
 

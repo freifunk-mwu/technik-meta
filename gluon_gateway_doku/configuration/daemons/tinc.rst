@@ -1,7 +1,7 @@
 .. _tinc:
 
-tinc für IC-VPN einrichten
-==========================
+tinc (IC-VPN)
+=============
 
 .. note:: Bisher ist leider noch nicht bewiesen, dass das icVPN-setup für mehrere
     communities auf einem Gate funktioniert.

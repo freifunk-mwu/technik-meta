@@ -1,7 +1,7 @@
 .. _exitvpn:
 
-OpenVPN einrichten
-==================
+ExitVPN
+=======
 
 Als erstes entledigt man sich aller alter Konfiguration::
 

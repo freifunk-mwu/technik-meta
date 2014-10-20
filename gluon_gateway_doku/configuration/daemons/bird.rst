@@ -1,7 +1,7 @@
 .. _bird:
 
-bird für IC-VPN einrichten
-==========================
+BIRD (IC-VPN)
+=============
 
 Das IC-VPN beruht darauf, dass zwischen den teilnehmenden communities ein
 IP-Routing (layer 3) stattfindet. Dafür wird über :ref:`tinc` ein Transfernetz

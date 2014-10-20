@@ -1,7 +1,7 @@
 .. _fastd:
 
-fastd einrichten
-================
+fastd
+=====
 
 Ordnerstruktur::
 
