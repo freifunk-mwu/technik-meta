@@ -108,7 +108,7 @@ Anfragen aus dem Freifunknetz in das weltweite Internet tunneln wir durch das so
 Dies hat den Vorteil, dass Anfragen in das Internet anonymisiert werden, Anbieter sehen nur dass die Anfrage aus dem Freifunk-Netz kommt.
 
 :see:
-    - :ref:`openvpn`
+    - :ref:`exitvpn`
 
 Hierbei handelt es sich um **OpenVPN** Angebote, meist in Schweden oder Niederlande.
 

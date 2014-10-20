@@ -1,4 +1,4 @@
-.. _openvpn:
+.. _exitvpn:
 
 OpenVPN einrichten
 ==================

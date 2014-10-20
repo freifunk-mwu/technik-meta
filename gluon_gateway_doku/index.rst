@@ -31,12 +31,11 @@ Inhalt
    prerequisites/netzplan
    prerequisites/gluon
    configuration/basics
-   configuration/daemons/fastd
    configuration/interfaces
+   configuration/daemons/ddi
+   configuration/daemons/fastd
    configuration/daemons/alfred
-   configuration/daemons/ip
-   configuration/daemons/bind
-   configuration/daemons/openvpn
+   configuration/daemons/exitvpn
    configuration/daemons/tinc
    configuration/daemons/bird
    configuration/logging

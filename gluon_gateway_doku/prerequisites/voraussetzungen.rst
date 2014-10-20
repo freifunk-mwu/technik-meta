@@ -103,7 +103,7 @@ An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-util
     - :ref:`packages`
     - :ref:`interfaces`
     - :ref:`routing_tables`
-    - :ref:`openvpn`
+    - :ref:`exitvpn`
 
 Übergang zu anderen Freifunk-Communities (InterCityVPN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
