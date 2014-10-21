@@ -40,3 +40,4 @@ Inhalt
    configuration/daemons/bird
    configuration/cleanup
    operations/workflows
+   operations/scripts
