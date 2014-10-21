@@ -14,7 +14,6 @@ Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch 
     - :ref:`fastd`
     - :ref:`dhcp`
     - :ref:`routing_tables`
-    - :ref:`icvpn`
     - :ref:`exitvpn`
 
 Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::

@@ -9,7 +9,7 @@ tinc (IC-VPN)
 Alle Gates der am IC-VPN teilnehmenden communities verbinden sich in einem
 Transfernetz untereinander. Um ihre virtuellen Kabel zusammenstecken zu können,
 bauen sie sich dafür einen virtuellen switch über das Internet auf. Hierbei
-kommt tinc_ zum Einsatz, ein Protokoll ganz ähnlich dem von uns intern genutzten
+kommt `tinc vpn`_ zum Einsatz, ein Protokoll ganz ähnlich dem von uns intern genutzten
 :ref:`fastd` .
 
 Jedes telnehmende Gate soll einen Eintrag in der zentralen Gate-Liste_ haben, um
@@ -55,7 +55,7 @@ Lutuswurzel)::
   Port = 10656
   Hostnames = yes
   Interface = icVPN
-  
+
   ConnectTo = berlin1
   ConnectTo = [...]
 
@@ -96,9 +96,9 @@ einfach nach ``/etc/tinc/icVPN/rsa_key.priv`` kopiert bzw. per pull request
 in das repository transportiert.
 
 Ein neues Schlüsselpaar wird mit einem Aufruf erzeugt::
- 
+
   tincd -n icvpn -K
- 
+
 die vorgeschlagenen defaults passen. Unter ``/etc/tinc/icVPN/wiesbaden1``
 (oder dem entsprechenden Namen) findet sich der public key, der in das
 repository wandern muss. Vorher müssen allerdings die Kontaktinformationen
@@ -116,7 +116,7 @@ Als Letztes ist noch die Zeile ``icVPN`` der Datei ``/etc/tinc/nets.boot``
 hinzuzufügen. Nun kann tinc gestartet werden.
 
 
-.. _tinc: http://www.tinc-vpn.org/
+.. _tinc vpn: http://www.tinc-vpn.org/
 .. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn_meta
 .. _Beschribung: http://wiki.freifunk.net/IC-VPN#Tinc_einrichten
 .. _IC-VPN-repository: https://github.com/freifunk/icvpn

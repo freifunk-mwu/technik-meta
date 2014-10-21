@@ -11,7 +11,7 @@ ge-route-t.
 Die Routing-Einträge auf diesen vielen Routern (Gates) werden nicht
 manuell, sondern per `BGP`_ gepflegt (die `ASN`_ für Wiesbaden und Mainz sind 65036 und 65037).
 Es gibt zwei etablierte BGP-Implmentationen:
-quagga_ und bird_; wir haben uns für letztere entschieden. Auch hier folgen
+quagga_ und den `bird daemon`_; wir haben uns für letztere entschieden. Auch hier folgen
 wir grob der zentralen `Dokumentation`_ und es sei auf das im Aufbau befindliche
 `IC-VPN-Meta-repository`_ für die Metainformationen sowie auf das `IC-VPN-scripts-repository`_ für die Erzeugung der bgp peers sowie DNS Config verwiesen.
 
@@ -52,7 +52,7 @@ tbc...
 .. _BGP: http://de.wikipedia.org/wiki/Border_Gateway_Protocol
 .. _ASN: http://wiki.freifunk.net/AS-Nummern
 .. _quagga: http://www.nongnu.org/quagga/
-.. _bird: http://bird.network.cz/
+.. _bird daemon: http://bird.network.cz/
 .. _Dokumentation: http://wiki.freifunk.net/IC-VPN#BGP_Einrichten
 .. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn-meta
 .. _IC-VPN-Scripts-repository: https://github.com/freifunk/icvpn-scripts
@@ -82,15 +82,15 @@ Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
       return (net ~ [10.56.0.0/16+,
                      10.37.0.0/16+]);
   }
-  # 
+  #
   function is_wi_self_net() {
       return (net ~ [10.56.0.0/16+]);
   }
-  # 
+  #
   function is_mz_self_net() {
       return (net ~ [10.37.0.0/16+]);
   }
-  # 
+  #
   # necessary to inform bird about devices
   protocol device {
       scan time 30;
@@ -101,7 +101,7 @@ Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
       interface 10.56.0.0/16;
       table ic;
   };
-  # 
+  #
   protocol kernel kernel_wi {
       scan time 30;
       import none;
@@ -121,7 +121,7 @@ Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
       table ic_mz;
       peer table ic;
   };
-  #    
+  #
   protocol kernel kernel_mz {
       scan time 30;
       import none;
@@ -172,7 +172,7 @@ Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
   };
   #
   # P E E R I N G S
-  # iBGP 
+  # iBGP
   #
   #protocol bgp wiesbaden2 from bgp_ibgp_wi { # hinterschinken ???
   #    neighbor 10.56.0.5 as 65036;

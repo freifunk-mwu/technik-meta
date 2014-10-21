@@ -19,11 +19,11 @@ Offene Punkte sammeln wir in dem [Ticketsystem](/../../issues), Dinge die jeder 
 Grobe Liste der [Milestones](/../../milestones):
 
 1. Testphase 
-  * Labortest mit Hilfe der Wissenschaftlichen Mittarbeiter.
+      * Labortest mit Hilfe der Wissenschaftlichen Mittarbeiter.
 
-3. Public Beta
-  * Beta klingt jung und modern ~ alle Mitglieder umligender Communities die gerne möchten dürfen mitmachen.
+2. Public Beta
+      * Beta klingt jung und modern ~ alle Mitglieder umligender Communities die gerne möchten dürfen mitmachen.
 
-4. Release
-  * Jeder neue Router umligender Communities wird mit Gluon versorgt, alte Router neu geflasht. Endlich :smile_cat:
+3. Release
+      * Jeder neue Router umligender Communities wird mit Gluon versorgt, alte Router neu geflasht. Endlich :smile_cat:
 
