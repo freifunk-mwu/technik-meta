@@ -34,7 +34,7 @@ Routing Tabellen
     37      mz
     56      wi
     # icvpn
-    700     icvpn
+    42      icvpn
     [...]
 
 .. _kernel_parameters:
