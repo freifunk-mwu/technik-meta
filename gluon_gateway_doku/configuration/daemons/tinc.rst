@@ -74,7 +74,8 @@ Nun legen wir noch die ``/etc/tinc/icVPN/tinc-up`` an::
   /sbin/ip -6 addr add dev $INTERFACE fec0::a:cf:X:Y/96 preferred_lft 0
 
   # ip rules
-  /sbin/ip rule add to 10.0.0.0/8 lookup icvpn priority 10042
+  /sbin/ip rule add lookup icvpn priority 10042
+  /sbin/ip -6 rule add lookup icvpn priority 10042
 
 Dabei sind ``X`` und ``Y`` die entsprechenden Stellen aus der Adresse des
 Gates im Transfernetz; in der v4-Adresse zur
@@ -87,7 +88,8 @@ Das passende ``/etc/tinc/icVPN/tinc-down``::
   /sbin/ip -6 addr del dev $INTERFACE fec0::a:cf:X:Y/96
 
   # ip rules
-  /sbin/ip rule del to 10.0.0.0/8 lookup icvpn priority 10042
+  /sbin/ip rule del lookup icvpn priority 10042
+  /sbin/ip -6 rule del lookup icvpn priority 10042
 
   # shutdown interface
   /sbin/ip link set dev $INTERFACE down
