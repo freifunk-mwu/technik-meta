@@ -15,13 +15,13 @@ quagga_ und den `bird daemon`_; wir haben uns für letztere entschieden. Auch hi
 wir grob der zentralen `Dokumentation`_ und es sei auf das im Aufbau befindliche
 `IC-VPN-Meta-repository`_ für die Metainformationen sowie auf das `IC-VPN-scripts-repository`_ für die Erzeugung der bgp peers sowie DNS Config verwiesen.
 
-bird config
-^^^^^^^^^^^
+dir structure
+^^^^^^^^^^^^^
 
 bird wird für IPv4 und IPv6 gesondert konfiguriert, wobei sich die config files allerdings sehr
 ähneln. Da die Einträge für die Nachbarrouter im IC-VPN (*peers*) in Kürze halbautomatisch
 gepflegt werden sollen und die bird-Konfiguration das Einbinden von config files in config
-files erlaubt, werden diese schon jetzt ausgelagert. Damit ergibt sich diese Dateistruktur::
+files erlaubt, werden die peers schon jetzt ausgelagert. Damit ergibt sich diese Dateistruktur::
 
   /etc/bird/
   /etc/bird/bird.conf
@@ -29,11 +29,47 @@ files erlaubt, werden diese schon jetzt ausgelagert. Damit ergibt sich diese Dat
   /etc/bird/bird6.conf
   /etc/bird/ebgp_peers_v6.inc
 
+peer include files
+^^^^^^^^^^^^^^^^^^
+
+In den beiden files ebgp_peers_v4.inc und ebgp_peers_v6.inc gibt es jeweils einen Eintrag pro
+peer. Nicht jeder peer muss v4 **und** v6 anbieten. Die grundlegenden Paramter für die
+BGP-Verbindung sind für alle (externen) peers identisch, so dass sie in einem template
+(namens ebgp_ic) zusammengefasst sind. So ist jeder einzelne Eintrag recht kurz und folgt dem
+Muster::
+
+  protocol bgp [name_of_peer] from ebgp_ic {
+      neighbor [IP_of_peer] as [AS_of_peer];
+  };
+
+Die Adresse des peer (=neighbour) ist in der v4-config eine v4-Adresse und entsprechend in der
+v6-config eine v6-Adresse.
+
+bird config 
+^^^^^^^^^^^
+
 Im Großen und Ganzen handelt es sich bei uns um eine recht normale bird-BGP-Konfiguration
 (nachdem der Versuch, in bird eine gleichberechtigte config für zwei AS hinzubekommen
 gescheitert war). Die Routen zu den anderen communities werden über BGP abgeglichen. Die eigenen
 Netze, die ins IC-VPN bekannt zu geben sind, werden über einen "protocol direkt"-Eintrag
 bestimmt.
+
+Das config file wird mit den üblichen Standards eröffnet:
+
+* Die router-id muss bei uns explizit gesetzt werden und entspricht der IP des Gates im
+  IC-VPN-Transfernetz. Als router-id kommt in beiden Konfigurationen die v4-(sic!)-Adresse
+  zum Einsatz.
+* Wenn wir zwei kernel routing tables beschicken wollen, brauchen wir auch in bird dafür
+  zwei routing tables. Die zweite ist eine einfache Kopie der ersten, auf der ausschließlich
+  gearbeitet wird.
+* Die Definition von Konstanten erleichtert das Leben ein wenig.
+
+Es folgt jeweils ein Block mit ein paar Funktionen, die beim Filtern der zu sendenden und
+der empfangenen Routen eingesetzt werden, um beides aus unserer Sicht zu kontrollieren (wir
+nehmen nicht jede angebotene Route an und schicken auch nur Routen auf unsere eigenen Netze
+raus).
+
+
 
 
 
