@@ -84,6 +84,19 @@ jeweils alle iBGP- und alle eBGP-Verbindungen gleich; es ändern sich immer nur 
 entsprechenden peers. Die peers werden in eingebundenen file (für eBGP) bzw. im Anschluss
 (für iBGP) unter Bezug auf diese ``template``s definiert.
 
+Ein erwähnenswerter Punkt sind die ``export filter``-Definitionen im eBGP. Jedes Gate kann im
+IC-VPN nur im Namen **einer** community auftreten und auch nur **eine** ASN nach dort anbieten.
+So nennen sich Lotuswurzel, Hinterschinken und Spinat im IC-VPN z.B. ``wiesbaden1``,
+``wiesbaden2`` und ``mainz2`` (resp.). Während letzteres die ASN 65037 bewirbt, geben die
+beiden anderen 65036 an. Intern können alle Gates aber Pakete an alle communities ausliefern.
+Deshalb gibt z.B. Spinat an, **hinter** seiner 65037 auch die 65036 erreichen zu können
+(liefert evtl. Pakete dann aber natürlich direkt aus); die beiden anderen Gates verfahren
+entsprechend anders herum ebenso. Damit der Spinat gegenüber den beiden anderen Gates
+beim routing gen Wiesbaden nicht benachteiligt wird, geben letztere bekannt, dass die
+Routen über sie nach dem ASN 65036 auch noch in das ASN 65036 müssen (via Spinat:
+65037-65036); ebenso anders herum wieder respektive. => Bei Übernahme der configs von
+einer community in die andere ist also auch an dieser Stelle Änderungsbedarf!
+
 Das iBGP wir **nur** innerhalb einer community gefahren (als für gates, die im IC-VPN als
 Wiesbadener gates in Erscheinung treten nur zu anderen Wiesbadener Gates; analog für Mainzer
 gates) ! Dagegen bauen wir eBGP sessions aber weder zu Mainzer, noch zu Wiesbadener Gates auf,
