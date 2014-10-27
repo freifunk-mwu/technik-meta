@@ -32,10 +32,10 @@ files erlaubt, werden die peers schon jetzt ausgelagert. Damit ergibt sich diese
 peer include files
 ^^^^^^^^^^^^^^^^^^
 
-In den beiden files ebgp_peers_v4.inc und ebgp_peers_v6.inc gibt es jeweils einen Eintrag pro
+In den beiden files ``ebgp_peers_v4.inc`` und ``ebgp_peers_v6.inc`` gibt es jeweils einen Eintrag pro
 peer. Nicht jeder peer muss v4 **und** v6 anbieten. Die grundlegenden Paramter für die
 BGP-Verbindung sind für alle (externen) peers identisch, so dass sie in einem template
-(namens ebgp_ic) zusammengefasst sind. So ist jeder einzelne Eintrag recht kurz und folgt dem
+(namens ``ebgp_ic``) zusammengefasst sind. So ist jeder einzelne Eintrag recht kurz und folgt dem
 Muster::
 
   protocol bgp [name_of_peer] from ebgp_ic {
@@ -51,16 +51,16 @@ bird config
 Im Großen und Ganzen handelt es sich bei uns um eine recht normale bird-BGP-Konfiguration
 (nachdem der Versuch, in bird eine gleichberechtigte config für zwei AS hinzubekommen
 gescheitert war). Die Routen zu den anderen communities werden über BGP abgeglichen. Die eigenen
-Netze, die ins IC-VPN bekannt zu geben sind, werden über einen "protocol direkt"-Eintrag
+Netze, die ins IC-VPN bekannt zu geben sind, werden über einen ``protocol direkt``-Eintrag
 bestimmt.
 
 Das config file wird mit den üblichen Standards eröffnet:
 
-* Die router-id muss bei uns explizit gesetzt werden und entspricht der IP des Gates im
-  IC-VPN-Transfernetz. Als router-id kommt in beiden Konfigurationen die v4-(sic!)-Adresse
+* Die ``router-id`` muss bei uns explizit gesetzt werden und entspricht der IP des Gates im
+  IC-VPN-Transfernetz. Als ``router-id`` kommt in beiden Konfigurationen die v4-(sic!)-Adresse
   zum Einsatz.
 * Wenn wir zwei kernel routing tables beschicken wollen, brauchen wir auch in bird dafür
-  zwei routing tables. Die zweite ist eine einfache Kopie der ersten, auf der ausschließlich
+  zwei routing ``table``s. Die zweite ist eine einfache Kopie der ersten, auf der ausschließlich
   gearbeitet wird.
 * Die Definition von Konstanten erleichtert das Leben ein wenig.
 
@@ -69,21 +69,26 @@ der empfangenen Routen eingesetzt werden, um beides aus unserer Sicht zu kontrol
 nehmen nicht jede angebotene Route an und schicken auch nur Routen auf unsere eigenen Netze
 raus).
 
+Die dann folgenden ``device``-, ``direct``-, ``kernel``- und ``pipe``-Protokolldefinitionen
+dienen der Kommunikation von bird in Richtung des Kernels des hosts: Ohne ``device``-Protokoll
+kann bird fast nichts. Über das ``direct``-Protokoll werden die aktiven mwu-eigenen Netze
+gefunden, die den peers gegenüber beworben werden sollen und über die
+``kernel``-Protokollinstanzen wird der host mit den von den peers erhaltenen routing-Informationen
+versorgt.
 
+Abgesehen von der mittels ``include`` eingebundenen Liste der peers, bilden die ``template``s
+für die BGP-Verbindungen den Abschluss. Es gibt je ein ``template`` für internal BGP und für
+external BGP. Jeweils werden die eigene ASN, die eigene IP-Adresse für abgehende Verbindungen,
+die anzuwendenden Filter und ein paar flags definiert. Alle diese Einstellungen sind für
+jeweils alle iBGP- und alle eBGP-Verbindungen gleich; es ändern sich immer nur die Daten der
+entsprechenden peers. Die peers werden in eingebundenen file (für eBGP) bzw. im Anschluss
+(für iBGP) unter Bezug auf diese ``template``s definiert.
 
-
-
-
-tbc...
-
-
-
-
-
-
-
-
-
+Das iBGP wir **nur** innerhalb einer community gefahren (als für gates, die im IC-VPN als
+Wiesbadener gates in Erscheinung treten nur zu anderen Wiesbadener Gates; analog für Mainzer
+gates) ! Dagegen bauen wir eBGP sessions aber weder zu Mainzer, noch zu Wiesbadener Gates auf,
+als nur zu mwu-externen. Die Erzeugung der include files soll bald mal - unter Verwendung der
+Daten aus dem ``icvpn-meta`` repo automagisiert werden, ist aber aktuell noch Handarbeit.
 
 .. _BGP: http://de.wikipedia.org/wiki/Border_Gateway_Protocol
 .. _ASN: http://wiki.freifunk.net/AS-Nummern
@@ -92,266 +97,3 @@ tbc...
 .. _Dokumentation: http://wiki.freifunk.net/IC-VPN#BGP_Einrichten
 .. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn-meta
 .. _IC-VPN-Scripts-repository: https://github.com/freifunk/icvpn-scripts
-
-
-
-
-Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
-
-  define wi_addr_ic = 10.207.0.56;  # lotuswurzel = wiesbaden1
-  define wi_addr_wi = 10.56.0.23;
-  define mz_addr_mz = 10.37.0.23;
-  router id 10.207.0.56;
-  #
-  table ic; # BGP Peerings 4 wi (ICVPN) and local wimz nets
-  table ic_mz; # BGP Peerings 4 mz (ICVPN) - copy of ic
-  #
-  function is_freifunk_dn42() {
-      return (net ~ [
-          10.0.0.0/8{12,32},
-          172.22.0.0/15+,
-          172.31.0.0/16
-          ]);
-  }
-  #
-  function is_wimz_self_nets() {
-      return (net ~ [10.56.0.0/16+,
-                     10.37.0.0/16+]);
-  }
-  #
-  function is_wi_self_net() {
-      return (net ~ [10.56.0.0/16+]);
-  }
-  #
-  function is_mz_self_net() {
-      return (net ~ [10.37.0.0/16+]);
-  }
-  #
-  # necessary to inform bird about devices
-  protocol device {
-      scan time 30;
-  };
-  # learn about directly connected community subnets
-  protocol direct wi_subnets {
-      interface 10.37.0.0/16;
-      interface 10.56.0.0/16;
-      table ic;
-  };
-  #
-  protocol kernel kernel_wi {
-      scan time 30;
-      import none;
-      export filter {
-        if is_wimz_self_nets() then
-                reject;
-          krt_prefsrc = wi_addr_wi;
-          accept;
-      };
-      table ic;
-      kernel table 56;
-  };
-  #
-  protocol pipe wi2mz {
-      import all;
-      export none;
-      table ic_mz;
-      peer table ic;
-  };
-  #
-  protocol kernel kernel_mz {
-      scan time 30;
-      import none;
-      export filter {
-          if is_wimz_self_nets() then
-              reject;
-          krt_prefsrc = mz_addr_mz;
-          accept;
-      };
-      table ic_mz;
-      kernel table 37;
-  };
-  #
-  # templates for iBGP
-    template bgp bgp_ibgp_wi {
-      local wi_addr_wi as 65036;
-      table ic;
-      import all;  # EXPERIMENT !!!!!
-      export where source = RTS_BGP;
-      direct;
-      gateway direct;
-  };
-  #
-  # templates for eBGP
-  template bgp ebgp_ic {
-      local wi_addr_ic as 65036;
-      table ic;
-      import where (is_freifunk_dn42() && !is_wimz_self_nets());
-      export filter {
-          if is_wi_self_net() then {  # own nets
-  #            bgp_path.delete(65036);
-  #            bgp_path.prepend(65036);
-              bgp_path.prepend(65036);
-              accept;
-          }
-          if is_mz_self_net() then {  # foreign mz nets
-              bgp_path.delete(65036);
-              bgp_path.prepend(65037);
-              bgp_path.prepend(65036);
-              accept;
-          }
-          if source = RTS_BGP then {
-              accept;
-          }
-          reject;
-      };
-    direct;
-  };
-  #
-  # P E E R I N G S
-  # iBGP
-  #
-  #protocol bgp wiesbaden2 from bgp_ibgp_wi { # hinterschinken ???
-  #    neighbor 10.56.0.5 as 65036;
-  #};
-  #
-  # P E E R I N G S
-  # eBGP (siehe IPv6)
-  #
-  protocol bgp Augsburg1 from ebgp_ic {
-      neighbor 10.207.0.17 as 65050;
-  };
-
-
-Kellerabteil1 zum Durchsuchen für's Weiterschreiben::
-
-  _addr_ic     = fec0::a:cf:0:38;        # lotuswurzel = wiesbaden1
-  define wi_addr_wi     = fd56:b4dc:4b1e::a38:17;
-  define mz_addr_mz     = fd37:b4dc:4b1e::a25:17;
-  # prefixes repeated in functions -> see there
-  define wi_prefix      = fd56:b4dc:4b1e::/48;
-  define mz_prefix      = fd37:b4dc:4b1e::/48;
-  #
-  router id 10.207.0.56;   # traditionally v4-addr as router id
-  #
-  # routing tables
-  table ic;    # BGP Peerings 4 wi (ICVPN) and local wimz nets
-  table ic_mz; # BGP Peerings 4 mz (ICVPN) - copy of ic
-  #
-  # filter to check ulas
-  function is_ula() {
-      return (net ~ [ fc00::/7{48,64} ]);
-  }
-  #
-  function is_wimz_self_nets() {
-      return (net ~ [fd56:b4dc:4b1e::/48+,
-                     fd37:b4dc:4b1e::/48+]);
-  }
-  #
-  function is_wi_self_net() {
-      return (net ~ [fd56:b4dc:4b1e::/48+]);
-  }
-  #
-  function is_mz_self_net() {
-    return (net ~ [fd37:b4dc:4b1e::/48+]);
-  }
-  #
-  # necessary to inform bird about devices
-  protocol device {
-      scan time 30;
-  };
-  # learn about directly connected community subnets
-  protocol direct wimz_subnets {
-      interface fd56:b4dc:4b1e::/48;
-      interface fd37:b4dc:4b1e::/48;
-      table ic;
-  };
-  #
-  protocol kernel kernel_wi {
-      scan time 30;
-      import none;
-      export filter {
-          if is_wimz_self_nets() then
-              reject;
-          krt_prefsrc = wi_addr_wi;
-          accept;
-      };
-      table ic;
-      kernel table 56;
-  };
-  #
-  protocol pipe wi2mz {
-      import all;
-      export none;
-      table ic_mz;
-      peer table ic;
-  };
-  #
-  protocol kernel kernel_mz {
-      scan time 30;
-      import none;
-      export filter {
-          if is_wimz_self_nets() then
-              reject;
-          krt_prefsrc = mz_addr_mz;
-          accept;
-      };
-      table ic_mz;
-      kernel table 37;
-  };
-  #
-  # template for iBGP
-  template bgp ibgp_wi {
-      local wi_addr_wi as 65036;
-      table ic;
-      import all;  # EXPERIMENT !!!!!
-      export where source = RTS_BGP;
-      direct;
-      gateway direct;
-  };
-  #
-  # template for eBGP
-  template bgp ebgp_ic {
-      local wi_addr_ic as 65036;
-      table ic;
-      import where (is_ula() && !is_wimz_self_nets());
-      export filter {
-          if is_wi_self_net() then {  # own nets
-  #            bgp_path.delete(65036);
-  #            bgp_path.prepend(65036);
-              bgp_path.prepend(65036);
-              accept;
-          }
-        if is_mz_self_net() then {  # foreign mz nets
-                bgp_path.delete(65036);
-              bgp_path.prepend(65037);
-            bgp_path.prepend(65036);
-              accept;
-          }
-          if source = RTS_BGP then {
-              accept;
-          }
-          reject;
-      };
-    direct;
-  };
-  #
-    # P E E R I N G S
-  # #### iBGP #####
-  #
-  #protocol bgp wiesbaden2 from ibgp_wi { # hinterschinken ???
-  #    neighbor fd56:b4dc:4b1e::a38:5 as 65036;
-  #};
-  #
-  # P E E R I N G S
-  # #### eBGP #####
-  #
-  # following the pattern, a load of 'em:
-  # protocol bgp <PeerName> from ebgp_ic {
-    #    neighbor <PeerAddrV6> as <PeerAS>;
-  #};
-  include "ebgp_peers_v6.inc";
-  #
-  protocol bgp Augsburg1 from ebgp_ic {
-      neighbor fec0::a:cf:0:a as 65050;
-  };
-
