@@ -36,8 +36,7 @@ Inhalt
    configuration/daemons/fastd
    configuration/daemons/alfred
    configuration/daemons/exitvpn
-   configuration/daemons/tinc
-   configuration/daemons/bird
+   configuration/daemons/icvpn
    configuration/cleanup
    operations/workflows
    operations/scripts

@@ -119,8 +119,7 @@ Als Software benutzen wir hier **tinc** und **bird6**.
     - :ref:`interfaces`
     - :ref:`routing_tables`
     - icvpn
-        - :ref:`tinc`
-        - :ref:`bird`
+        - :ref:`icvpn`
 
 Datenschutz auf dem Gateway
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
