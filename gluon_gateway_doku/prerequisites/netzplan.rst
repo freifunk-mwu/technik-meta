@@ -32,8 +32,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ================ =============== ================= =============== ==========
 ``10.X.0.0/24``  ``10.X.0.255``  Gateways          fix             in Betrieb
 ``10.X.1.0/24``  ``10.X.1.255``  ¬                 ¬               frei
-``10.X.2.0/24``  ``10.X.2.255``  ¬                 ¬               frei
-``10.X.3.0/24``  ``10.X.3.255``  ¬                 ¬               frei
+``10.X.2.0/23``  ``10.X.3.255``  Backbone          fix             in Betrieb
 ``10.X.4.0/22``  ``10.X.7.255``  User Services     fix             in Betrieb
 ``10.X.8.0/22``  ``10.X.15.255`` ¬                 ¬               frei
 ``10.X.16.0/20`` ``10.X.31.255`` Client DHCP-Range Lotuswurzel     in Betrieb
