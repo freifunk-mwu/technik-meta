@@ -106,7 +106,7 @@ Wir nutzen dazu die jeweils niedrigsten Adressen
 .. _gateway_schema:
 
 Gateway-Schema
-==============
+--------------
 
 Bevor wir ein Gateway aufsetzen definieren wir einen Namen (leichter zu merken) und ziehen eine Nummer (1 <= x < 255).
 
