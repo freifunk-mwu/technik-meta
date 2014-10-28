@@ -17,8 +17,8 @@ wir grob der zentralen `Dokumentation`_ und es sei auf das im Aufbau befindliche
 
 .. _tinc:
 
-tinc (IC-VPN)
-=============
+tinc
+----
 
 .. note:: Bisher ist leider noch nicht bewiesen, dass das icVPN-setup für mehrere
     communities auf einem Gate funktioniert.
