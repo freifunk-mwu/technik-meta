@@ -56,47 +56,16 @@ Damit der **fastd**-daemon den Schlüssel lesen kann, muss noch etwas Syntax dru
 Bei Start oder Neuladen des **fastd**-daemons wird das Config-File neu eingelesen.
 In diesem steht, **fastd** möge zusätzlich noch alle Dateien aus dem ``peers``-Ordner mit einlesen (== *peers-... .git* Repository).
 
-.. warning:: Ablegeformat der fastd keys muss überarbeitet werden, da man lediglich einen key pro peer datei ablegen kann!
-
-Es ist unerheblich wie viele Nodes pro Datei im ``peers``-Ordner hinterlegt sind.
-
-Wir gruppieren die Nodes nach Nutzern (weitere Gruppen sind ``backbone``, ``event`` und ``whatever``).
-
-.. TODO: Sinnvolle Node-Gruppen ausdenken
-
-Kommentare beginnen mit dem **#**-Zeichen.
-
-1. (Nick-)Name des Freifunkers
-2. Kontaktmöglichkeit (Achtung: Spamschutz, Datenschutz)
-3. kurze Beschreibung zum Freifunker
-4. Leerzeile
-5. Danach pro Node:
-    * ``key " ... "; # Node-Name``
-    * (Optional: Weitere Kommentarzeilen über die Node)
-    * Leerzeile
-
-.. TODO: Sinnvolle Kontaktmöglichkeit ausdenken
+fastd nimmt den Dateinamen des peer keys als peer name.
 
 .. _fastd_key_beispiel:
 
-Beispiel - Roy Kabel
-^^^^^^^^^^^^^^^^^^^^
+Beispiel - Node: mz-abcdefabcdef
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Der bekannte, ehemalige Hobbyfunker *Roy Kabel* - jetzt Freifunker hat zum Beispiel drei Nodes::
+1. Dateiname: mz-abcdefabcdef
 
-    # Roy Kabel
-    # roy (at) kabel.com
-    # bekannter, ehemaliger Hobbyfunker
-
-    key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"; # MyNode
-    # TL-WR1337xD
-
-    key "abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789"; # TheNode
-    # TL-WDR2300
-
-    key "abcdef01234567890123456789abcdefabcdef01234567890123456789abcdef"; # Mobile Node
-    # TL-MR2342
-
+    key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
 .. _exitvpn_accounts:
 
