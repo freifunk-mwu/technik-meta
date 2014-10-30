@@ -147,6 +147,11 @@ Mit den uns zugewiesenen Netznummern sowie der Gateway-Nummer und dem Gateway-Na
     * ``gateXX.freifunk-mwu.de`` -> CNAME auf s.o.
     * Reverse DNS Eintrag korrekt setzen für Haupt DNS Namen: ``xxxx.freifunk-mwu.de``
 
+* IC-VPN
+    * Soll ein gate am IC-VPN teilnehmen benötigt es dafür noch weitere Einträge. Hier kann ein gate immer nur im Namen **einer** der communities auftreten, auch wenn es technisch trotzdem für alle communities agiert. (s. a. ::ref::_tinc)
+    * Kurzname: ``[Stadt][Nr]``, z. B. ``mainz2``
+    * DNS-Eintrag zum Aufbau des Transfernetzes -> CNAME nach dem Muster ``ic-[stadt][Nr].freifunk-[stadt].de``
+    * IP-Adressen (v4 und v6) im IC-VPN-Transfernetz, z. B. ``10.207.1.37``, ``fec0: :a:cf:1:25``
 
 Beispiel
 --------
@@ -167,14 +172,14 @@ dec  hex
 
 und einsetzen:
 
-=========== ================================= =====================================
-Lotuswurzel Mainz                             Wiesbaden
-=========== ================================= =====================================
-IPv4        ``10.37.0.23``                    ``10.56.0.23``
-IPv6        ``fd37:b4dc:4b1e:0a25:00017``     ``fd37:b4dc:4b1e:a38:17``
-MAC         ``02:00:0a:25:00:17``             ``02:00:0a:38:00:17``
-DNS1        ``lotuswurzel.freifunk-mwu.de``   ``lotuswurzel.freifunk-mwu.de``
-DNS2        ``lotuswurzel.ffmz.org``          ``lotuswurzel.ffwi.org``
-CNAME1      ``gate23.freifunk-mwu.de``        ``gate23.freifunk-mwu.de``
-CNAME2      ``gate23.ffmz.org``               ``gate23.ffwi.org``
-=========== ================================= =====================================
+=========== ================================= ===================================== =======================================
+Lotuswurzel Mainz                             Wiesbaden                             IC-VPN
+=========== ================================= ===================================== =======================================
+IPv4        ``10.37.0.23``                    ``10.56.0.23``                        ``10.207.0.56``
+IPv6        ``fd37:b4dc:4b1e:0a25:00017``     ``fd37:b4dc:4b1e:a38:17``             ``fec0: :a:cf:0:38``
+MAC         ``02:00:0a:25:00:17``             ``02:00:0a:38:00:17``                 ``02:00:0a:cf:00:38``
+DNS1        ``lotuswurzel.freifunk-mwu.de``   ``lotuswurzel.freifunk-mwu.de``       .
+DNS2        ``lotuswurzel.ffmz.org``          ``lotuswurzel.ffwi.org``              .
+CNAME1      ``gate23.freifunk-mwu.de``        ``gate23.freifunk-mwu.de``            ``ic-wiesbaden1.freifunk-wiesbaden.de``
+CNAME2      ``gate23.ffmz.org``               ``gate23.ffwi.org``                   .
+=========== ================================= ===================================== =======================================
