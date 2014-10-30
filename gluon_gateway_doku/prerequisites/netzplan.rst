@@ -148,7 +148,7 @@ Mit den uns zugewiesenen Netznummern sowie der Gateway-Nummer und dem Gateway-Na
     * Reverse DNS Eintrag korrekt setzen für Haupt DNS Namen: ``xxxx.freifunk-mwu.de``
 
 * IC-VPN
-    * Soll ein gate am IC-VPN teilnehmen benötigt es dafür noch weitere Einträge. Hier kann ein gate immer nur im Namen **einer** der communities auftreten, auch wenn es technisch trotzdem für alle communities agiert. (s. a. ::ref::_tinc)
+    * Soll ein gate am IC-VPN teilnehmen benötigt es dafür noch weitere Einträge. Hier kann ein gate immer nur im Namen **einer** der communities auftreten, auch wenn es technisch trotzdem für alle communities agiert. (s. a. :ref:`icvpn`)
     * Kurzname: ``[Stadt][Nr]``, z. B. ``mainz2``
     * DNS-Eintrag zum Aufbau des Transfernetzes -> CNAME nach dem Muster ``ic-[stadt][Nr].freifunk-[stadt].de``
     * IP-Adressen (v4 und v6) im IC-VPN-Transfernetz, z. B. ``10.207.1.37``, ``fec0: :a:cf:1:25``
