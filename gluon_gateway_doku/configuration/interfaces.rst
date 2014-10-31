@@ -75,6 +75,5 @@ Zum Schluss noch für das B.A.T.M.A.N. Interface::
         post-up         /usr/sbin/batctl -m $IFACE it 10000
         post-up         /usr/sbin/batctl -m $IFACE vm server
         post-up         /usr/sbin/batctl -m $IFACE gw server  96mbit/96mbit
-        post-up         /bin/echo "0" > /sys/class/net/$IFACE/mesh/multicast_mode
         pre-down        /sbin/brctl delif wiBR $IFACE || true
 
