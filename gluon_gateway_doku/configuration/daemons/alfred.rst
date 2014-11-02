@@ -65,8 +65,7 @@ Nun müssen die Daten, die announced werden sollen noch dem jeweiligen Gateway a
     echo "8.249702453613281" > nodeinfo.d/location/longitude
     echo "50.0845343600232" > nodeinfo.d/location/latitude
 
-Die momentan announcten Daten sind::
-
+Die momentan announcten Daten sind:
 
 * Nodeinfo
 
