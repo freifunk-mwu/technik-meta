@@ -67,6 +67,7 @@ Nun müssen die Daten, die announced werden sollen noch dem jeweiligen Gateway a
 
 Die momentan announcten Daten sind::
 
+
 * Nodeinfo
 
   * Hardware
