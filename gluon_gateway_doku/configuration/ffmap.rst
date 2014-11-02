@@ -6,9 +6,12 @@ Knoten Karte
 Der Betrieb der Knoten Karte ist in zwei Bereiche unterteilt:
 
 * Karten Frontend
+
   * `Original Frontend`_
   * `MWU Frontend`_
+
 * Karten Backend
+
   * `Original Backend`_
   * `MWU Backend`_
 
@@ -28,9 +31,12 @@ Voraussetzungen
 ```````````````
 * apache
 * nodejs
+
   * npm
   * grunt
   * bower
+
+Installation der Abhängigkeiten::
 
     apt-get install npm apache2
     sudo npm install -g grunt-cli bower
@@ -39,7 +45,7 @@ Voraussetzungen
 Konfiguration der Karten
 ````````````````````````
 
-Wir legen für jede Community eine Karte an. Darüber hinaus wird eine Karte angelegt, die alle Communities zusammenführt.
+Wir legen für jede Community eine Karte an. Darüber hinaus wird eine Karte angelegt, die alle Communities zusammenführt::
 
     cd /var/www
     sudo git clone https://github.com/freifunk-mwu/ffmap-d3.git mapmz
@@ -80,13 +86,16 @@ Backend
 Voraussetzungen
 ```````````````
 * Python3
+
   * jq
+
 * alfred-json
 * autoconf
 * flex
 * bison
 * build-essential
 
+Installation der Abhängigkeiten::
 
     sudo apt-get install alfred-json autoconf flex bison build-essential
     sudo pip3 install jq
@@ -150,6 +159,9 @@ Nun fehlen noch die vhosts für den Webserver::
 /etc/apache2/sites-available/ffmap-mz.conf
 /etc/apache2/sites-available/ffmap-wi.conf
 /etc/apache2/sites-available/ffmap-mwu.conf
+
+Hier am Beispiel der Freifunk MWU Karte, die die Knoten aller Communities zusammen anzeigt. Für die anderen Communities sind die Pfade entsprechend anzupassen::
+
     <VirtualHost *:80>
             ServerName map.freifunk-mwu.de
 
@@ -166,22 +178,11 @@ Nun fehlen noch die vhosts für den Webserver::
     </VirtualHost>
     # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 
-Hier am Beispiel der Freifunk MWU Karte, die die Knoten aller Communities zusammen anzeigt. Für die anderen Communities sind die Pfade entsprechend anzupassen.
-
-Anschließend müssen diese vhosts noch aktiviert und der Webserver neu geladen werden
+Anschließend müssen diese vhosts noch aktiviert und der Webserver neu geladen werden::
 
     a2ensite ffmap-mz.conf
     a2ensite ffmap-wi.conf
     a2ensite ffmap-mwu.conf
     apachectl -t
     apachectl graceful
-
-
-:see:
-    - :ref:`fastd`
-    - :ref:`dhcp`
-    - :ref:`routing_tables`
-    - :ref:`icvpn`
-    - :ref:`exitvpn`
-
 
