@@ -36,6 +36,7 @@ Inhalt
    configuration/daemons/fastd
    configuration/daemons/alfred
    configuration/daemons/exitvpn
+   configuration/ffmap
    configuration/daemons/icvpn
    configuration/cleanup
    operations/workflows
