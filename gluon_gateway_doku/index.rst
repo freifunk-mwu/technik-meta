@@ -32,6 +32,7 @@ Inhalt
    prerequisites/gluon
    configuration/basics
    configuration/interfaces
+   configuration/daemons/apache
    configuration/daemons/ddi
    configuration/daemons/fastd
    configuration/daemons/alfred

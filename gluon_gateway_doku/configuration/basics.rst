@@ -127,6 +127,7 @@ Pakete aus den Standard-Repos installieren::
         vim
         tinc
         bird
+        apache2
 
 Pakete aus den eigenen Repositories installieren::
 

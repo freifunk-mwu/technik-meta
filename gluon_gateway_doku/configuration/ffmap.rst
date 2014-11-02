@@ -29,7 +29,6 @@ Frontend
 
 Voraussetzungen
 ```````````````
-* apache
 * nodejs
 
   * npm
@@ -38,7 +37,7 @@ Voraussetzungen
 
 Installation der Abhängigkeiten::
 
-    apt-get install npm apache2
+    apt-get install npm
     sudo npm install -g grunt-cli bower
 
 
