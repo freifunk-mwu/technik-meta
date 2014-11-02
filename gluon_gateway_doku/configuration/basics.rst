@@ -92,6 +92,12 @@ Zum Schluss::
     apt-get update
     apt-get dist-upgrade
 
+.. _crontab_path:
+
+Crontab PATH
+------------
+
+    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 .. _packages:
 
