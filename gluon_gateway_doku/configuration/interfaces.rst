@@ -10,7 +10,7 @@ Wir richten uns hier je eine Brücke pro Mesh-Wolke, die wir versorgen wollen, e
 Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
 Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch unabhängig voneinander geschehen.
 
-:see:
+.. seealso::
     - :ref:`fastd`
     - :ref:`dhcp`
     - :ref:`routing_tables`
@@ -49,7 +49,7 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         post-up         /sbin/ip -6 route add fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
         post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
 
-:see:
+.. seealso::
     - :ref:`routing_tables`
     - :ref:`gateway_schema`
     - :ref:`interface_bezeichnung`

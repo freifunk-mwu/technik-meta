@@ -116,7 +116,7 @@ Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
 
 Danach einen DNS-Eintrag auf sich selbst setzen:
 
-:see:
+.. seealso::
     :ref:`self_dns`
 
 .. _dhcp:
@@ -159,7 +159,7 @@ Wichtig:
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
 
-:see:
+.. seealso::
     - :ref:`interfaces`
 
 Wir wählen die beiden Brücken::

@@ -31,7 +31,7 @@ Momentan kommen auf allen Gateways eine Ubuntu Server 14.04 LTS Installation zum
 
 Für viele der Gate-Funktionen wird weitere Software benötigt, die größtenteils als Pakete aus den Ubuntu- und weiteren Repositories nachinstalliert werden kann.
 
-:see:
+.. seealso::
     - :ref:`packages`
     - :ref:`repositories`
 
@@ -50,7 +50,7 @@ Alle Gates verbinden sich für das VPN auch vollständig untereinander. So entst
 
 Auf den Gates werden hierzu **fastd** sowie das Kernel Modul **batman_adv** benötigt.
 
-:see:
+.. seealso::
     - :ref:`packages`
     - :ref:`fastd`
 
@@ -65,7 +65,7 @@ Das bedeutet, dass es zwei *B.A.T.M.A.N* Wolken gibt, was wiederum bedeutet, das
 
 Aus Gründen der Effizienz unterstützen die Gates aktuell jeweils beide Netze.
 
-:see:
+.. seealso::
     - :ref:`netzplan`
 
 Sollten die Netze in Zukunft stark wachsen, könnten weitere Aufteilungen nötig werden.
@@ -84,7 +84,7 @@ Verfügbare IPv4-Ranges, aus denen der DHCP-Server vergeben darf, müssen innerh
 
 Hierfür wird **isc-dhcp-server** genutzt. Für das vorbereitende Ausrollen von IPv6 Adressen benötigen wir hier auch **radvd**.
 
-:see:
+.. seealso::
     - :ref:`dhcp`
     - :ref:`radvd`
 
@@ -99,7 +99,7 @@ Damit dies gelingt muss auch dem Gate, in Richtung des Anbieters auch ein NATing
 
 An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-utils**, **iproute**, **iptables** & **openvpn**.
 
-:see:
+.. seealso::
     - :ref:`packages`
     - :ref:`interfaces`
     - :ref:`routing_tables`
@@ -114,7 +114,7 @@ Damit interne Dienste auch aus anderen Städten genutzt werden können, wurde da
 
 Als Software benutzen wir hier **tinc** und **bird6**.
 
-:see:
+.. seealso::
     - :ref:`packages`
     - :ref:`interfaces`
     - :ref:`routing_tables`
@@ -128,7 +128,7 @@ Unsere Gateways loggen keinen Traffic!
 
 Alles was existiert sind die zur Laufzeit benötigten Verbindungsdaten. DHCP-Leases, Batman Protokolldaten und die ARP-Tabelle.
 
-Diese werden nur im Arbeitsspeicher vorgehalten, ist das Gateway aus (z.B. die Herren in Grün nehmen den Server mit), sind diese weg.
+Diese werden nur im Arbeitsspeicher vorgehalten, ist das Gateway aus (z.B. die Herren in Grün nehmen den Server mit), sind diese i.d.R. weg.
 
-:see:
+.. seealso::
     - :ref:`logging`

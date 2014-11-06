@@ -20,7 +20,7 @@ in die /etc/network/interfaces kommt also folgendes::
         [...]
         dns-nameservers 127.0.0.1
 
-:see:
+.. seealso::
     - :ref:`bind`
 
 .. _logging:
