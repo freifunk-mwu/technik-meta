@@ -27,7 +27,7 @@ Für Mainz
 
     log to syslog level warn;
     interface "mzVPN";
-    method "salsa2012+gmac";    # new method, between gateways for the moment (faster)
+    method "salsa2012+umac";    # new method (faster)
 
     # Bind von v4 and v6 interfaces
     bind 1.2.3.4:10037;
