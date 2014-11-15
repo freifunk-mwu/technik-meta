@@ -45,7 +45,7 @@ fastd
 
 /etc/fastd/xxVPN/fastd.conf::
 
-    log level fatal;
+    log level warn;
     hide ip addresses yes;
     hide mac addresses yes;
 

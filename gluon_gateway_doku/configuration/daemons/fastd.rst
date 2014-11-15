@@ -25,9 +25,12 @@ Für Mainz
 
 /etc/fastd/mzVPN/fastd.conf::
 
-    log to syslog level warn;
+    log level warn;
+    hide ip addresses yes;
+    hide mac addresses yes;
     interface "mzVPN";
     method "salsa2012+umac";    # new method (faster)
+    method "salsa2012+gmac";
 
     # Bind von v4 and v6 interfaces
     bind 1.2.3.4:10037;
