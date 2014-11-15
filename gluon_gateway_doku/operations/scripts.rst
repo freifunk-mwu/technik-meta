@@ -35,7 +35,7 @@ Momentan: ``github_mwu``
 
 Den Öffentlichen Teil des Schlüssels bekommt ein extra erstellter GitHub Account hinterlegt, der duch eine Gruppen Zugriff auf die entsprechenden Repos erhält.
 
-Für uns ist dies der Nutzer `freifunkmwu <https://github.com/freifunkmwu>`_ [#404]_ der innerhalb der Gruppe `machines <https://github.com/orgs/freifunk-mwu/teams/machines>`_ verweilt.
+Für uns ist dies der Nutzer `freifunkmwu <https://github.com/freifunkmwu>`_ der innerhalb der Gruppe `machines <https://github.com/orgs/freifunk-mwu/teams/machines>`_ verweilt.
 
 Ob alles korrekt funktioniert lässt sich durch einen einfachen Aufruf zeigen::
 
@@ -47,10 +47,3 @@ Die Ausgabe sollte folgendes enthalten::
     Connection to github.com closed.
 
 Die restlichen Scripte funktionieren dann analog.
-
-____
-
-.. [#404] Sollte hinter diesem Link eine 404 Seite erscheinen, so hat GitHub diesen Account als Bot erkannt, und vor der Öffentlichkeit ausgeblendet. Alles andere funktioniert wie gehabt.
-
-
-

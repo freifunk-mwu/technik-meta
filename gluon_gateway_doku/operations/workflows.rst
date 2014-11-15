@@ -21,7 +21,7 @@ Wir verwalten diese Keys in Git-Repositories:
 .. _peers-ffmz.git: https://github.com/freifunk-mwu/peers-ffmz
 .. _peers-ffwi.git: https://github.com/freifunk-mwu/peers-ffwi
 
-Bei der Installation der Gluon Node wird ein **fastd** *Schlüsselpaar* erzeugt.
+Bei dem ersten Start der Gluon Node wird ein **fastd** *Schlüsselpaar* erzeugt.
 
 Im Beschreibungstext steht, man solle den erzeugten *öffentlichen Schlüssel* per Mail an unsere Listen schicken. Alternativ lässt sich auch ein Link klicken, der das Email-Programm öffnet und eine neue Mail ausfüllt.
 
@@ -36,7 +36,7 @@ Die neuen Keys von der Liste werden wie unten gezeigt lokal eingetragen, die Än
 
 .. note:: Damit der Nodebesitzer und die anderen Empfänger der Keys-Listen bescheid wissen muss nach dem Eintragen der Keys die Mail beantwortet werden. Den *Nodebesitzer* ins **To:**-Feld, ``keys@freifunk-...`` ins **CC:**.
 
-Mehrmals täglich kommt FFctl_ vorbei und synchronisiert die neuen Keys von GitHub auf die entsprechenden Gateways.
+Alle paar Stinden kommt ein Script vorbei und synchronisiert die neuen Keys von GitHub auf die Gateways.
 
 .. _FFctl: http://ffctl.readthedocs.org/
 
@@ -67,6 +67,7 @@ Beispiel - Node: mz-abcdefabcdef
 
     key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
 
+
 .. _exitvpn_accounts:
 
 exitVPN Accounts
@@ -79,42 +80,16 @@ Dies hat den Vorteil, dass Anfragen in das Internet anonymisiert werden, Anbiete
 .. seealso::
     - :ref:`exitvpn`
 
-Hierbei handelt es sich um **OpenVPN** Angebote, meist in Schweden oder Niederlande.
+Hierbei handelt es sich um **OpenVPN**-Angebote, meist in Schweden oder Niederlande.
 
 Diese werden im Vorraus gezahlt, und müssen von Hand aufgeladen werden.
 
 **Problem** - Dies wird all zu gerne verpeilt!
 
-Im `gateway-configs.git`_ findet sich eine ``exitVPN.yaml``
+Im `gateway-configs.git`_ findet sich eine ``exitvpn.yaml``
 
 .. _gateway-configs.git: https://github.com/freifunk-mwu/gateway-configs/
 
 Dort wird pro Gateway hinterlegt, welcher VPN-Account hinterlegt ist, und bis zu welchem Datum dieser bezahlt ist.
 
-Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen.
-
-1. **Gateway-Name** ``:``
-    2. ``account:``  **Account-Nr/Login**
-    3. ``provider:``  **VPN-Anbieter** (mullvad/ipredator)
-    4. ``until:``  Datum bis zu dem gezahlt wurde: **DD.MM.YYYY**
-    5. Leerzeile
-
-.. note:: Dieses Script sowie die ``exitVPN.yaml`` ist noch in Arbeit. Bitte etwas Geduld.
-
-Beispiel
-^^^^^^^^
-
-Also so::
-
-    Hartwurstsuppe:
-        account: abcdef0123
-        provider: ipredator
-        until: 23.05.2023
-
-    Popcorn:
-        account: 0123456789
-        provider: mullvad
-        until: 23.05.2042
-
-
-.. TODO Script schreiben.
+Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen, ansonsten wird ein mal pro Woche eine Übersicht verschickt.
