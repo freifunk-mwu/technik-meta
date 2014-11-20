@@ -124,32 +124,46 @@ Für das Backend muss der Benutzer **admin** ein paar Binaries mit Root Rechten 
 
 Konfiguration
 `````````````
-
-Wir clonen das ffmap-backend Repository einmal pro Community und checken auch hier wieder den Branch mwu aus::
+Wir haben das Karten Backend so angepasst, sodass man mit einem Karten Backend mehrere Frontends befüllen kann.
+Wir clonen das ffmap-backend Repository einmal und checken auch hier wieder den Branch mwu aus::
 
     cd ~/clones
-    git clone https://github.com/freifunk-mwu/ffmap-backend.git ffmap-backend-mz
-    git clone https://github.com/freifunk-mwu/ffmap-backend.git ffmap-backend-wi
-    cd ffmap-backend-mz && git checkout mwu
-    cd ffmap-backend-wi && git checkout mwu
+    git clone https://github.com/freifunk-mwu/ffmap-backend.git
+    cd ffmap-backend && git checkout mwu
 
-Der Aufruf von bat2nodes.py in der Datei **mkmap.sh** muss im jeweiligen Verzeichnis der Community entsprechend angepasst werden, hier am Beispiel von Wiesbaden::
+Für jede Community und auch für die übergreifende Kartendarstellung muss es ein eigenes Script **mkmap-xx.sh** geben.
+Die Aufrufe für Mainz, Wiesbaden und MWU sind schon vorgefertigt, es müssen lediglich die korrekten Zeilen auskommentiert werden::
 
-    ./bat2nodes.py -a aliases-wi.json -m wiBAT -s /var/run/alfred-wi.sock -f $FIRMWARE -d $DEST
+    cp mkmap.sh mkmap-mz.sh mkmap-wi.sh mkmap-mwu.sh
+
+Der Aufruf für Mainz sieht dann in der mkmap-mz.sh so aus::
+
+    ./bat2nodes.py -c mainz -a aliases-mz.json -m mzBAT -s /var/run/alfred-mz.sock -f $FIRMWARE -d $DEST
+
+Und für die übergreifende Karte so::
+
+    ./bat2nodes.py -c mwu -a aliases-mz.json -a aliases-wi.json -m mzBAT -m wiBAT -s /var/run/alfred-mz.sock -s /var/run/alfred-wi.sock -f $FIRMWARE -d $DEST
+
+Wichtig bei diesem Aufruf ist, dass die Reihenfolge der übergebenden Parameter konsistent ist. Wenn für **-m** an erster Stelle das Mainzer Batman Interface angegeben wird, dann muss für **-s** auch das alfred-socket des Mainzer Meshes an erster Stelle angegeben werden.
+
+An dieser Stelle eine kurze Erläuterung der Parameter:
+
+   =========== =================================================================================================================
+    Parameter   Erläuterung
+   =========== =================================================================================================================
+   -c          Ein Kurzname um die verschiedenen Communities im selben Backend zu unterscheiden (nodedb, state.json, nodes.json)
+   -a          Aliases File(s), in denen statische Parameter für Gateways definiert werden können.
+   -m          Batman Interface(s)
+   -s          Alfred Unix Socket(s)
+   -f          Aktuelle Firmware Version (wird über den Aufruf des **mkmap-xx.sh** Scriptes übergeben)
+   -d          Pfad zum webroot des jeweiligen Karten Frontends (wird über den Aufruf des **mkmap-xx.sh** Scriptes übergeben)
+   =========== =================================================================================================================
 
 Nun kann die crontab gefüllt werden::
 
-    * * * * * /home/admin/clones/ffmap-backend-mz/mkmap.sh /var/www/mapmz/build 0.1
-    * * * * * /home/admin/clones/ffmap-backend-wi/mkmap.sh /var/www/mapwi/build 0.1
-    * * * * * /home/admin/clones/ffmap-backend-mz/mkmap-mwu.sh
-
-Die letzte Option hier ist die momentan stabile Firmware Version. Diese muss mit angegeben werden, damit die Karte Knoten mit veralteter Firmware entspechend markieren kann.
-
-Das Script **mkmap-mwu.sh** merged die nodes.json Dateien aller Communities für die gemeinsame Karte. Die Pfade sind aktuell noch hardcodiert::
-
-    /usr/bin/python3 mergenodesjson.py /var/www/mapmz/build/nodes.json /var/www/mapwi/build/nodes.json /var/www/mapmwu/build/nodes.json
-    cp /var/www/mapmz/build/nodes/*.png /var/www/mapmwu/build/nodes/
-    cp /var/www/mapwi/build/nodes/*.png /var/www/mapmwu/build/nodes/
+    * * * * * /home/admin/clones/ffmap-backend/mkmap-mz.sh /var/www/mapmz/build 0.1
+    * * * * * /home/admin/clones/ffmap-backend/mkmap-wi.sh /var/www/mapwi/build 0.1
+    * * * * * /home/admin/clones/ffmap-backend/mkmap-mwu.sh /var/www/mapmwu/build 0.1
 
 Sollte es Abweichungen geben, sind diese entsprechend anzupassen.
 
