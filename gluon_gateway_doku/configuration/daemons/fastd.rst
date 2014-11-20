@@ -28,7 +28,9 @@ Für Mainz
     log level warn;
     hide ip addresses yes;
     hide mac addresses yes;
+
     interface "mzVPN";
+
     method "salsa2012+umac";    # new method (faster)
     method "salsa2012+gmac";
 
@@ -40,6 +42,8 @@ Für Mainz
     mtu 1406; # 1492 - IPv4/IPv6 Header - fastd Header...
 
     include peers from "peers";
+
+    status socket "/var/run/fastd-mainz.status";
 
 .. _fastd_key:
 
