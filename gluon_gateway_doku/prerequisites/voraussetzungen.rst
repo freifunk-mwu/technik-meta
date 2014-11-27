@@ -24,6 +24,16 @@ Am Besten wird der Gate-Betreiber gleich Teil des Admin-Teams :)
 
 Jeder Admin muss die Möglichkeit haben jederzeit an jeder Stelle jedes beliebige Problem fixen zu können (und zu dürfen). Die technischen Details zur Umsetzung sind der Admin-Gruppe bekannt.
 
+Schema
+------
+
+Was wir für Dienste aufsetzen und wie diese inneinandergreifen lässt sich am Besten anhand einer schematischen Darstellung erklären:
+
+.. image:: gateway-schema.png
+    :alt: Gateway - schematische Darstellung
+    :scale: 85%
+    :align: center
+
 Funktionen & dafür benötigte Software
 -------------------------------------
 
