@@ -128,15 +128,23 @@ Aus dem :ref:`netzplan` wird sich eine Rage gezogen.
 
 In den Header der /etc/dhcp/dhcpd.conf kommt::
 
-    default-lease-time 300;
-    max-lease-time 3600;
+    ddns-update-style none;
 
+    authoritative;
+    server-name "lotuswurzel";
+
+    log-facility local6;
+
+    default-lease-time 300;
+    min-lease-time 300;
+    max-lease-time 300;
+
+Die Direktive **server-name** ist auf den Hostnamen des jeweiligen Gateways anzupassen.
 Wir wählen hier eine kurze Lease Time, damit die Clients maximal 5 Minuten offline sind.
 
 Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
 
     subnet 10.56.0.0 netmask 255.255.192.0 {
-        authoritative;
         range 10.56.16.0 10.56.31.255;
 
         # Use our own IP as gateway for our clients
