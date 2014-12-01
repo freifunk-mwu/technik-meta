@@ -155,7 +155,6 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         # gateways, too.
         option domain-name-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
 
-        option domain-name ".ffwi.org";
         option domain-search "ffwi.org", "user.ffwi.org";
 
         # ntp servers
