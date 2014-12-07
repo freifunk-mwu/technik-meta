@@ -9,11 +9,15 @@ zwischen einigen Gates aufgebaut. Über dieses Transfernetz wird dann
 ge-route-t.
 
 Die Routing-Einträge auf diesen vielen Routern (Gates) werden nicht
-manuell, sondern per `BGP`_ gepflegt (die `ASN`_ für Wiesbaden und Mainz sind 65036 und 65037).
+manuell, sondern per `BGP <http://de.wikipedia.org/wiki/Border_Gateway_Protocol>`_ gepflegt (die `ASN <http://wiki.freifunk.net/AS-Nummern>`_ für Wiesbaden und Mainz sind 65036 und 65037).
 Es gibt zwei etablierte BGP-Implmentationen:
-quagga_ und den `bird daemon`_; wir haben uns für letztere entschieden. Auch hier folgen
-wir grob der zentralen `Dokumentation`_ und es sei auf das im Aufbau befindliche
-`IC-VPN-Meta-repository`_ für die Metainformationen sowie auf das `IC-VPN-scripts-repository`_ für die Erzeugung der bgp peers sowie DNS Config verwiesen.
+`quagga <http://www.nongnu.org/quagga/>`_ und den `bird daemon <http://bird.network.cz/>`_; wir haben uns für letztere entschieden. Auch hier folgen
+wir grob der zentralen `Dokumentation <http://wiki.freifunk.net/IC-VPN#BGP_Einrichten>`_ und es sei auf das im Aufbau befindliche
+`IC-VPN-Meta-Repository`_ für die Metainformationen sowie auf das `IC-VPN-Scripts-Repository`_ für die Erzeugung der bgp peers sowie DNS Config verwiesen.
+
+.. _IC-VPN-Repository: https://github.com/freifunk/icvpn
+.. _IC-VPN-Meta-Repository: https://github.com/freifunk/icvpn-meta
+.. _IC-VPN-Scripts-Repository: https://github.com/freifunk/icvpn-scripts
 
 .. _tinc:
 
@@ -26,23 +30,23 @@ tinc
 Alle Gates der am IC-VPN teilnehmenden communities verbinden sich in einem
 Transfernetz untereinander. Um ihre virtuellen Kabel zusammenstecken zu können,
 bauen sie sich dafür einen virtuellen switch über das Internet auf. Hierbei
-kommt `tinc vpn`_ zum Einsatz, ein Protokoll ganz ähnlich dem von uns intern genutzten
+kommt `tinc vpn <http://www.tinc-vpn.org/>`_ zum Einsatz, ein Protokoll ganz ähnlich dem von uns intern genutzten
 :ref:`fastd` .
 
-Jedes telnehmende Gate soll einen Eintrag in der zentralen Gate-Liste_ haben, um
+Jedes telnehmende Gate soll einen Eintrag in der zentralen `Gate-Liste <http://wiki.freifunk.net/IC-VPN#Netz.C3.BCbersicht_.2F_Network_Information>`_ haben, um
 IP-Adress-Kollisionen zu vermeiden. Aus Repräsentationsgründen sollte dort
 jede community auch mit mindestens einem Eintrag vertreten sein. Die Lotuswurzel
 besetzt dort wiesbaden1 und Spinat soll mainz2 sein. Wie jedes diese Gates
 später auch die andere community vertreten kann, sehen wir später (:ref:`bird`).
 
-Diese Liste soll offenbar durch ein IC-VPN-Meta-repository_ auf github abgelöst
+Diese Liste soll offenbar durch ein `IC-VPN-Meta-Repository`_ auf github abgelöst
 werden. In dieses  repository müssen dann Einträge in die beiden files
 ``wiesbaden`` und ``mainz`` vorgenommen werden. Aktuell empfiehlt es sich,
 **beide** Informationsquellen zu pflegen: die Liste vor Beginn der
 Gate-Einrichtung, das repository im Anschluss.
 
 Unsere Art, das tinc für das IC-VPN einzurichten ist angelehnt an die
-entsprechende freifunk-weite Beschreibung_.
+entsprechende Freifunk-weite `Beschreibung <http://wiki.freifunk.net/IC-VPN#Tinc_einrichten>`_.
 Die Ordnerstruktur für die Konfiguration sieht so aus::
 
   /etc/tinc/ - Basisverzeichnis
@@ -55,7 +59,7 @@ Dafür benötigen wir::
   chown admin:admin /etc/tinc/icVPN   # !!!
 
 Die öffentlichen Schlüssel aller Gates aller teilnehmenden communities verwaltet
-Freifunk ebenfalls in einem IC-VPN-repository_ auf github. Dieses wird einfach
+Freifunk ebenfalls in einem `IC-VPN-Repository`_ auf github. Dieses wird einfach
 auf unser neues Gate dupliziert (kennen wir ja schon)::
 
   git clone https://github.com/freifunk/icvpn /etc/tinc/icVPN/
@@ -143,11 +147,6 @@ Als Letztes ist noch die Zeile ``icVPN`` der Datei ``/etc/tinc/nets.boot``
 hinzuzufügen. Nun kann tinc gestartet werden.
 
 
-.. _tinc vpn: http://www.tinc-vpn.org/
-.. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn_meta
-.. _Beschribung: http://wiki.freifunk.net/IC-VPN#Tinc_einrichten
-.. _IC-VPN-repository: https://github.com/freifunk/icvpn
-
 .. _bird:
 
 BIRD
@@ -183,7 +182,7 @@ Muster::
 Die Adresse des peer (=neighbour) ist in der v4-config eine v4-Adresse und entsprechend in der
 v6-config eine v6-Adresse.
 
-bird config 
+bird config
 ^^^^^^^^^^^
 
 Im Großen und Ganzen handelt es sich bei uns um eine recht normale bird-BGP-Konfiguration
@@ -198,7 +197,7 @@ Das config file wird mit den üblichen Standards eröffnet:
   IC-VPN-Transfernetz. Als ``router-id`` kommt in beiden Konfigurationen die v4-(sic!)-Adresse
   zum Einsatz.
 * Wenn wir zwei kernel routing tables beschicken wollen, brauchen wir auch in bird dafür
-  zwei routing ``table``s. Die zweite ist eine einfache Kopie der ersten, auf der ausschließlich
+  zwei routing ``table`` s. Die zweite ist eine einfache Kopie der ersten, auf der ausschließlich
   gearbeitet wird.
 * Die Definition von Konstanten erleichtert das Leben ein wenig.
 
@@ -210,17 +209,16 @@ raus).
 Die dann folgenden ``device``-, ``direct``-, ``kernel``- und ``pipe``-Protokolldefinitionen
 dienen der Kommunikation von bird in Richtung des Kernels des hosts: Ohne ``device``-Protokoll
 kann bird fast nichts. Über das ``direct``-Protokoll werden die aktiven mwu-eigenen Netze
-gefunden, die den peers gegenüber beworben werden sollen und über die
-``kernel``-Protokollinstanzen wird der host mit den von den peers erhaltenen routing-Informationen
-versorgt.
+gefunden, die den peers gegenüber beworben werden sollen und über die ``kernel``-Protokollinstanzen
+wird der host mit den von den peers erhaltenen Routing-Informationen versorgt.
 
-Abgesehen von der mittels ``include`` eingebundenen Liste der peers, bilden die ``template``s
+Abgesehen von der mittels ``include`` eingebundenen Liste der peers, bilden die ``template`` s
 für die BGP-Verbindungen den Abschluss. Es gibt je ein ``template`` für internal BGP und für
 external BGP. Jeweils werden die eigene ASN, die eigene IP-Adresse für abgehende Verbindungen,
 die anzuwendenden Filter und ein paar flags definiert. Alle diese Einstellungen sind für
 jeweils alle iBGP- und alle eBGP-Verbindungen gleich; es ändern sich immer nur die Daten der
 entsprechenden peers. Die peers werden in eingebundenen file (für eBGP) bzw. im Anschluss
-(für iBGP) unter Bezug auf diese ``template``s definiert.
+(für iBGP) unter Bezug auf diese ``template`` s definiert.
 
 Ein erwähnenswerter Punkt sind die ``export filter``-Definitionen im eBGP. Jedes Gate kann im
 IC-VPN nur im Namen **einer** community auftreten und auch nur **eine** ASN nach dort anbieten.
@@ -235,16 +233,8 @@ Routen über sie nach dem ASN 65036 auch noch in das ASN 65036 müssen (via Spin
 65037-65036); ebenso anders herum wieder respektive. => Bei Übernahme der configs von
 einer community in die andere ist also auch an dieser Stelle Änderungsbedarf!
 
-Das iBGP wir **nur** innerhalb einer community gefahren (als für gates, die im IC-VPN als
-Wiesbadener gates in Erscheinung treten nur zu anderen Wiesbadener Gates; analog für Mainzer
-gates) ! Dagegen bauen wir eBGP sessions aber weder zu Mainzer, noch zu Wiesbadener Gates auf,
+Das iBGP wir **nur** innerhalb einer Community gefahren (also für Gates, die im IC-VPN als
+Wiesbadener Gates in Erscheinung treten nur zu anderen Wiesbadener Gates; analog für Mainzer
+Gates)! Dagegen bauen wir eBGP sessions aber weder zu Mainzer, noch zu Wiesbadener Gates auf,
 als nur zu mwu-externen. Die Erzeugung der include files soll bald mal - unter Verwendung der
-Daten aus dem ``icvpn-meta`` repo automagisiert werden, ist aber aktuell noch Handarbeit.
-
-.. _BGP: http://de.wikipedia.org/wiki/Border_Gateway_Protocol
-.. _ASN: http://wiki.freifunk.net/AS-Nummern
-.. _quagga: http://www.nongnu.org/quagga/
-.. _bird daemon: http://bird.network.cz/
-.. _Dokumentation: http://wiki.freifunk.net/IC-VPN#BGP_Einrichten
-.. _IC-VPN-Meta-repository: https://github.com/freifunk/icvpn-meta
-.. _IC-VPN-Scripts-repository: https://github.com/freifunk/icvpn-scripts
+Daten aus dem `IC-VPN-Meta-Repository`_ automagisiert werden, ist aber aktuell noch Handarbeit.
