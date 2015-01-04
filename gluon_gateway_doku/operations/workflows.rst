@@ -10,9 +10,6 @@ fastd-keys
 
 Damit die Nodes eine VPN-Verbindung aufbauen können, muss der *öffentliche* **fastd** *Schlüssel* auf die Gateways gelangen.
 
-.. seealso::
-    - :ref:`fastd`
-
 Wir verwalten diese Keys in Git-Repositories:
 
 * Mainz: peers-ffmz.git_
@@ -34,11 +31,13 @@ Die Empfänger dieser Liste sind am Besten auch Mitglieder des `fastd-keys GitHu
 
 Die neuen Keys von der Liste werden wie unten gezeigt lokal eingetragen, die Änderungen wie gewohnt gepusht.
 
-.. note:: Damit der Nodebesitzer und die anderen Empfänger der Keys-Listen bescheid wissen muss nach dem Eintragen der Keys die Mail beantwortet werden. Den *Nodebesitzer* ins **To:**-Feld, ``keys@freifunk-...`` ins **CC:**.
+.. note:: Damit der Nodebesitzer und die anderen Empfänger der Keys-Listen bescheid wissen, muss nach dem Eintragen der Keys die Mail beantwortet werden. Den *Nodebesitzer* ins **To:**-Feld, ``keys@freifunk-...`` ins **CC:** (Oder einfach auf Reply-All klicken..).
 
-Alle paar Stinden kommt ein Script vorbei und synchronisiert die neuen Keys von GitHub auf die Gateways.
+Alle 15 Minuten kommt ein Script vorbei und synchronisiert die neuen Keys von GitHub auf die Gateways.
 
-.. _FFctl: http://ffctl.readthedocs.org/
+.. seealso::
+    - :ref:`fastd`
+    - :ref:`scripts`
 
 .. _fastd_key_format:
 
@@ -56,16 +55,18 @@ Damit der **fastd**-daemon den Schlüssel lesen kann, muss noch etwas Syntax dru
 Bei Start oder Neuladen des **fastd**-daemons wird das Config-File neu eingelesen.
 In diesem steht, **fastd** möge zusätzlich noch alle Dateien aus dem ``peers``-Ordner mit einlesen (== *peers-... .git* Repository).
 
-fastd nimmt den Dateinamen des peer keys als peer name.
+**fastd** nimmt den Dateinamen des keys als peer name. Hat die Node z.B. den Namen *Wurstsalat* ist die Struktur denkbar einfach:
 
-.. _fastd_key_beispiel:
-
-Beispiel - Node: mz-abcdefabcdef
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Dateiname: mz-abcdefabcdef
+* Dateiname: ``Wurstsalat``::
 
     key "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef";
+
+Einige Dateinamen werden zur einfachen Zuordnung mit einem Prefix markiert. In Benutzung/Angedacht sind:
+
+:gw: Für Gateways (``gw_Lotuswurzel``, ``gw_Spinat``).
+:srv: Für Dienste-Server (``srv_Aubergine``).
+:chaos: Für Nodes im cccmz (``chaos_Haggis``).
+:peng: Für Nodes im pengland.
 
 
 .. _exitvpn_accounts:
@@ -73,12 +74,9 @@ Beispiel - Node: mz-abcdefabcdef
 exitVPN Accounts
 ----------------
 
-Anfragen aus dem Freifunknetz in das weltweite Internet tunneln wir durch das sog. **exitVPN**, um die Störerhaftung zu umgehen.
+Anfragen aus dem Freifunknetz in das Internet tunneln wir durch das **exitVPN**, um die Störerhaftung zu umgehen.
 
 Dies hat den Vorteil, dass Anfragen in das Internet anonymisiert werden, Anbieter sehen nur dass die Anfrage aus dem Freifunk-Netz kommt.
-
-.. seealso::
-    - :ref:`exitvpn`
 
 Hierbei handelt es sich um **OpenVPN**-Angebote, meist in Schweden oder Niederlande.
 
@@ -93,3 +91,8 @@ Im `gateway-configs.git`_ findet sich eine ``exitvpn.yaml``
 Dort wird pro Gateway hinterlegt, welcher VPN-Account hinterlegt ist, und bis zu welchem Datum dieser bezahlt ist.
 
 Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen, ansonsten wird ein mal pro Woche eine Übersicht verschickt.
+
+.. seealso::
+    - :ref:`exitvpn`
+    - :ref:`scripts`
+

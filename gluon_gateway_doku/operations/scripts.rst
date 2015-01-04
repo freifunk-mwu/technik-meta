@@ -46,4 +46,4 @@ Die Ausgabe sollte folgendes enthalten::
     Hi freifunkmwu! You've successfully authenticated, but GitHub does not provide shell access.
     Connection to github.com closed.
 
-Die restlichen Scripte funktionieren dann analog.
+Die restlichen Scripte sind in der Readme des Repos beschrieben.
