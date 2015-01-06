@@ -3,15 +3,22 @@ Gluon Gateway Doku
 
 .. include:: Readme.rst
 
-Inhalt
-------
+Intro
+-----
 
 .. toctree::
    :maxdepth: 2
 
-   prerequisites/voraussetzungen
-   prerequisites/netzplan
-   prerequisites/gluon
+   intro/prerequisites
+   intro/netzplan
+   intro/gluon
+
+Konfiguration
+-------------
+
+.. toctree::
+   :maxdepth: 2
+
    configuration/basics
    configuration/interfaces
    configuration/daemons/apache
@@ -23,5 +30,12 @@ Inhalt
    configuration/ffmap
    configuration/daemons/icvpn
    configuration/cleanup
+
+Betrieb
+-------
+
+.. toctree::
+   :maxdepth: 2
+
    operations/workflows
    operations/scripts
