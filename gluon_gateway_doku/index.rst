@@ -37,5 +37,6 @@ Betrieb
 .. toctree::
    :maxdepth: 2
 
+   operations/tests
    operations/workflows
    operations/scripts
