@@ -21,12 +21,11 @@ Konfiguration
 
    configuration/basics
    configuration/interfaces
-   configuration/daemons/apache
    configuration/daemons/ddi
    configuration/daemons/fastd
    configuration/daemons/alfred
    configuration/daemons/exitvpn
-   configuration/firmware_repo
+   configuration/daemons/apache
    configuration/ffmap
    configuration/daemons/icvpn
    configuration/cleanup
