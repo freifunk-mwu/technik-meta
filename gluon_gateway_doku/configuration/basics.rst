@@ -65,6 +65,13 @@ Danach neuladen::
 
     sysctl -p /etc/sysctl.conf
 
+.. _crontab_path:
+
+Crontab PATH
+------------
+
+    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
 .. _repositories:
 
 Benötigte Repositories
@@ -91,13 +98,6 @@ Zum Schluss::
 
     apt-get update
     apt-get dist-upgrade
-
-.. _crontab_path:
-
-Crontab PATH
-------------
-
-    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 .. _packages:
 
