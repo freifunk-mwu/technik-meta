@@ -15,7 +15,7 @@ Der Betrieb der Knoten Karte ist in zwei Bereiche unterteilt:
   * `Original Backend`_
   * `MWU Backend`_
 
-Das Karten Backend liest die Knotendaten (Namen, Clientcount, IP Adressen, Mesh Links, Geodaten, etc.) sowie die Meshverbindungen aus A.L.F.R.E.D. 
+Das Karten Backend liest die Knotendaten (Namen, Clientcount, IP Adressen, Mesh Links, Geodaten, etc.) sowie die Meshverbindungen aus A.L.F.R.E.D.
 und bereitet diese im JSON-Format auf. Das Ergebnis wird in der Datei **nodes.json** gespeichert und dem Karten Frontend bereitgestellt.
 Dieses zeigt all diese Informationen entweder in einem D3-Graphen, in einer Geokarte oder in einer Liste augenfreundlich an.
 
@@ -167,7 +167,7 @@ Nun kann die crontab gefüllt werden::
 
 Sollte es Abweichungen geben, sind diese entsprechend anzupassen.
 
-Nun fehlen noch die vhosts für den Webserver::
+Nun fehlen noch die vhosts für :ref:`apache`::
 
 /etc/apache2/sites-available/ffmap-mz.conf
 /etc/apache2/sites-available/ffmap-wi.conf

@@ -166,12 +166,14 @@ Wichtig:
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
 
-.. seealso::
-    - :ref:`interfaces`
-
 Wir wählen die beiden Brücken::
 
     INTERFACES="mzBR wiBR"
+
+.. seealso::
+    - :ref:`interfaces`
+    - :ref:`self_dns`
+    - :ref:`ntp`
 
 .. _radvd:
 

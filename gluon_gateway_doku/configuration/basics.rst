@@ -30,12 +30,20 @@ Routing Tabellen
 
 /etc/iproute2/rt_tables::
 
-    [...]
+    #
+    # reserved values
+    #
+    255     local
+    254     main
+    253     default
+    0       unspec
+    #
+    # local
+    #
     37      mz
     56      wi
     # icvpn
     42      icvpn
-    [...]
 
 .. _kernel_parameters:
 
@@ -64,13 +72,6 @@ Wichtige Kernel Parameter
 Danach neuladen::
 
     sysctl -p /etc/sysctl.conf
-
-.. _crontab_path:
-
-Crontab PATH
-------------
-
-    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 .. _repositories:
 
@@ -108,36 +109,77 @@ Pakete aus den Standard-Repos installieren::
 
     xargs apt-get install -y
 
+        apache2
+        bind9
+        bird
         bridge-utils
         git
         iproute
         iptables
         iptables-persistent
         isc-dhcp-server
+        man-db
+        mosh
         ntp
         #openssl
         openvpn
-        python3
         python-argparse
+        python3
         radvd
         rrdtool
-        bind9
-        mosh
-        man-db
-        vim
         tinc
-        bird
-        apache2
+        vim
 
 Pakete aus den eigenen Repositories installieren::
 
     xargs apt-get install -y
 
-        fastd
-        batctl
-        batman-adv-dkms
         alfred
         alfred-json
         batadv-vis
+        batctl
+        batman-adv-dkms
+        fastd
 
 An dieser Stelle sei auf die :ref:`scripts` hingewiesen. Dort ist hinterlegt wie diese installiert und eingerichtet werden
+
+.. _crontab_path:
+
+Crontab PATH
+------------
+
+::
+
+    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+.. _ntp:
+
+NTP
+---
+
+Da die Kisten recht viel mit Crypto machen, ist es von Vorteil eine halbwegs genaue Uhrzeit parat zu haben.
+
+Die ``/etc/ntp.conf`` bleibt nahezu unverändert::
+
+    # /etc/ntp.conf, configuration for ntpd; see ntp.conf(5) for help
+
+    driftfile /var/lib/ntp/ntp.drift
+
+    # Specify one or more NTP servers.
+    server 0.de.pool.ntp.org
+    server 1.de.pool.ntp.org
+    server 2.de.pool.ntp.org
+    server 3.de.pool.ntp.org
+
+    # Use Ubuntu's ntp server as a fallback.
+    server ntp.ubuntu.com
+
+    # By default, exchange time with everybody, but don't allow configuration.
+    restrict -4 default kod notrap nomodify nopeer noquery
+    restrict -6 default kod notrap nomodify nopeer noquery
+
+    # Local users may interrogate the ntp server more closely.
+    restrict 127.0.0.1
+    restrict ::1
+
+Im :ref:`dhcp` werden alle Gateways als Zeitquellen konfiguriert und verteilt.
