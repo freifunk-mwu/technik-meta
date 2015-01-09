@@ -43,7 +43,7 @@ Announcements
 
 Die Gateways sollen auch ein paar Daten über sich selbst via Alfred preisgeben, damit die Kartendaten rund werden.
 Wir danken `ffnord`_ an dieser Stelle für die `ffnord-alfred-announce`_ Scripte. Wir haben diese unseren Bedürfnissen angepasst und halten sie
-im Community spezifischen Branch **mainz** bzw. **wiesbaden vor: `ffmwu-alfred-announce-mz`_ und `ffmwu-alfred-announce-wi`_
+im Community spezifischen Branch **mainz** bzw. **wiesbaden** vor: `ffmwu-alfred-announce-mz`_ und `ffmwu-alfred-announce-wi`_
 
 Nun clonen wir pro Community dieses Repo und wechseln in den jewiligen Branch::
 
