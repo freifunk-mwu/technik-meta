@@ -174,14 +174,9 @@ Die ``/etc/ntp.conf`` bleibt nahezu unverändert::
     # Use Ubuntu's ntp server as a fallback.
     server ntp.ubuntu.com
 
-    # By default, exchange time only with freifunk, but don't allow configuration.
-    restrict -4 default kod notrap nomodify nopeer noquery noserve
-    restrict -6 default kod notrap nomodify nopeer noquery noserve
-
-    restrict 10.37.0.0 mask 255.255.0.0 kod notrap nomodify nopeer noquery
-    restrict 10.56.0.0 mask 255.255.0.0 kod notrap nomodify nopeer noquery
-    restrict fd37:b4dc:4b1e:: mask ffff:ffff:ffff:: kod notrap nomodify nopeer noquery
-    restrict fd56:b4dc:4b1e:: mask ffff:ffff:ffff:: kod notrap nomodify nopeer noquery
+    # By default, exchange time with everybody, but don't allow configuration.
+    restrict -4 default kod notrap nomodify nopeer noquery
+    restrict -6 default kod notrap nomodify nopeer noquery
 
     # Local users may interrogate the ntp server more closely.
     restrict 127.0.0.1
