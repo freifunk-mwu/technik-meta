@@ -123,8 +123,6 @@ Die Routing-Tables?
      fd56:b4dc:4b1e::/64 dev wiBR  metric 1024
      fe80::/64 dev wiBR  metric 1024
 
-
-
 B.A.T.M.A.N.
 ------------
 
