@@ -127,6 +127,7 @@ Pakete aus den Standard-Repos installieren::
         python3
         radvd
         rrdtool
+        sysfsutils
         tinc
         vim
 
@@ -142,6 +143,20 @@ Pakete aus den eigenen Repositories installieren::
         fastd
 
 An dieser Stelle sei auf die :ref:`scripts` hingewiesen. Dort ist hinterlegt wie diese installiert und eingerichtet werden
+
+.. _sysfs_parameter
+
+Sysfs Parameter
+---------------
+
+Wir erhöhen auf den Gateways die Hop Penalty auf den Wert 60, damit mehr Traffic über Wifi Links geschickt wird.
+
+Die Datei ``/etc/sysfs.d/99-batman-hop-penalty.conf`` muss mit folgendem Inhalt angelegt werden::
+
+    class/net/mzBAT/mesh/hop_penalty = 60
+    class/net/wiBAT/mesh/hop_penalty = 60
+
+Diese Einstellungen ist prinzipiell für jedes Batman Interface vorzunehmen, hier am Beispiel von ``mzBAT`` und ``wiBAT``.
 
 .. _crontab_path:
 
