@@ -156,7 +156,7 @@ Die Datei ``/etc/sysfs.d/99-batman-hop-penalty.conf`` muss mit folgendem Inhalt 
     class/net/mzBAT/mesh/hop_penalty = 60
     class/net/wiBAT/mesh/hop_penalty = 60
 
-Diese Einstellungen ist prinzipiell für jedes Batman Interface vorzunehmen, hier am Beispiel von ``mzBAT`` und ``wiBAT``.
+Diese Einstellung ist prinzipiell für jedes Batman Interface vorzunehmen, hier am Beispiel von ``mzBAT`` und ``wiBAT``.
 
 .. _crontab_path:
 
