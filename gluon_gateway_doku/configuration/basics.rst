@@ -125,6 +125,7 @@ Pakete aus den Standard-Repos installieren::
         openvpn
         python-argparse
         python3
+        python3-netifaces
         radvd
         rrdtool
         sysfsutils

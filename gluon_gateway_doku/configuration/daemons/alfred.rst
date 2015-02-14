@@ -43,15 +43,15 @@ Announcements
 
 Die Gateways sollen auch ein paar Daten über sich selbst via Alfred preisgeben, damit die Kartendaten rund werden.
 Wir danken `ffnord`_ an dieser Stelle für die `ffnord-alfred-announce`_ Scripte. Wir haben diese unseren Bedürfnissen angepasst und halten sie
-im Community spezifischen Branch **mainz** bzw. **wiesbaden** vor: `ffmwu-alfred-announce-mz`_ und `ffmwu-alfred-announce-wi`_
+im Branch **mwu** vor: `ffmwu-alfred-announce-mwu`_
 
-Nun clonen wir pro Community dieses Repo und wechseln in den jewiligen Branch::
+Nun clonen wir pro Community dieses Repo und wechseln in den **mwu** Branch::
 
     cd ~/clones
     git clone https://github.com/freifunk-mwu/ffnord-alfred-announce.git ffnord-alfred-announce-mz
     git clone https://github.com/freifunk-mwu/ffnord-alfred-announce.git ffnord-alfred-announce-wi
-    cd ~/clones/ffnord-alfred-announce-mz && git checkout mainz
-    cd ~/clones/ffnord-alfred-announce-wi && git checkout wiesbaden
+    cd ~/clones/ffnord-alfred-announce-mz && git checkout mwu
+    cd ~/clones/ffnord-alfred-announce-wi && git checkout mwu
 
 Konfiguration
 `````````````
@@ -76,10 +76,12 @@ Die momentan announcten Daten sind:
     * firmware (OS Release)
 
   * VPN Status
-  * Group
+  * System
+    * role
 
 * Statistics
 
+  * gateway (batman has selected)
   * idletime
   * loadavg
   * memory
@@ -104,6 +106,12 @@ Da wir die announce scripte mit einem normalen Benutzer ausführen, das Announce
         exec sudo /usr/bin/alfred-json $*
         EOCAT
 
+    ~/bin/batctl
+
+        #!/bin/sh
+        exec sudo /usr/bin/batctl $*
+        EOCAT
+
 Nun kann die crontab gefüllt werden::
 
     * * * * * /home/admin/clones/ffnord-alfred-announce-mz/announce.sh -i mzBR -b mzBAT -u /var/run/alfred-mz.sock > /dev/null 2>&1
@@ -112,5 +120,4 @@ Nun kann die crontab gefüllt werden::
 
 .. _ffnord: https://github.com/ffnord
 .. _ffnord-alfred-announce: https://github.com/ffnord/ffnord-alfred-announce
-.. _ffmwu-alfred-announce-mz: https://github.com/freifunk-mwu/ffnord-alfred-announce/tree/mainz
-.. _ffmwu-alfred-announce-wi: https://github.com/freifunk-mwu/ffnord-alfred-announce/tree/wiesbaden
+.. _ffmwu-alfred-announce-mwu: https://github.com/freifunk-mwu/ffnord-alfred-announce/tree/mwu
