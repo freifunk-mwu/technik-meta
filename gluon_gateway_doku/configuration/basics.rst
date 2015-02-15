@@ -131,6 +131,8 @@ Pakete aus den Standard-Repos installieren::
         sysfsutils
         tinc
         vim
+        vnstat
+        vnstati
 
 Pakete aus den eigenen Repositories installieren::
 
