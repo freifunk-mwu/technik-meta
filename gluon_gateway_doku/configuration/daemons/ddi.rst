@@ -180,7 +180,7 @@ Wir wählen die beiden Brücken::
 RAdvD
 -----
 
-Die Konfigurationsdatei muss man sich selbst erzeugen. Es gibt Beispiele unter ``/usr/share/doc/radvd/examples/``.
+Die Konfigurationsdatei muss manuell angelegt werden.
 
 Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
@@ -190,13 +190,19 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
     {
         AdvSendAdvert on;
         IgnoreIfMissing on;
-        MaxRtrAdvInterval 200;
+        MaxRtrAdvInterval 900;
+        AdvLinkMTU 1350;
 
         prefix fd37:b4dc:4b1e::/64
-        {};
+        {
+                AdvValidLifetime 864000;
+                AdvPreferredLifetime 172800;
+        };
 
         RDNSS fd37:b4dc:4b1e::a25:X fd37:b4dc:4b1e::a25:Y fd37:b4dc:4b1e::a25:Z
-        {};
+        {
+                FlushRDNSS off;
+        };
     };
 
 Wichtig:
