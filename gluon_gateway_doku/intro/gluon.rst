@@ -36,9 +36,9 @@ Gluon auf der Node
 
 Für Mainz und Wiesbaden nutzen wir den unveränderten Quellcode, frisch aus Lübeck.
 
-* site.conf: https://github.com/freifunk-mwu/site-ffmz
-* packages: https://github.com/freifunk-mwu/gluon-plus
+* site.conf: https://github.com/freifunk-mwu/site-ffmwu
+* packages: https://github.com/freifunk-mwu/packages-ffmwu
 
-Gebaut wird mit FFctl_.
+Gebaut wird mit gluon-builder-ffmwu_.
 
-.. _FFctl: http://ffctl.readthedocs.org/
+.. _gluon-builder-ffmwu: http://gluon-builder-doku.readthedocs.org
