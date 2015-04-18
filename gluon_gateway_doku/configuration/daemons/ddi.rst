@@ -27,50 +27,7 @@ BIND
 
 **Wichtig**: *listen-on*, *listen-on-v6* ausschließlich auf die lokalen Interfaces und die IC-VPN Interfaces zeigen lassen.
 
-Jedes Gate ist ein Slave für DNS (Das Vereins-Gate ist Master).
-
-DNS-Master
-``````````
-
-Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Mainz)::
-
-    // ACL for recursion
-
-    acl "intern-mz" {
-        10.37.0.0/16;
-        fd37:b4dc:4b1e::/48;
-    };
-
-    // Intern Zones for Freifunk
-
-    zone "ffmz.org." {
-        type master;
-        file "/etc/bind/ffmz/ffmz.org.master.db";
-    };
-
-    zone "user.ffmz.org." {
-        type master;
-        file "/etc/bind/ffmz/user.ffmz.org.master.db";
-    };
-
-    // Reverse Zones
-
-    zone "37.10.in-addr.arpa" {
-        type master;
-        file "/etc/bind/ffmz/37.10.in-addr.arpa.master.db";
-    };
-
-    zone "e.1.b.4.c.d.4.b.7.3.d.f.ip6.arpa" {
-        type master;
-        file "/etc/bind/ffmz/fd37:b4dc:4b1e_48.ip6.arpa.master.db";
-    };
-
-Somit darf man nun die Zone-Files konfigurieren:
-
-* /etc/bind/ffmz/37.10.in-addr.arpa.master.db
-* /etc/bind/ffmz/fd37:b4dc:4b1e_48.ip6.arpa.master.db
-* /etc/bind/ffmz/ffmz.org.master.db
-* /etc/bind/ffmz/user.ffmz.org.master.db
+Jedes Gate ist ein Slave für DNS (DNS Master läuft auf einem Service Server).
 
 DNS-Slave
 `````````
@@ -78,7 +35,7 @@ DNS-Slave
 Die /etc/bind/named.conf.local bekommt pro Mesh-Wolke (z.B. für Wiesbaden)::
 
     masters "ns-master-wi" {
-        fd56:b4dc:4b1e::a38:7;
+        fd56:b4dc:4b1e::a38:103;
     };
 
     acl "intern-wi" {
