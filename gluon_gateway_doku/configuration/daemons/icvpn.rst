@@ -77,12 +77,17 @@ Lotuswurzel)::
   Hostnames = yes
   Interface = icVPN
 
-Für jede Datei im directory ``/etc/tinc/icVPN/hosts`` soll es eine entsprechende
-``ConnectTo =``-Zeile geben; nur für den eigenen Eintrag nicht.
+Aus Performance Gründen soll tinc aktiv nur Verbindungen zu ausgewählten sogenannten Metanodes aufbauen. Für alle Metanodes müssen entsprechende ``ConnectTo =``-Zeilen in der tinc Konfigurationsdatei tinc.conf eingetragen werden. Diese Aufgabe übernimmt das post-merge Script für uns::
 
-.. note:: Die Pflege der ``ConnectTo =``-Einträge sollte baldmöglichst
-  automagisiert werden. Im den git repos von ``freifunk`` sollte es dafür auch
-  schon was geben...
+  cp /home/admin/clones/backend-scripts/icvpn-tinc-post-merge /etc/tinc/icVPN/.git/hooks/post-merge
+  /etc/tinc/icVPN/.git/hooks/post-merge
+
+Dieses Script wird immer ausgeführt wenn es Änderungen im Git-Repo gab. Das zyklische Pull übernimmt wieder ein Backend-Script::
+
+  crontab -e
+  0 3 * * 3,6,7 /usr/bin/python3 $HOME/clones/backend-scripts/update_tinc_conf_gw.py > $HOME/.cronlog/update_tinc_conf.log
+
+Die Cron Updatezeiten hier am Beispiel der Lotuswurzel. Die sollen auf alle Gates verteilt werden, sodass jedes Gate an unterschiedlichen Tagen das tinc-update-Scripts ausführt.
 
 Nun legen wir noch die ``/etc/tinc/icVPN/tinc-up`` an::
 
