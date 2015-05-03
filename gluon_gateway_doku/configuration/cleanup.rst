@@ -92,8 +92,12 @@ BIND
 Apache
 ``````
 
-Um Apache das Mitloggen der Zugriffe abzugewöhnen genügt es die Log Direktiven auszukommentieren::
+Um Apache das Mitloggen der Zugriffe abzugewöhnen müssen in jeder aktivierten site die Log Direktiven auskommentiert werden::
 
     #ErrorLog ${APACHE_LOG_DIR}/error.log
     #CustomLog ${APACHE_LOG_DIR}/access.log combined
 
+Des Weiteren existiert eine Standardkonfiguration, die automatisch für jede site das Logging aktiviert, diese muss unbedingt deaktiviert werden::
+
+    sudo a2disconf other-vhosts-access-log.conf
+    sudo apachectl graceful
