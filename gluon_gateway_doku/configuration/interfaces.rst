@@ -62,7 +62,7 @@ Scripte für :ref:`fastd`::
     allow-hotplug wiVPN
     iface wiVPN inet6 manual
         hwaddress 02:00:0a:38:00:X
-        pre-up          /sbin/modprobe batman_adv
+        pre-up          /sbin/modprobe batman-adv
         post-up         /usr/sbin/batctl -m wiBAT if add $IFACE
         post-up         /sbin/ip link set dev wiBAT up
 

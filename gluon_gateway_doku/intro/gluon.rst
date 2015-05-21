@@ -28,6 +28,7 @@ Links & Dokumentation
 * Gluon Pakete: https://github.com/freifunk-gluon/packages
 * Gluon Konfiguration (site.conf) https://github.com/freifunk-gluon/site-ffhl (Lübeck)
 * Dokumentation: http://gluon.readthedocs.org/
+* Github Wiki: https://github.com/freifunk-gluon/gluon/wiki
 
 * Doku aus Hamburg: https://wiki.freifunk.net/Freifunk_Hamburg/Firmware#Gluon
 

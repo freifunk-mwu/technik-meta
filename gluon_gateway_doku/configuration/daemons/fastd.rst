@@ -10,18 +10,18 @@ Ordnerstruktur::
     /etc/fastd/wiVPN - Config für Wiesbaden
     /etc/fastd/wiVPN/peers - Peers für Wiesbaden
 
-    sudo chown -R admin:admin /etc/fastd/*/peers/
-
-Als Benutzer admin ausführen (für FFctl)!
-
-git peers clonen::
+Die peers aus dem git clonen::
 
     git clone https://github.com/freifunk-mwu/peers-ffmz /etc/fastd/mzVPN/peers
     git clone https://github.com/freifunk-mwu/peers-ffwi /etc/fastd/wiVPN/peers
 
+Für die :ref:`scripts` muss der Nutzer darin schreiben dürfen::
 
-Für Mainz
----------
+    sudo chown -R admin:admin /etc/fastd/*/peers/
+
+
+Konfiguration
+-------------
 
 /etc/fastd/mzVPN/fastd.conf::
 
@@ -32,7 +32,6 @@ Für Mainz
     interface "mzVPN";
 
     method "salsa2012+umac";    # new method (faster)
-    method "salsa2012+gmac";
 
     # Bind von v4 and v6 interfaces
     bind 1.2.3.4:10037;
@@ -45,41 +44,33 @@ Für Mainz
 
     status socket "/var/run/fastd-mainz.status";
 
+/etc/fastd/wiVPN/fastd.conf:
+
+Analog zu Mainz (Ports anpassen 10037 -> 10056)
+
 .. _fastd_key:
 
 Schlüsselpaar generieren
 ------------------------
 
-Das Schlüsselpaar schreibt man sich in ein Tempfile::
+Das Schlüsselpaar schreibt man sich am besten in ein Tempfile::
 
-     fastd --generate-key > /etc/fastd/mzVPN/MEINTEMPFILE
+     fastd --generate-key >> /etc/fastd/wiVPN/MEINTEMPFILE
 
 dauert manchmal ein bisschen :) keep calm :)
 Das ganze sieht dann so aus:
 
-/etc/fastd/mzVPN/MEINTEMPFILE::
+/etc/fastd/wiVPN/MEINTEMPFILE::
 
     Secret: "0000..ffff"
     Public: "ffff..0000"
 
 daraus die passenden Files erstellen (auf das ``;``-Zeichen achten!):
 
-/etc/fastd/mzVPN/secret.conf::
+/etc/fastd/wiVPN/secret.conf::
 
     secret "0000..ffff";
 
-/etc/fastd/mzVPN/peers/``GW_Nickname`` (z.B. Lotuswurzel, Spinat, Popcorn)::
+/etc/fastd/wiVPN/peers/``GW_Nickname`` (z.B. Lotuswurzel, Spinat, Popcorn)::
 
     key "ffff...0000";
-
-Für Wiesbaden
--------------
-
-/etc/fastd/wiVPN/fastd.conf:
-
-Analog zu Mainz (Ports anpassen 10037 -> 10056)
-
-/etc/fastd/wiVPN/secret.conf,
-/etc/fastd/wiVPN/peers/``GW_Nickname``:
-
-Danach wie oben Schlüssel erzeugen
