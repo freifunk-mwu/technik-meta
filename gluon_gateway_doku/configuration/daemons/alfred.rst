@@ -45,46 +45,54 @@ Die Gateways sollen auch ein paar Daten über sich selbst via Alfred preisgeben,
 Wir danken `ffnord`_ an dieser Stelle für die `ffnord-alfred-announce`_ Scripte. Wir haben diese unseren Bedürfnissen angepasst und halten sie
 im Branch **mwu** vor: `ffmwu-alfred-announce-mwu`_
 
-Nun clonen wir pro Community dieses Repo und wechseln in den **mwu** Branch::
+Nun clonen wir dieses Repo und wechseln in den **mwu** Branch::
 
     cd ~/clones
-    git clone https://github.com/freifunk-mwu/ffnord-alfred-announce.git ffnord-alfred-announce-mz
-    git clone https://github.com/freifunk-mwu/ffnord-alfred-announce.git ffnord-alfred-announce-wi
-    cd ~/clones/ffnord-alfred-announce-mz && git checkout mwu
-    cd ~/clones/ffnord-alfred-announce-wi && git checkout mwu
+    git clone https://github.com/freifunk-mwu/ffnord-alfred-announce.git
+    cd ~/clones/ffnord-alfred-announce && git checkout mwu
 
 Konfiguration
 `````````````
-
-Nun müssen die Daten, die announced werden sollen noch dem jeweiligen Gateway angepasst werden, hier am Beispiel von Wiesbaden und dem Gateway **Spinat**::
-
-    cd ~/clones/ffnord-alfred-announce-wi
-    echo "\"x86\"" > nodeinfo.d/hardware/model
-    echo "\"Spinat (WI)\"" > nodeinfo.d/hostname
 
 Die momentan announcten Daten sind:
 
 * Nodeinfo
 
   * Hardware
-  * Hostname
+
+    * model
+
+  * Network
+
+    * ip addresses
+    * primary mac
+    * mesh interfaces
+
   * Software
 
+    * autoupdater (branch/state)
     * batman_adv version
     * batman_adv gw_mode
     * fastd version
     * firmware (OS Release)
 
-  * VPN Status
   * System
+
     * role
+    * site_code
+
+  * Hostname
+  * Node ID
+  * VPN Status
 
 * Statistics
 
+  * clients
   * gateway (batman has selected)
   * idletime
   * loadavg
   * memory
+  * node_id
   * processes
   * traffic
   * uptime
@@ -112,11 +120,10 @@ Da wir die announce scripte mit einem normalen Benutzer ausführen, das Announce
         exec sudo /usr/bin/batctl $*
         EOCAT
 
-Nun kann die crontab gefüllt werden::
+Nun kann die crontab des Benutzers gefüllt werden (crontab -e). Die Alfred Daten sollten minütlich announced werden::
 
-    * * * * * /home/admin/clones/ffnord-alfred-announce-mz/announce.sh -i mzBR -b mzBAT -u /var/run/alfred-mz.sock > /dev/null 2>&1
-    * * * * * /home/admin/clones/ffnord-alfred-announce-wi/announce.sh -i wiBR -b wiBAT -u /var/run/alfred-wi.sock > /dev/null 2>&1
-
+    * * * * * /home/admin/clones/ffnord-alfred-announce-mz/announce.sh -i mzBR -b mzBAT -f mzVPN -s ffmz -u /var/run/alfred-mz.sock > /dev/null 2>&1
+    * * * * * /home/admin/clones/ffnord-alfred-announce-wi/announce.sh -i wiBR -b wiBAT -f wiVPN -s ffwi -u /var/run/alfred-wi.sock > /dev/null 2>&1
 
 .. _ffnord: https://github.com/ffnord
 .. _ffnord-alfred-announce: https://github.com/ffnord/ffnord-alfred-announce
