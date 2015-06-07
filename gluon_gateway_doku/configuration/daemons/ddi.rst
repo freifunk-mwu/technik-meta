@@ -111,11 +111,15 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         # This will usually be our IP address and all other
         # gateways, too.
         option domain-name-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
-
         option domain-search "ffwi.org", "user.ffwi.org";
 
-        # ntp servers
+        # NTP Servers pushed to our clients
+        # This will usually be our IP address and all other
+        # gateways, too.
         option ntp-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
+
+        # Set interface mtu
+        option interface-mtu 1350;
     }
 
 Wichtig:
@@ -164,4 +168,4 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
 Wichtig:
 
-*RDNSS* auf sich selbst und alle anderen Gates setzen.
+*RDNSS* auf sich selbst und alle anderen Gates setzen. Es sind maximal 3 IP-Adressen zulässig.
