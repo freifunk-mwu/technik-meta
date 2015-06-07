@@ -26,7 +26,6 @@ Konfiguration
    configuration/daemons/alfred
    configuration/daemons/exitvpn
    configuration/daemons/apache
-   configuration/ffmap
    configuration/daemons/icvpn
    configuration/cleanup
 
