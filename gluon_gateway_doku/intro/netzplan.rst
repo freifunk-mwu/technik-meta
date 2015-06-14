@@ -39,6 +39,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.20.0/22`` ``10.X.23.255`` Client DHCP-Range Spinat          in Betrieb
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  in Betrieb
 ``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Zucker          Testphase
+``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu          Testphase
 ================ =============== ================= =============== ==========
 
 IPv6
