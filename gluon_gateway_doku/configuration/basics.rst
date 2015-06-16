@@ -116,6 +116,7 @@ Pakete aus den Standard-Repos installieren::
         bird
         bridge-utils
         git
+        haveged
         iproute
         iptables
         iptables-persistent
