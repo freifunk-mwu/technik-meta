@@ -40,6 +40,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  in Betrieb
 ``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Zucker          Testphase
 ``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu          Testphase
+``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range Wasserfloh      Testphase
 ================ =============== ================= =============== ==========
 
 IPv6
