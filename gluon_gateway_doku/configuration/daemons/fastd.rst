@@ -34,8 +34,8 @@ Konfiguration
     method "salsa2012+umac";    # new method (faster)
 
     # Bind von v4 and v6 interfaces
-    bind 1.2.3.4:10037;
-    bind [1234:1234:1234:1234::1]:10037;
+    bind $eure_externe_ip4:10037;
+    bind [$eure_externe_ip6]:10037;
 
     include "secret.conf";
     mtu 1406; # 1492 - IPv4/IPv6 Header - fastd Header...
@@ -57,7 +57,9 @@ Das Schlüsselpaar schreibt man sich am besten in ein Tempfile::
 
      fastd --generate-key >> /etc/fastd/wiVPN/MEINTEMPFILE
 
-dauert manchmal ein bisschen :) keep calm :)
+dauert manchmal ein bisschen :) keep calm :) 
+Wenn euch das zu langsam ist, installiert euch den haveged daemon um mehr Entropie zu generieren.
+
 Das ganze sieht dann so aus:
 
 /etc/fastd/wiVPN/MEINTEMPFILE::
@@ -65,7 +67,7 @@ Das ganze sieht dann so aus:
     Secret: "0000..ffff"
     Public: "ffff..0000"
 
-daraus die passenden Files erstellen (auf das ``;``-Zeichen achten!):
+daraus die passenden Files erstellen (auf das ``;``-Zeichen achten, Groß-/Kleinschreibung beachten! ):
 
 /etc/fastd/wiVPN/secret.conf::
 
@@ -74,3 +76,5 @@ daraus die passenden Files erstellen (auf das ``;``-Zeichen achten!):
 /etc/fastd/wiVPN/peers/``GW_Nickname`` (z.B. Lotuswurzel, Spinat, Popcorn)::
 
     key "ffff...0000";
+
+Achtet auf die korrekten Schreibweisen in der Gw_Nickname und der secret.conf! Groß- und Kleinschreibung sowie das Semikolon am Ende sind wichtig, ansonsten kann es dazu kommen, dass die Bridge, Batman und VPN interfaces nicht hochkommen.
