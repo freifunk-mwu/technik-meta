@@ -91,6 +91,10 @@ BIND
 
 Apache
 ``````
+ServerTokens in /etc/apache2/conf-available/security.conf weniger aussagekräftig einstellen und ServerSignature auf EMail setzen::
+
+    ServerTokens Prod
+    ServerSignature EMail
 
 Um Apache das Mitloggen der Zugriffe abzugewöhnen müssen in jeder aktivierten site die Log Direktiven auskommentiert werden::
 
