@@ -39,15 +39,15 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         address fd56:b4dc:4b1e::a38:X
         netmask 64
         # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip -6 rule add iif $IFACE table mz priority 3700
-        pre-down        /sbin/ip -6 rule del iif $IFACE table mz priority 3700
-        post-up         /sbin/ip -6 route add fe80::/64 proto static dev $IFACE table mz
-        post-down       /sbin/ip -6 route del fe80::/64 proto static dev $IFACE table mz
-        post-up         /sbin/ip -6 route add fd37:b4dc:4b1e::/64 proto static dev $IFACE table mz
-        post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table mz
+        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 3700
+        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 3700
+        post-up         /sbin/ip -6 route add fe80::/64 proto static dev $IFACE table wi
+        post-down       /sbin/ip -6 route del fe80::/64 proto static dev $IFACE table wi
+        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 proto static dev $IFACE table wi
+        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 proto static dev $IFACE table wi
         # ULA route mz for rt_table wi
-        post-up         /sbin/ip -6 route add fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
-        post-down       /sbin/ip -6 route del fd37:b4dc:4b1e::/64 proto static dev $IFACE table wi
+        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
+        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
 
 .. seealso::
     - :ref:`routing_tables`
