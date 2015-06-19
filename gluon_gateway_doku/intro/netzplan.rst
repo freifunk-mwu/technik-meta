@@ -38,7 +38,9 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.16.0/22`` ``10.X.19.255`` Client DHCP-Range Lotuswurzel     in Betrieb
 ``10.X.20.0/22`` ``10.X.23.255`` Client DHCP-Range Spinat          in Betrieb
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  in Betrieb
-``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Zucker          Testphase
+``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Parmesan        Offline
+``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu	   Testbetrieb
+``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range wasserfloh	   Testbetrieb
 ================ =============== ================= =============== ==========
 
 IPv6
@@ -79,7 +81,8 @@ Dies erleichtert das Scripten und Debuggen.
 Namenskonvention
 ----------------
 
-Als *Hostname* der Gateways kommt **"irgendwas mit Nahrung"** zum Einsatz :)
+Als *Hostname* der Gateways ist **"irgendwas mit Nahrung"** üblich :)
+Wer mag kann aber auch andere namen wählen...
 
 
 .. _next_node:
@@ -87,9 +90,9 @@ Als *Hostname* der Gateways kommt **"irgendwas mit Nahrung"** zum Einsatz :)
 Next Node Adressen
 ------------------
 
-Die Next Node Adressen sind dafür da, um sich im Fehler- oder Troublehootingfall mit einem Freifunk Knoten zu verbinden.
+Die Next Node Adressen sind dafür da, um sich im Fehler- oder Troubleshootingfall mit einem Freifunk Knoten zu verbinden.
 
-Diese Adressen sind auf jedem Knoten gleich. Der Freifunker muss sich nur diese Adresse(n) merken und seine Netzwerkkarte für ein Subnetz konfigurieren, in dem diese Adresse(n) liegt.
+Diese Adressen sind auf jedem Knoten gleich. Der Freifunker muss sich nur diese Adresse(n) merken und seine Netzwerkkarte für ein Subnetz konfigurieren, in dem diese Adresse(n) liegt um auf seinen router zuzugreifen.
 
 Wir nutzen dazu die jeweils niedrigsten Adressen
 
