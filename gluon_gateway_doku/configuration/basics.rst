@@ -57,10 +57,6 @@ Wichtige Kernel Parameter
     net.ipv4.conf.default.rp_filter = 0
     net.ipv4.conf.all.rp_filter = 0
 
-    net.bridge.bridge-nf-call-arptables = 0
-    net.bridge.bridge-nf-call-ip6tables = 0
-    net.bridge.bridge-nf-call-iptables = 0
-
     net.ipv6.conf.all.forwarding=1
 
     net.ipv6.conf.all.autoconf = 0
@@ -70,6 +66,14 @@ Wichtige Kernel Parameter
     net.ipv6.conf.all.accept_ra = 0
     net.ipv6.conf.default.accept_ra = 0
     net.ipv6.conf.eth0.accept_ra = 0
+
+    # <3.18 Kernel noch folgendes hinzufügen:
+    net.bridge.bridge-nf-call-arptables = 0
+    net.bridge.bridge-nf-call-ip6tables = 0
+    net.bridge.bridge-nf-call-iptables = 0
+
+Der letzte Teil sorgt dafür, dass die firewall (ip(6)tables) und arptables nicht im Bridgeinterface filtern. Bridges sollen wirklich nur als Switch laufen!
+In neueren Kerneln gibt es jetzt ein eigenes Modul (brdige_filter) dass man laden muss, um das zu aktivieren, bis jetzt ist dieses verhalten per default an.
 
 Danach neuladen::
 
@@ -124,7 +128,6 @@ Pakete aus den Standard-Repos installieren::
         man-db
         mosh
         ntp
-        #openssl
         openvpn
         python-argparse
         python3
@@ -136,19 +139,11 @@ Pakete aus den Standard-Repos installieren::
         vim
         vnstat
         vnstati
+        <CTRL>-d
 
 Pakete aus den eigenen Repositories installieren::
 
-    xargs apt-get install -y
-
-        alfred
-        alfred-json
-        batadv-vis
-        batctl
-        batman-adv-dkms
-        fastd
-
-An dieser Stelle sei auf die :ref:`scripts` hingewiesen. Dort ist hinterlegt wie diese installiert und eingerichtet werden
+    apt-get install -y alfred alfred-json batadv-vis batctl batman-adv-dkms fastd
 
 .. _sysfs_parameter
 
@@ -164,14 +159,6 @@ Die Datei ``/etc/sysfs.d/99-batman-hop-penalty.conf`` muss mit folgendem Inhalt 
 
 Diese Einstellung ist prinzipiell für jedes Batman Interface vorzunehmen, hier am Beispiel von ``mzBAT`` und ``wiBAT``.
 
-.. _crontab_path:
-
-Crontab PATH
-------------
-
-::
-
-    PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 .. _ntp:
 

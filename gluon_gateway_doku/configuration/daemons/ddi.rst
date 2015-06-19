@@ -168,4 +168,4 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
 Wichtig:
 
-*RDNSS* auf sich selbst und alle anderen Gates setzen. Es sind maximal 3 IP-Adressen zulässig.
+*RDNSS* auf sich und zwei beliebige andere Gates setzen, da nicht mehr als 3 Einträge möglich sind.

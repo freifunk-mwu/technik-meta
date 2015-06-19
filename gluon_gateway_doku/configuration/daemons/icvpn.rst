@@ -73,7 +73,7 @@ Lotuswurzel)::
   PrivateKeyFile = /etc/tinc/icVPN/rsa_key.priv
   Mode = Switch
   PingTimeout = 30
-  Port = 10656
+  Port = 10655
   Hostnames = yes
   Interface = icVPN
 
@@ -82,12 +82,6 @@ Aus Performance Gründen soll tinc aktiv nur Verbindungen zu ausgewählten sogen
   cp /home/admin/clones/backend-scripts/icvpn-tinc-post-merge /etc/tinc/icVPN/.git/hooks/post-merge
   /etc/tinc/icVPN/.git/hooks/post-merge
 
-Dieses Script wird immer ausgeführt wenn es Änderungen im Git-Repo gab. Das zyklische Pull übernimmt wieder ein Backend-Script::
-
-  crontab -e
-  0 3 * * 3,6,7 /usr/bin/python3 $HOME/clones/backend-scripts/update_tinc_conf_gw.py > $HOME/.cronlog/update_tinc_conf.log
-
-Die Cron Updatezeiten hier am Beispiel der Lotuswurzel. Die sollen auf alle Gates verteilt werden, sodass jedes Gate an unterschiedlichen Tagen das tinc-update-Scripts ausführt.
 
 Nun legen wir noch die ``/etc/tinc/icVPN/tinc-up`` an::
 
@@ -137,8 +131,10 @@ die vorgeschlagenen Defaults passen. Unter ``/etc/tinc/icVPN/wiesbaden1``
 Repository wandern muss. Vorher müssen allerdings die Kontaktinformationen
 des tinc daemon auf diesem Gate hinzugefügt werden. An den Anfang der Datei:
 
+::
+
   Address = [fqdn oder IP-Adresse]
-  Port = 10656
+  Port = 10655
   [...]
 
 .. note:: Solange unsere Domains im Schwebestatus hängen, sollten wir als
