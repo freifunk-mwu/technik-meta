@@ -52,12 +52,12 @@ Die restlichen Scripte sind in der Readme des Repos beschrieben.
 Cronjobs
 ---------
 
-Damit verschiedene Datenquellen atuell bleiben, sind eine ganze reihe von Cronjobs notwendig. Die outputs werden im Fehlerfall auch direkt auf die admin@ liste geleitet.
-Zunächst ruft man sein Crontab editor auf::
+Damit verschiedene Datenquellen atuell bleiben, sind eine ganze Reihe von Cronjobs notwendig. Die outputs werden im Fehlerfall auch direkt auf die admin@ liste geleitet.
+Zunächst ruft man seinen Crontab editor auf::
 
  crontab -e
 
-Da ein teil der neu installieren binaries unter /home/admin/ liegen müssen wir den Pfad setzen::
+Da ein Teil der neu installieren binaries unter /home/admin/ liegen, müssen wir den Pfad setzen::
 
     PATH=/home/admin/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
@@ -67,7 +67,7 @@ Jede Minute annouced das gateway per Alfred seine Daten::
     * * * * * $HOME/clones/ffnord-alfred-announce/announce.sh -i mzBR -b mzBAT -f mzVPN -u /var/run/alfred-mz.sock -s ffmz > /dev/null 2>&1
     * * * * * $HOME/clones/ffnord-alfred-announce/announce.sh -i wiBR -b wiBAT -f wiVPN -u /var/run/alfred-wi.sock -s ffwi > /dev/null 2>&1
 
-Die aktuellste Firmware wird einmal per Tag vom Buildserver geholt::
+Die aktuellste Firmware wird dreimal pro Tag vom Buildserver geholt::
 
     # firmware sync
     23 */8 * * * /usr/bin/rsync -avh --delete rsync://pudding.freifunk-mwu.de:2873/firmware /var/www/html/firmware > $HOME/.cronlog/firmware_rsync.log 2>&1
@@ -88,8 +88,8 @@ Die Logs der Cronjobs werden im admin Homeverzeichnis unter .cronlog (versteckt)
 Als letztes müssen noch die ICVPN Daten aktuell gehalten werden::
  
     # icvpn prototypes
-    0 U * * 2,5 /usr/bin/python3 $HOME/clones/backend-scripts/update_tinc_conf_gw.py > $HOME/.cronlog/update_tinc_conf.log
-    0 V * * 2,5 /usr/bin/python3 $HOME/clones/backend-scripts/update_bird_conf_gw.py > $HOME/.cronlog/update_bird_conf.log
-    0 W * * 2,5 /usr/bin/python3 $HOME/clones/backend-scripts/update_bind_conf_gw.py > $HOME/.cronlog/update_bind_conf.log
+    0 3 * * U /usr/bin/python3 $HOME/clones/backend-scripts/update_tinc_conf_gw.py > $HOME/.cronlog/update_tinc_conf.log
+    0 4 * * U /usr/bin/python3 $HOME/clones/backend-scripts/update_bird_conf_gw.py > $HOME/.cronlog/update_bird_conf.log
+    0 5 * * U /usr/bin/python3 $HOME/clones/backend-scripts/update_bind_conf_gw.py > $HOME/.cronlog/update_bind_conf.log
 
-Dabei sollte daraus geachtet werden, dass U V und W so gewählt werden sollten, dass diese sich möglichst nicht mit den Zeiten der anderen Gateways überlappen. Sollte sich dort eine Fehlkonfiguration einschleichen, so werden auf diese Weise nicht alle ICVPN Verbindungen gleichzeitig disfunktional.
+Dabei sollte darauf geachtet werden, dass U so gewählt wird, dass diese sich möglichst nicht mit den Tagen der anderen Gateways überlappen. Bei Änderungen der Anzahl der Gateways können hier Verschiebungen auf allen Gateways nötig werden; U kann (und wird) mehr als einen Tag enthalten, an jedem Tag sollte auf einem Gateway das Update laufen. Sollte sich dort eine Fehlkonfiguration einschleichen, so werden auf diese Weise nicht alle ICVPN Verbindungen gleichzeitig disfunktional.
