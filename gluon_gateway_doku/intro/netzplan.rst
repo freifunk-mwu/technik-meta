@@ -3,7 +3,7 @@
 Netzplan
 ========
 
-Freifunk Mainz & Freifunk Wiesbaden sind TCP/IP-basierte Netzwerke. Deshalb haben die beteiligten Computer (Clientes, Gates und die Knoten) jeweils IP-Adressen, die eindeutig sein müssen.
+Freifunk Mainz & Freifunk Wiesbaden sind TCP/IP-basierte Netzwerke. Deshalb haben die beteiligten Computer (Clients, Gates und die Knoten) jeweils IP-Adressen, die eindeutig sein müssen.
 
 Wird (z. B. aus Versehen) eine Adresse mehrfach verwendet, so führt das zu Problemen im Betrieb.
 
@@ -12,7 +12,7 @@ Andererseits müssen alle Adressen im *Freifunk Mainz* oder *Freifunk Wiesbaden*
 IPv4
 ----
 
-Wir haben von der Freifunkcommunity folgende Netze zugewiesen bekommen:
+Wir haben für unserer Freifunk-Communities folgende Netze zugewiesen bekommen:
 
 * Mainz - ``10.37.0.0/16`` = **37**
 * Wiesbaden - ``10.56.0.0/16`` = **56**
@@ -40,7 +40,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  in Betrieb
 ``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Parmesan        Offline
 ``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu	   Testbetrieb
-``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range wasserfloh	   Testbetrieb
+``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range Wasserfloh	   Testbetrieb
 ================ =============== ================= =============== ==========
 
 IPv6
@@ -81,8 +81,7 @@ Dies erleichtert das Scripten und Debuggen.
 Namenskonvention
 ----------------
 
-Als *Hostname* der Gateways ist **"irgendwas mit Nahrung"** üblich :)
-Wer mag kann aber auch andere namen wählen...
+Als *Hostname* der Gateways nehmen wir **"irgendwas mit Nahrung"**.
 
 
 .. _next_node:
@@ -92,7 +91,7 @@ Next Node Adressen
 
 Die Next Node Adressen sind dafür da, um sich im Fehler- oder Troubleshootingfall mit einem Freifunk Knoten zu verbinden.
 
-Diese Adressen sind auf jedem Knoten gleich. Der Freifunker muss sich nur diese Adresse(n) merken und seine Netzwerkkarte für ein Subnetz konfigurieren, in dem diese Adresse(n) liegt um auf seinen router zuzugreifen.
+Diese Adressen sind auf jedem Knoten gleich. Der Freifunker muss sich nur diese Adresse(n) merken und seine Netzwerkkarte für ein Subnetz konfigurieren, in dem diese Adresse(n) liegt um auf seinen Knoten zuzugreifen.
 
 Wir nutzen dazu die jeweils niedrigsten Adressen
 
@@ -152,7 +151,7 @@ Mit den uns zugewiesenen Netznummern sowie der Gateway-Nummer und dem Gateway-Na
     * Reverse DNS Eintrag korrekt setzen für Haupt DNS Namen: ``xxxx.freifunk-mwu.de``
 
 * IC-VPN
-    * Soll ein gate am IC-VPN teilnehmen benötigt es dafür noch weitere Einträge. Hier kann ein gate immer nur im Namen **einer** der communities auftreten, auch wenn es technisch trotzdem für alle communities agiert. (s. a. :ref:`icvpn`)
+    * Soll ein gate am IC-VPN teilnehmen benötigt es dafür noch weitere Einträge. Hier kann ein gate immer nur im Namen **einer** der Communities auftreten, auch wenn es technisch trotzdem für alle Communities agiert. (s. a. :ref:`icvpn`)
     * Kurzname: ``[Stadt][Nr]``, z. B. ``mainz2``
     * DNS-Eintrag zum Aufbau des Transfernetzes -> CNAME nach dem Muster ``ic-[stadt][Nr].freifunk-[stadt].de``
     * IP-Adressen (v4 und v6) im IC-VPN-Transfernetz, z. B. ``10.207.1.37``, ``fec0: :a:cf:1:25``

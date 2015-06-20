@@ -72,8 +72,8 @@ Wichtige Kernel Parameter
     net.bridge.bridge-nf-call-ip6tables = 0
     net.bridge.bridge-nf-call-iptables = 0
 
-Der letzte Teil sorgt dafür, dass die firewall (ip(6)tables) und arptables nicht im Bridgeinterface filtern. Bridges sollen wirklich nur als Switch laufen!
-In neueren Kerneln gibt es jetzt ein eigenes Modul (brdige_filter) dass man laden muss, um das zu aktivieren, bis jetzt ist dieses verhalten per default an.
+Der letzte Teil sorgt dafür, dass die Firewall (ip(6)tables) und arptables nicht im Bridge-Interface filtern. Wir wollen aber auf OSI Layer 2 nichts filtern.
+In neueren Kerneln gibt es jetzt ein eigenes Modul (brdige_filter) das nicht automatisch geladen wird und somit nicht aktiv ist. Ältere Kernel (<3.18) haben diese Filter per default aktiv.
 
 Danach neuladen::
 
