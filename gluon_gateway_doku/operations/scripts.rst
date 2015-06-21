@@ -85,6 +85,10 @@ Die Backend Scripte werden ebenfalls aufgerufen::
     42 19 * * 2 /usr/local/bin/photon-dangerous-selfupgrade.py --sudo --repos $HOME/clones/backend-scripts
 
 Die Logs der Cronjobs werden im admin Homeverzeichnis unter .cronlog (versteckt) abgelegt.
+Damit das funktioniert, müssen wir es anlegen::
+    
+    mkdir  $HOME/.cronlog
+
 Als letztes müssen noch die ICVPN Daten aktuell gehalten werden::
  
     # icvpn prototypes
