@@ -145,6 +145,10 @@ Pakete aus den eigenen Repositories installieren::
 
     apt-get install -y alfred alfred-json batadv-vis batctl batman-adv-dkms fastd
 
+Python Pakete via pip::
+
+    pip3 install py-cpuinfo
+
 .. _sysfs_parameter
 
 Sysfs Parameter
