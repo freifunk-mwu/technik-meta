@@ -96,3 +96,22 @@ Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Ma
     - :ref:`exitvpn`
     - :ref:`scripts`
 
+Firmware updates
+----------------
+
+Firmware updates müssen nach dem kompilieren noch signiert werden. So stellt Gluon die Integrität der Firmware Dateien sicher. Dazu wird die manifest datei, die Teil jedes kompilierten Gluon releases ist mittels ecdsasign signiert. Je nach Einstellungen in der site.conf und je nach build (experimental, beta, stable) sind eine verschiedene Anzahl von signaturen nötig.
+
+Ecdsa utils intallieren & Key generieren
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     Siehe hier: http://wiki.freifunk-flensburg.de/wiki/ECDSA_Util
+
+     Der öffentliche Schlüssel muss dann noch in die site.conf im imagebuilder eingetragen werden.
+
+Firmware signieren
+^^^^^^^^^^^^^^^^^^
+Man braucht den Inhalt aus der manifest Datei, vom Anfang bis zum Ende Der Dateinamen der Router (also bis zum -----). Diesen speichert man ab und generiert die Signatur mit:
+
+ecdsasign $private_keyfile < manifest
+
+Die erhaltene Signatur fügt man jetzt unten an die manifest Datei an (unter dem -----) an.
+
