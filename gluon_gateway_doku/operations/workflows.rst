@@ -111,7 +111,7 @@ Firmware signieren
 ^^^^^^^^^^^^^^^^^^
 Man braucht den Inhalt aus der manifest Datei, vom Anfang bis zum Ende Der Dateinamen der Router (also bis zum -----). Diesen speichert man ab und generiert die Signatur mit:
 
-ecdsasign $private_keyfile < manifest
+ecdsasign manifest < $private_keyfile
 
 Die erhaltene Signatur fügt man jetzt unten an die manifest Datei an (unter dem -----) an.
 
