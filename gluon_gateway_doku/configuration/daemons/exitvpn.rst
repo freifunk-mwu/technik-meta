@@ -45,3 +45,19 @@ Und Down-Script: /etc/openvpn/openvpn-down::
 
 
 Die up- und down- Scripte auch in die /etc/openvpn/ANBIETER.conf schreiben!
+
+Firewall
+^^^^^^^^
+Um das Netz des ExitVPN Anbieters via NAT mit unserem zu verbinden muss Masquerading aktiviert werden::
+   
+  iptables -A POSTROUTING -s 10.37.0.0/18,10.56.0.0/18 -o exitVPN -j MASQUERADE
+
+um dieses persistent zu machen installiert man noch folgende pakete::
+
+  apt-get install iptables-save iptables-persistent
+
+und speichert dann die iptables config einmalig::
+
+  iptables-save > /etc/iptables/rules.v4
+
+
