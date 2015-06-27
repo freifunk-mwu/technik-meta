@@ -20,6 +20,11 @@ in die /etc/network/interfaces kommt also folgendes::
         [...]
         dns-nameservers 127.0.0.1
 
+Als Fallback DNS Server tragen wir zusätzlich noch 2 weitere freie DNS Resolver ein. Dies erledigen wir über resolvconf. Wir legen die Datei ``/etc/resolvconf/resolv.conf.d/tail`` an und tragen die freien DNS Server ein::
+
+    nameserver 213.73.91.35
+    nameserver 85.214.20.141
+
 .. seealso::
     - :ref:`bind`
 

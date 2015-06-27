@@ -49,7 +49,7 @@ Apache Konfiguration:
             ServerName firmware.freifunk-mainz.de
             ServerAlias firmware.ffmz.org
 
-            ServerAdmin webmaster@freifunk-mainz.de
+            ServerAdmin webmaster@freifunk-mwu.de
             DocumentRoot /var/www/html/firmware/mainz
 
             <Directory /var/www/html/firmware/mainz>
@@ -68,7 +68,7 @@ Apache Konfiguration:
             ServerName firmware.freifunk-wiesbaden.de
             ServerAlias firmware.ffwi.org
 
-            ServerAdmin webmaster@freifunk-wiesbaden.de
+            ServerAdmin webmaster@freifunk-mwu.de
             DocumentRoot /var/www/html/firmware/wiesbaden
 
             <Directory /var/www/html/firmware/wiesbaden>
@@ -86,7 +86,7 @@ Apache Konfiguration:
     <VirtualHost *:80>
             ServerName firmware.freifunk-mwu.de
 
-            ServerAdmin webmaster@freifunk-mainz.de
+            ServerAdmin webmaster@freifunk-mwu.de
             DocumentRoot /var/www/html/firmware
 
             <Directory /var/www/html/firmware>
