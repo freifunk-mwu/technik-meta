@@ -70,6 +70,16 @@ DHCP Server
 
     log-facility local6;
 
+radvd
+`````
+
+Leider kann man dem radvd das Logging nur abgewöhnen, wenn man das Init-Script anpasst, ``/etc/init.d/radvd``::
+
+    OPTIONS="-m none -u radvd -p $PIDFILE"
+
+Das ``-m none`` ist hier dazugekommen und deaktivert das Logging komplett.
+
+
 fastd
 `````
 
