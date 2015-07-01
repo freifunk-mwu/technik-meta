@@ -126,14 +126,14 @@ Wichtig:
 *domain-name-server* und *ntp-servers* auf sich selbst und alle anderen Gates setzen.
 
 .. warning::
-    Obwohl der dhcpd normalerweise jede Stunde sein Lease-File aufräumen soll, wird durch ein anscheinend übermäßig restriktives AppArmor-Profil der nötige Dateizugriff unterbunden. `Hier ist der relevante Bugreport <https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1186662>`_, leider ist nicht absehbar wann das gefixt wird, da ISC und Ubuntu sich gegenseitig den Schwarzen Peter zuschieben.
+    Obwohl der DHCPd normalerweise regelmäßig sein Lease-File aufräumen soll, wird durch ein anscheinend übermäßig restriktives AppArmor-Profil der nötige Dateizugriff unterbunden. `Hier ist der relevante Bugreport <https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1186662>`_, leider ist nicht absehbar wann das gefixt wird, da ISC und Ubuntu sich gegenseitig den Schwarzen Peter zuschieben.
 
-    Der Bug verhindert, dass beim Rotieren der Lease-Files die alten Leases nicht aufgeräumt werden können, und somit auf ewig erhalten bleiben. Dies gilt zu vermeiden.
+    Der Bug verhindert, dass beim Rotieren des Lease-Files die alten Leases nicht aufgeräumt werden können, und somit auf ewig erhalten bleiben. Dies gilt zu vermeiden.
 
 Fix
 ```
 
-Im Bugreport wird von eiem Fix berichtet, der die ACLs der Lease-Files korrekt setzt:
+Im Bugreport wird von einem Fix berichtet, der die ACLs des Lease-Files korrekt setzt:
 
 Wir installieren uns zunächst das Programm ``acl`` nach, stoppen den DHCPd, und setzen die ACLs::
 
