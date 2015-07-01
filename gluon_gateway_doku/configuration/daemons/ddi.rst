@@ -125,6 +125,25 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
 Wichtig:
 *domain-name-server* und *ntp-servers* auf sich selbst und alle anderen Gates setzen.
 
+.. warning::
+    Obwohl der dhcpd normalerweise jede Stunde sein Lease-File aufräumen soll, wird durch ein anscheinend übermäßig restriktives AppArmor-Profil der nötige Dateizugriff unterbunden. `Hier ist der relevante Bugreport <https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1186662>`_, leider ist nicht absehbar wann das gefixt wird, da ISC und Ubuntu sich gegenseitig den Schwarzen Peter zuschieben.
+
+    Der Bug verhindert, dass beim Rotieren der Lease-Files die alten Leases nicht aufgeräumt werden können, und somit auf ewig erhalten bleiben. Dies gilt zu vermeiden.
+
+Fix
+```
+
+Im Bugreport wird von eiem Fix berichtet, der die ACLs der Lease-Files korrekt setzt:
+
+Wir installieren uns zunächst das Programm `acl` nach, stoppen den DHCPd, und setzen die ACLs::
+
+    service isc-dhcp-server stop
+    setfacl -dm u:dhcpd:rwx /var/lib/dhcp
+    setfacl -m u:dhcpd:rwx /var/lib/dhcp
+    service isc-dhcp-server start
+
+
+
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
 
 Wir wählen die beiden Brücken::
