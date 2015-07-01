@@ -81,7 +81,7 @@ Danach einen DNS-Eintrag auf sich selbst setzen:
 DHCPd
 -----
 
-Aus dem :ref:`netzplan` wird sich eine Rage gezogen.
+Aus dem :ref:`netzplan` wird sich eine Range gezogen.
 
 In den Header der /etc/dhcp/dhcpd.conf kommt::
 
@@ -102,7 +102,7 @@ Wir wählen hier eine kurze Lease Time, damit die Clients maximal 5 Minuten offl
 Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
 
     subnet 10.56.0.0 netmask 255.255.192.0 {
-        range 10.56.16.0 10.56.31.255;
+        range 10.56.X.0 10.56.X.255;
 
         # Use our own IP as gateway for our clients
         option routers 10.56.0.X;
