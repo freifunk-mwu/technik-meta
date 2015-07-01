@@ -135,13 +135,16 @@ Fix
 
 Im Bugreport wird von eiem Fix berichtet, der die ACLs der Lease-Files korrekt setzt:
 
-Wir installieren uns zunächst das Programm `acl` nach, stoppen den DHCPd, und setzen die ACLs::
+Wir installieren uns zunächst das Programm ``acl`` nach, stoppen den DHCPd, und setzen die ACLs::
+
+    apt-get install acl
 
     service isc-dhcp-server stop
+
     setfacl -dm u:dhcpd:rwx /var/lib/dhcp
     setfacl -m u:dhcpd:rwx /var/lib/dhcp
-    service isc-dhcp-server start
 
+    service isc-dhcp-server start
 
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
