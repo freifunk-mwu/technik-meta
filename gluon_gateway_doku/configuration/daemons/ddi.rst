@@ -107,15 +107,11 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         # Use our own IP as gateway for our clients
         option routers 10.56.0.X;
 
-        # DNS servers to be pushed to our clients.
-        # This will usually be our IP address and all other
-        # gateways, too.
+        # DNS server to be pushed to our clients.
         option domain-name-servers 10.56.0.X;
         option domain-search "ffwi.org", "user.ffwi.org";
 
-        # NTP Servers pushed to our clients
-        # This will usually be our IP address and all other
-        # gateways, too.
+        # NTP Server pushed to our clients
         option ntp-servers 10.56.0.X;
 
         # Set interface mtu
