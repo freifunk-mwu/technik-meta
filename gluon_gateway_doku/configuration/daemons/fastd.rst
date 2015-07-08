@@ -10,10 +10,18 @@ Ordnerstruktur::
     /etc/fastd/wiVPN - Config für Wiesbaden
     /etc/fastd/wiVPN/peers - Peers für Wiesbaden
 
-Die peers aus dem git clonen::
+Die peers aus dem git klonen::
 
     git clone https://github.com/freifunk-mwu/peers-ffmz /etc/fastd/mzVPN/peers
     git clone https://github.com/freifunk-mwu/peers-ffwi /etc/fastd/wiVPN/peers
+
+.. note::
+    Damit die :ref:`scripts` zum synchronisieren der Keys korrekt funktionieren (die Änderungen pushen dürfen), sollte man sich zunächst um die Einrichtung dessen kümmern.
+
+    Danach wird entweder die Repo-Adresse in der ``/etc/fastd/xyVPN/peers/.git/config`` direkt angepasst oder man klont die Repos neu::
+
+        git clone ssh://github_mwu/freifunk-mwu/peers-ffxy /etc/fastd/xyVPN/peers
+
 
 Für die :ref:`scripts` muss der Nutzer darin schreiben dürfen::
 
@@ -57,7 +65,7 @@ Das Schlüsselpaar schreibt man sich am besten in ein Tempfile::
 
      fastd --generate-key >> /etc/fastd/wiVPN/MEINTEMPFILE
 
-dauert manchmal ein bisschen :) keep calm :) 
+dauert manchmal ein bisschen :) keep calm :)
 Wenn euch das zu langsam ist, installiert euch den haveged daemon um mehr Entropie zu generieren.
 
 Das ganze sieht dann so aus:
