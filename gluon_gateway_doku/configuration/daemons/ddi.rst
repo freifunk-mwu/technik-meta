@@ -107,33 +107,29 @@ Pro Mesh-Wolke verteilen wir jeweils eine Range (z.B. für Wiesbaden)::
         # Use our own IP as gateway for our clients
         option routers 10.56.0.X;
 
-        # DNS servers to be pushed to our clients.
-        # This will usually be our IP address and all other
-        # gateways, too.
-        option domain-name-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
+        # DNS server to be pushed to our clients.
+        option domain-name-servers 10.56.0.X;
         option domain-search "ffwi.org", "user.ffwi.org";
 
-        # NTP Servers pushed to our clients
-        # This will usually be our IP address and all other
-        # gateways, too.
-        option ntp-servers 10.56.0.X, 10.56.0.Y, 10.56.0.Z;
+        # NTP Server pushed to our clients
+        option ntp-servers 10.56.0.X;
 
         # Set interface mtu
         option interface-mtu 1350;
     }
 
 Wichtig:
-*domain-name-server* und *ntp-servers* auf sich selbst und alle anderen Gates setzen.
+*domain-name-server* und *ntp-servers* nur auf das Gate selbst setzen.
 
 .. warning::
-    Obwohl der dhcpd normalerweise jede Stunde sein Lease-File aufräumen soll, wird durch ein anscheinend übermäßig restriktives AppArmor-Profil der nötige Dateizugriff unterbunden. `Hier ist der relevante Bugreport <https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1186662>`_, leider ist nicht absehbar wann das gefixt wird, da ISC und Ubuntu sich gegenseitig den Schwarzen Peter zuschieben.
+    Obwohl der DHCPd normalerweise regelmäßig sein Lease-File aufräumen soll, wird durch ein anscheinend übermäßig restriktives AppArmor-Profil der nötige Dateizugriff unterbunden. `Hier ist der relevante Bugreport <https://bugs.launchpad.net/ubuntu/+source/isc-dhcp/+bug/1186662>`_, leider ist nicht absehbar wann das gefixt wird, da ISC und Ubuntu sich gegenseitig den Schwarzen Peter zuschieben.
 
-    Der Bug verhindert, dass beim Rotieren der Lease-Files die alten Leases nicht aufgeräumt werden können, und somit auf ewig erhalten bleiben. Dies gilt zu vermeiden.
+    Der Bug verhindert, dass beim Rotieren des Lease-Files die alten Leases nicht aufgeräumt werden können, und somit auf ewig erhalten bleiben. Dies gilt zu vermeiden.
 
 Fix
 ```
 
-Im Bugreport wird von eiem Fix berichtet, der die ACLs der Lease-Files korrekt setzt:
+Im Bugreport wird von einem Fix berichtet, der die ACLs des Lease-Files korrekt setzt:
 
 Wir installieren uns zunächst das Programm ``acl`` nach, stoppen den DHCPd, und setzen die ACLs::
 
@@ -182,7 +178,7 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
                 AdvPreferredLifetime 172800;
         };
 
-        RDNSS fd37:b4dc:4b1e::a25:X fd37:b4dc:4b1e::a25:Y fd37:b4dc:4b1e::a25:Z
+        RDNSS fd37:b4dc:4b1e::a25:X
         {
                 FlushRDNSS off;
         };
@@ -190,4 +186,4 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
 
 Wichtig:
 
-*RDNSS* auf sich und zwei beliebige andere Gates setzen, da nicht mehr als 3 Einträge möglich sind.
+*RDNSS* nur auf das Gate selbst setzen.
