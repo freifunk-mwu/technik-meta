@@ -37,10 +37,10 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.8.0/21``  ``10.X.15.255`` ¬                 ¬               frei
 ``10.X.16.0/22`` ``10.X.19.255`` Client DHCP-Range Lotuswurzel     in Betrieb
 ``10.X.20.0/22`` ``10.X.23.255`` Client DHCP-Range Spinat          in Betrieb
-``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  in Betrieb
+``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Hinterschinken  Offline
 ``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Parmesan        Offline
-``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu	   Testbetrieb
-``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range Wasserfloh	   Testbetrieb
+``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu	       in Betrieb
+``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range Wasserfloh	    in Betrieb
 ================ =============== ================= =============== ==========
 
 IPv6
