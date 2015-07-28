@@ -67,9 +67,9 @@ Ein ``ip a`` sollte folgende Interfaces auflisten:
     * icVPN
 
 Für ein spezifisches Interface nutzt man ``ip a show dev wiBR``,
-für eine Range ``ip a show to 10.37.0.0/16`` bzw. ``ip a show to fd56:b4dc:4b1e::/64``.
+Für eine Range ``ip a show to 10.37.0.0/16`` bzw. ``ip a show to fd56:b4dc:4b1e::/64``.
 
-Interessant ist in diesem Kontext auch ``ip a show scope global``.
+Interessant ist in diesem Kontext ist auch ``ip a show scope global``.
 
 
 Routing
@@ -78,6 +78,7 @@ Routing
 .. seealso::
 
     - :ref:`routing_tables`
+    - :ref:`policyrouting`
     - :ref:`self_dns`
 
 Die IP Rules?
@@ -85,43 +86,77 @@ Die IP Rules?
 
     ip rule
      0:      from all lookup local
-     3700:   from all iif mzBR lookup mz
-     5600:   from all iif wiBR lookup wi
-     9937:   from 10.8.0.9 lookup mz
-     9956:   from 10.8.0.9 lookup wi
-     10042:  from all lookup icvpn
-     10042:  from all lookup icvpn
+     7:      from all iif mzBR lookup mwu 
+     7:      from all iif wiBR lookup mwu 
+     7:      from all iif icVPN lookup mwu 
+     7:      from all iif exitVPN lookup mwu 
+     23:     from all iif mzBR lookup icvpn 
+     23:     from all iif wiBR lookup icvpn 
+     41:     from all iif mzBR lookup ffinetexit 
+     41:     from all iif wiBR lookup ffinetexit 
+     61:     from all iif mzBR unreachable
+     61:     from all iif wiBR unreachable
+     61:     from all iif exitVPN unreachable
+     61:     from all iif icVPN unreachable
+     61:     from all iif eth0 unreachable
+     107:    from all lookup mwu 
+     107:    from all lookup icvpn
      32766:  from all lookup main
      32767:  from all lookup default
 
     ip -6 rule
      0:      from all lookup local
-     3700:   from all iif mzBR lookup mz
-     5600:   from all iif wiBR lookup wi
-     10042:  from all lookup icvpn
-     10042:  from all lookup icvpn
+     7:      from all iif mzBR lookup mwu 
+     7:      from all iif wiBR lookup mwu 
+     7:      from all iif icVPN lookup mwu 
+     7:      from all iif exitVPN lookup mwu 
+     23:     from all iif mzBR lookup icvpn 
+     23:     from all iif wiBR lookup icvpn 
+     41:     from all iif mzBR lookup ffinetexit 
+     41:     from all iif wiBR lookup ffinetexit 
+     61:     from all iif mzBR unreachable
+     61:     from all iif wiBR unreachable
+     61:     from all iif exitVPN unreachable
+     61:     from all iif icVPN unreachable
+     61:     from all iif eth0 unreachable
+     107:    from all lookup mwu 
+     107:    from all lookup icvpn 
      32766:  from all lookup main
 
 Die Routing-Tables?
 ::
 
-    ip route show table mz
-     default via 10.8.0.125 dev exitVPN
-     10.37.0.0/18 dev mzBR  scope link
-     10.56.0.0/18 dev wiBR  scope link  src 10.56.0.23
-    ip -6 route show table mz
-     fd37:b4dc:4b1e::/64 dev mzBR  metric 1024
-     fd56:b4dc:4b1e::/64 dev wiBR  metric 1024
-     fe80::/64 dev mzBR  metric 1024
+    ip route show table mwu
+     10.37.0.0/18 dev mzBR  proto static  scope link
+     10.56.0.0/18 dev wiBR  proto static  scope link
+    ip -6 route show table mwu
+     fd37:b4dc:4b1e::/64 dev mzBR  proto static  metric 1024
+     fd56:b4dc:4b1e::/64 dev wiBR  proto static  metric 1024
 
-    ip route show table wi
-     default via 10.8.0.125 dev exitVPN
-     10.37.0.0/18 dev mzBR  scope link  src 10.37.0.23
-     10.56.0.0/18 dev wiBR  scope link
-    ip -6 route show table wi
-     fd37:b4dc:4b1e::/64 dev mzBR  metric 1024
-     fd56:b4dc:4b1e::/64 dev wiBR  metric 1024
-     fe80::/64 dev wiBR  metric 1024
+    ip route show table ffinetexit
+     0.0.0.0/1 via 10.3.18.136 dev exitVPN  src 10.3.18.136 
+     unreachable default 
+     10.3.18.136 dev exitVPN  scope link  src 10.3.18.136 
+     128.0.0.0/1 via 10.3.18.136 dev exitVPN  src 10.3.18.136
+    ip -6 route show table ffinetexit
+     unreachable default dev lo  metric 1024  error -101
+
+    ip route show table icvpn
+     10.0.0.0/24 via 10.207.0.59 dev icVPN  proto bird  src 10.207.0.56
+     10.0.1.0/24 via 10.207.0.79 dev icVPN  proto bird  src 10.207.0.56
+     10.5.0.0/16 via 10.207.0.114 dev icVPN  proto bird  src 10.207.0.56
+     10.7.0.0/16 via 10.207.0.11 dev icVPN  proto bird  src 10.207.0.56
+     10.8.0.0/16 via 10.207.0.36 dev icVPN  proto bird  src 10.207.0.56
+     10.11.0.0/18 via 10.207.0.17 dev icVPN  proto bird  src 10.207.0.56
+     ... u.v.m. ...
+    ip -6 route show table icvpn
+     2001:67c:2d50::/48 via fec0::a:cf:0:82 dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     2001:bf7:20::/48 via fec0::a:cf:0:ba dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     2001:bf7:380::/64 via fec0::a:cf:0:28 dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     2001:bf7:380::/44 via fec0::a:cf:0:28 dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     2001:bf7:540::/44 via fec0::a:cf:1:c4 dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     2001:bf7:550::/44 via fec0::a:cf:1:c4 dev icVPN  proto bird  src fec0::a:cf:0:38  metric 1024
+     ... u.v.m. ...
 
 B.A.T.M.A.N.
 ------------

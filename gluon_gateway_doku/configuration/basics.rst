@@ -40,10 +40,12 @@ Routing Tabellen
     #
     # local
     #
-    37      mz
-    56      wi
-    # icvpn
-    42      icvpn
+    # icvpn table
+    23      icvpn
+    #local community table
+    41      mwu
+    # internet exit table
+    61      ffinetexit
 
 .. _kernel_parameters:
 
@@ -149,7 +151,7 @@ Python Pakete via pip::
 
     pip3 install py-cpuinfo
 
-.. _sysfs_parameter
+.. _sysfs_parameter:
 
 Sysfs Parameter
 ---------------

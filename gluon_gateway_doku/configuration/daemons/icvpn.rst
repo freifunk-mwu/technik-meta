@@ -86,13 +86,12 @@ Aus Performance Gründen soll tinc aktiv nur Verbindungen zu ausgewählten sogen
 Nun legen wir noch die ``/etc/tinc/icVPN/tinc-up`` an::
 
   #!/bin/sh
+  /sbin/ifconfig ${INTERFACE} hw ether 02:00:0a:cf:XX:YY
   /sbin/ip link set dev $INTERFACE up
+
+  # primary address: wiesbaden1
   /sbin/ip addr add dev $INTERFACE 10.207.X.Y/16 broadcast 10.207.255.255 scope link
   /sbin/ip -6 addr add dev $INTERFACE fec0::a:cf:X:Y/96 preferred_lft 0
-
-  # ip rules
-  /sbin/ip rule add lookup icvpn priority 10042
-  /sbin/ip -6 rule add lookup icvpn priority 10042
 
 Dabei sind ``X`` und ``Y`` die entsprechenden Stellen aus der Adresse des
 Gates im Transfernetz; in der v4-Adresse zur
@@ -101,12 +100,9 @@ Basis 10 und in der v6-Adresse zur Basis 16.
 Das passende ``/etc/tinc/icVPN/tinc-down``::
 
   #!/bin/sh
+  # primary address: wiesbaden1
   /sbin/ip addr del dev $INTERFACE 10.207.X.Y/16 broadcast 10.207.255.255
   /sbin/ip -6 addr del dev $INTERFACE fec0::a:cf:X:Y/96
-
-  # ip rules
-  /sbin/ip rule del lookup icvpn priority 10042
-  /sbin/ip -6 rule del lookup icvpn priority 10042
 
   # shutdown interface
   /sbin/ip link set dev $INTERFACE down

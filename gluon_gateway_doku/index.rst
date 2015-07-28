@@ -21,6 +21,7 @@ Konfiguration
 
    configuration/basics
    configuration/interfaces
+   configuration/policyrouting
    configuration/daemons/ddi
    configuration/daemons/fastd
    configuration/daemons/alfred

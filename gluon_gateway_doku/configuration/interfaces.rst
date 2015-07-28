@@ -14,6 +14,7 @@ Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch 
     - :ref:`fastd`
     - :ref:`dhcp`
     - :ref:`routing_tables`
+    - :ref:`policyrouting`
     - :ref:`exitvpn`
 
 Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
@@ -25,32 +26,14 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         bridge_maxwait 0
         address 10.56.0.X
         netmask 255.255.192.0
-        # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip rule add iif $IFACE table wi priority 5600
-        pre-down        /sbin/ip rule del iif $IFACE table wi priority 5600
-        # default route is unreachable
-        post-up         /sbin/ip route add unreachable default table wi
-        post-down       /sbin/ip route del unreachable default table wi
-        # local reachable subnet wi for rt_table mz
-        post-up         /sbin/ip route add 10.56.0.0/18 proto static dev $IFACE table mz
-        post-down       /sbin/ip route del 10.56.0.0/18 proto static dev $IFACE table mz
 
     iface wiBR inet6 static
         address fd56:b4dc:4b1e::a38:X
         netmask 64
-        # be sure all incoming traffic is handled by the appropriate rt_table
-        post-up         /sbin/ip -6 rule add iif $IFACE table wi priority 3700
-        pre-down        /sbin/ip -6 rule del iif $IFACE table wi priority 3700
-        post-up         /sbin/ip -6 route add fe80::/64 proto static dev $IFACE table wi
-        post-down       /sbin/ip -6 route del fe80::/64 proto static dev $IFACE table wi
-        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 proto static dev $IFACE table wi
-        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 proto static dev $IFACE table wi
-        # ULA route mz for rt_table wi
-        post-up         /sbin/ip -6 route add fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
-        post-down       /sbin/ip -6 route del fd56:b4dc:4b1e::/64 proto static dev $IFACE table mz
 
 .. seealso::
     - :ref:`routing_tables`
+    - :ref:`policyrouting`
     - :ref:`gateway_schema`
     - :ref:`interface_bezeichnung`
 

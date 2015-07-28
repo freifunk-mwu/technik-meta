@@ -113,6 +113,7 @@ An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-util
     - :ref:`packages`
     - :ref:`interfaces`
     - :ref:`routing_tables`
+    - :ref:`policyrouting`
     - :ref:`exitvpn`
 
 Übergang zu anderen Freifunk-Communities (InterCityVPN)
@@ -128,6 +129,7 @@ Als Software benutzen wir hier **tinc** und **bird6**.
     - :ref:`packages`
     - :ref:`interfaces`
     - :ref:`routing_tables`
+    - :ref:`policyrouting`
     - icvpn
         - :ref:`icvpn`
 

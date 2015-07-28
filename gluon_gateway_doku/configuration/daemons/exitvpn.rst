@@ -13,38 +13,41 @@ Darin muss man die Pfade zu den ca, crt, und so Files anpassen (relativ nach abs
 
 Weiterhin muss man alle Stellen entfernen, die in das Routing eingreifen.
 
-Dazu nutzen wir unsere eigenen Hook-Scripte. /etc/openvpn/openvpn-up::
+Dazu nutzen wir unser eigenes Hook-Script. /etc/openvpn/openvpn-updown::
 
     #!/bin/sh
 
     # http://manpages.ubuntu.com/manpages/maverick/en/man8/openvpn.8.html#contenttoc5
 
-    # ip rules for maintenance
-    ip rule add from $ifconfig_local table mz priority 9937
-    ip rule add from $ifconfig_local table wi priority 9956
+    set -x
 
-    # default route into appropriate rt_table
-    ip route replace 0.0.0.0/1 via $route_vpn_gateway dev $dev table mz
-    ip route replace 128.0.0.0/1 via $route_vpn_gateway dev $dev table mz
-    ip route replace 0.0.0.0/1 via $route_vpn_gateway dev $dev table wi
-    ip route replace 128.0.0.0/1 via $route_vpn_gateway dev $dev table wi
+    ENVFILE="/tmp/ovpn-env-up"
+    echo "$@"  > "$ENVFILE"
+    env >> "$ENVFILE"
+
+    manage_vpn_peer_routes() {
+            ACTION="$1"
+            ip route $ACTION "$route_vpn_gateway" dev "$dev" src "$ifconfig_local" table ffinetexit
+    }
+
+    manage_vpn_default_routes() {
+            ACTION="$1"
+            ip route $ACTION 0.0.0.0/1 via "$route_vpn_gateway" src "$ifconfig_local" table ffinetexit
+            ip route $ACTION 128.0.0.0/1 via "$route_vpn_gateway" src "$ifconfig_local" table ffinetexit
+    }
+
+    if [ "$script_type" = "up" ]; then
+            manage_vpn_peer_routes add
+            manage_vpn_default_routes replace
+    elif [ "$script_type" = "down" ]; then
+            manage_vpn_peer_routes del
+    fi
 
     exit 0
 
-Und Down-Script: /etc/openvpn/openvpn-down::
+Die Routing-Tabelle **ffinetexit** enthält per default eine unreachable default route. Durch das updown-Script werden die beiden spezifischeren Routen **0.0.0.0/1** und **128.0.0.0/1** über das **exitVPN**-Interface ergänzt, wenn der OpenVPN-Daemon gestartet wird und wieder entfernt wenn dieser gestoppt wird.
 
-    #!/bin/sh
-
-    # http://manpages.ubuntu.com/manpages/maverick/en/man8/openvpn.8.html#contenttoc5
-
-    # ip rules for maintenance
-    ip rule del from $ifconfig_local table mz priority 9937
-    ip rule del from $ifconfig_local table wi priority 9956
-
-    exit 0
-
-
-Die up- und down- Scripte auch in die /etc/openvpn/ANBIETER.conf schreiben!
+Das updown-Script auch in die /etc/openvpn/ANBIETER.conf schreiben!
 
 Firewall
 ^^^^^^^^
