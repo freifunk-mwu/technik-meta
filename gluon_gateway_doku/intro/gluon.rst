@@ -25,17 +25,23 @@ Links & Dokumentation
 ---------------------
 
 * Gluon Code: https://github.com/freifunk-gluon/gluon
-* Gluon Pakete: https://github.com/freifunk-gluon/packages
-* Gluon Konfiguration (site.conf) https://github.com/freifunk-gluon/site-ffhl (Lübeck)
+* Gluon Pakete:
+
+  * https://github.com/freifunk-gluon/gluon/tree/master/package
+  * https://github.com/freifunk-gluon/packages
+
+* Gluon Konfiguration (site.conf) https://github.com/freifunk-gluon/gluon/tree/master/docs/site-example
 * Dokumentation: http://gluon.readthedocs.org/
 * Github Wiki: https://github.com/freifunk-gluon/gluon/wiki
+* fastd: http://fastd.readthedocs.org/
 
 * Doku aus Hamburg: https://wiki.freifunk.net/Freifunk_Hamburg/Firmware#Gluon
 
-Gluon auf der Node
-------------------
+Gluon in MWU
+------------
 
 Für Mainz und Wiesbaden nutzen wir den unveränderten Quellcode, frisch aus Lübeck.
+Unter den folgenden Links gelangt man zu unserer Gluon Konfiguration sowie unser Packages-Repo.
 
 * site.conf: https://github.com/freifunk-mwu/site-ffmwu
 * packages: https://github.com/freifunk-mwu/packages-ffmwu
