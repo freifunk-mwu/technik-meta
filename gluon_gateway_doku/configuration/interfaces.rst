@@ -25,7 +25,7 @@ Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
         address 10.56.0.X
         netmask 255.255.192.0
         pre-up          /sbin/brctl addbr $IFACE
-        up              /sbin/ip address add fd56:b4dc:4b1e::a25:X/64 dev $IFACE
+        up              /sbin/ip address add fd56:b4dc:4b1e::a38:X/64 dev $IFACE
         post-down       /sbin/brctl delbr $IFACE
 
 .. seealso::
