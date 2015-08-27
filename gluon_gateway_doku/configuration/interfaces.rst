@@ -5,9 +5,9 @@ Netzwerk Interfaces
 
 /etc/network/interfaces
 
-Wir richten uns hier je eine Brücke pro Mesh-Wolke, die wir versorgen wollen, ein.
+Wir richten uns hier je eine bridge pro Mesh-Wolke, die wir versorgen wollen, ein.
 
-Auf diese Brücken binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
+Auf diese bridges binden sich die Dienste (wie DHCP, DNS, NTP, etc..).
 Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch unabhängig voneinander geschehen.
 
 .. seealso::
@@ -17,7 +17,7 @@ Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch 
     - :ref:`policyrouting`
     - :ref:`exitvpn`
 
-Hier eine Brücke mit IPv4 und IPv6 am Beispiel von Wiesbaden::
+Hier eine bridge mit IPv4 und IPv6 am Beispiel von Wiesbaden::
 
     auto wiBR
     iface wiBR inet static
