@@ -145,7 +145,7 @@ Wir installieren uns zunächst das Programm ``acl`` nach, stoppen den DHCPd, und
 
 Unter etc/default/isc-dhcp-server konfigurieren wir, auf welchen Interfaces der dhcpd lauschen soll.
 
-Wir wählen die beiden Brücken::
+Wir wählen die beiden bridges::
 
     INTERFACES="mzBR wiBR"
 
