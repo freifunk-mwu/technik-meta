@@ -27,9 +27,9 @@ Unser großes ``10.X.0.0/16`` (mit 65536 Adressen) teilen wir uns ein wenig ein:
 
 Wir nutzen von diesem Netz erstmal das untere Viertel: ``10.X.0.0/18``:
 
-================ =============== ================= =============== ==========
+================ =============== ================= =============== ===========
 Netz             (bis)           Verwendung        verteilt durch  status
-================ =============== ================= =============== ==========
+================ =============== ================= =============== ===========
 ``10.X.0.0/24``  ``10.X.0.255``  Gateways          fix             in Betrieb
 ``10.X.1.0/24``  ``10.X.1.255``  ¬                 ¬               frei
 ``10.X.2.0/23``  ``10.X.3.255``  Backbone          fix             in Betrieb
@@ -46,8 +46,8 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.48.0/22`` ``10.X.51.255`` Client DHCP-Range ¬               frei
 ``10.X.52.0/22`` ``10.X.55.255`` Client DHCP-Range ¬               frei
 ``10.X.56.0/22`` ``10.X.59.255`` Client DHCP-Range ¬               frei
-``10.X.60.0/22`` ``10.X.63.255`` Client DHCP-Range ¬               frei
-================ =============== ================= =============== ==========
+``10.X.60.0/22`` ``10.X.63.255`` Client DHCP-Range Mettigel        Testbetrieb
+================ =============== ================= =============== ===========
 
 IPv6
 ----
