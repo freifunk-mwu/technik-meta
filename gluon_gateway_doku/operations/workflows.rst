@@ -93,7 +93,7 @@ Dort wird pro Gateway hinterlegt, welcher VPN-Account hinterlegt ist, und bis zu
 Einmal tägtlich kommt ein Script vorbei, und schreibt bei nähern des Datums Mails auf die ``admin@``-Listen, ansonsten wird ein mal pro Woche eine Übersicht verschickt.
 
 .. seealso::
-    - :ref:`exitvpn`
+    - :ref:`vpnprovider`
     - :ref:`scripts`
 
 Firmware updates

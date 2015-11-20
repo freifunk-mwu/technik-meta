@@ -114,7 +114,7 @@ An dieser Stelle wird einiges an zusätzlicher Software gebraucht: **bridge-util
     - :ref:`interfaces`
     - :ref:`routing_tables`
     - :ref:`policyrouting`
-    - :ref:`exitvpn`
+    - :ref:`internetexit`
 
 Übergang zu anderen Freifunk-Communities (InterCityVPN)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

@@ -15,7 +15,7 @@ Das hoch/runterfahren der VPNs oder das (neu-)starten von Diensten kann dadurch 
     - :ref:`dhcp`
     - :ref:`routing_tables`
     - :ref:`policyrouting`
-    - :ref:`exitvpn`
+    - :ref:`internetexit`
 
 Hier eine bridge mit IPv4 und IPv6 am Beispiel von Wiesbaden::
 

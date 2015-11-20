@@ -25,9 +25,9 @@ Konfiguration
    configuration/daemons/ddi
    configuration/daemons/fastd
    configuration/daemons/alfred
-   configuration/daemons/exitvpn
    configuration/daemons/apache
    configuration/daemons/icvpn
+   configuration/internetexit
    configuration/cleanup
 
 Betrieb

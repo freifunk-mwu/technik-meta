@@ -24,7 +24,7 @@ Laufen alle Dienste?
      * fastd 'mzVPN' is running
      * fastd 'wiVPN' is running
 
-:ref:`exitvpn`::
+:ref:`vpnprovider`::
 
     service openvpn status
      * VPN 'mullvad' is running

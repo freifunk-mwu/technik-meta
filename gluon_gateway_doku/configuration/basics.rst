@@ -125,6 +125,7 @@ Pakete aus den Standard-Repos installieren::
         haveged
         iproute
         iptables
+        iptables-save
         iptables-persistent
         isc-dhcp-server
         man-db
