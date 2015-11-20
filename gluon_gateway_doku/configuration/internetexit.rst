@@ -767,6 +767,14 @@ Dazu sind noch folgende Anpassungen in der /etc/radvd.conf notwendig::
 .. seealso::
     - :ref:`radvd`
 
+Spenden
+^^^^^^^
+
+Der Freifunk Rheinland e.V. muss seine Infrastruktur am Leben erhalten, ausbauen, defekte Teile tauschen etc. Das kostet viel Geld.
+Liebe Communities, ihr habt bisher auch Ausgaben für die VPN Provider gehabt. Spendet an den Freifunk Rheinland e.V., damit ein so großartiger Provider Bestand hat!
+
+Wie ihr spenden könnt erfahrt ihr auf der `Spenden`_-Seite des Freifunk Rheinlands.
+
 .. _2a03:2260:11a::/48: https://apps.db.ripe.net/search/lookup.html?source=ripe&type=inet6num&key=2a03:2260:11a::/48
 .. _2a03:2260:11b::/48: https://apps.db.ripe.net/search/lookup.html?source=ripe&type=inet6num&key=2a03:2260:11b::/48
 .. _185.66.195.32/30: https://apps.db.ripe.net/search/lookup.html?source=ripe&type=inetnum&key=185.66.195.32%20-%20185.66.195.35
@@ -779,3 +787,4 @@ Dazu sind noch folgende Anpassungen in der /etc/radvd.conf notwendig::
 .. _AS201701: https://apps.db.ripe.net/search/lookup.html?source=ripe&key=AS201701&type=aut-num
 .. _Wie funktioniert AS201701?: https://www.youtube.com/watch?v=DcdYWxGWY-c
 .. _Wie funktioniert der Rheinland Backbone?: https://www.youtube.com/watch?v=MYBYeayRkAk
+.. _Spenden: https://freifunk-rheinland.net/mitmachen/spenden
