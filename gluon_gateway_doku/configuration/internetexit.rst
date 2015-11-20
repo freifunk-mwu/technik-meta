@@ -661,10 +661,14 @@ Ohne weiteren Eingriff würde das dazu führen, dass viele TCP Verbindungen einf
     iptables -A FORWARD -i ffrl+ -o wiBR -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
     iptables -A FORWARD -i ffrl+ -o mzBR -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
 
+    iptables-save > /etc/iptables/rules.v4
+
     ip6tables -A FORWARD -i wiBR -o ffrl+ -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
     ip6tables -A FORWARD -i mzBR -o ffrl+ -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
     ip6tables -A FORWARD -i ffrl+ -o wiBR -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
     ip6tables -A FORWARD -i ffrl+ -o mzBR -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+
+    ip6tables-save > /etc/iptables/rules.v6
 
 
 Policy Routing
