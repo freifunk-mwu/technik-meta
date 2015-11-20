@@ -144,6 +144,8 @@ Wichtige Informationen über den Freifunk Rheinland e.V.:
 
  - Autonomous System Number `AS201701`_
 
+   - BGP Infos über dieses AS gibts bei `bgp.he.net`_
+
  - Videos über das Rheinland Backbone
 
    - `Wie funktioniert der Rheinland Backbone?`_
@@ -369,6 +371,8 @@ IPv4
 Die BIRD Konfiguration für IPv4 liegt bei uns unter /etc/bird/bird.conf. Diese Konfiguration ist teils Geschmackssache und jeder Admin macht die etwas anders.
 Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht funktionieren::
 
+    table ffrl;
+
     # Funktionen, die später aufgerufen werden
     function is_ffrl_nat() {
         return net ~ [
@@ -500,6 +504,8 @@ IPv6
 Die BIRD Konfiguration für IPv6 liegt bei uns unter /etc/bird/bird6.conf. Diese Konfiguration ist teils Geschmackssache und jeder Admin macht die etwas anders.
 Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht funktionieren::
 
+    table ffrl;
+
     # Funktionen, die später aufgerufen werden
     function is_default() {
         return net ~ [
@@ -566,7 +572,7 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
     # BGP Template für Rheinland Peerings
     template bgp ffrl_uplink {
         table ffrl;
-        local as mz_as;
+        local as 65037;
         import keep filtered;
         import filter ebgp_ffrl_import_filter;
         export filter ebgp_ffrl_export_filter;
@@ -789,6 +795,7 @@ Wie ihr spenden könnt erfahrt ihr auf der `Spenden`_-Seite des Freifunk Rheinla
 .. _Rheinland Backbone im Freifunk Forum: https://forum.freifunk.net/c/freifunk-rheinland-e-v/rheinland-backbone
 .. _Ticket-System: https://ticket.freifunk-rheinland.net
 .. _AS201701: https://apps.db.ripe.net/search/lookup.html?source=ripe&key=AS201701&type=aut-num
+.. _bgp.he.net: http://bgp.he.net/AS201701
 .. _Wie funktioniert AS201701?: https://www.youtube.com/watch?v=DcdYWxGWY-c
 .. _Wie funktioniert der Rheinland Backbone?: https://www.youtube.com/watch?v=MYBYeayRkAk
 .. _Spenden: https://freifunk-rheinland.net/mitmachen/spenden
