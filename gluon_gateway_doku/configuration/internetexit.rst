@@ -212,7 +212,7 @@ Konfiguration
 
 Zunächst nochmal die Übersicht über alle benötigten IP-Adressen:
 
- - öffentlichee IPv6-Prefixe
+ - öffentliche IPv6-Prefixe
 
    - Mainz: 2a03:2260:11a::/48
    - Wiesbaden: 2a03:2260:11b::/48
@@ -227,7 +227,7 @@ Zunächst nochmal die Übersicht über alle benötigten IP-Adressen:
 
  - dazu kommen noch die inneren Transfernetze, die sich pro Gate unterscheiden
 
-In der folgenden Tabelle halten wir die inneren Transfernetz und IPv4-NAT-Adressen der Gateways fest:
+In der folgenden Tabelle halten wir die inneren Transfernetze und IPv4-NAT-Adressen der Gateways fest:
 
 ================ ================ ========================= ========================= ========================= ========================= =========================== ===========================
 Gateway          IPv4-NAT-Adresse Transfernetze bb-a.ak.ber Transfernetze bb-b.ak.ber Transfernetze bb-a.ix.dus Transfernetze bb-b.ix.dus Transfernetze bb-a.fra3.fra Transfernetze bb-b.fra3.fra
@@ -371,6 +371,7 @@ IPv4
 Die BIRD Konfiguration für IPv4 liegt bei uns unter /etc/bird/bird.conf. Diese Konfiguration ist teils Geschmackssache und jeder Admin macht die etwas anders.
 Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht funktionieren::
 
+    # interne BIRD Routing-Tabelle
     table ffrl;
 
     # Funktionen, die später aufgerufen werden
@@ -436,7 +437,7 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
         import filter ebgp_ffrl_import_filter;
         export filter ebgp_ffrl_export_filter;
         next hop self;
-        multihop 64;
+        direct;
     };
 
     # P E E R I N G S
@@ -504,6 +505,7 @@ IPv6
 Die BIRD Konfiguration für IPv6 liegt bei uns unter /etc/bird/bird6.conf. Diese Konfiguration ist teils Geschmackssache und jeder Admin macht die etwas anders.
 Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht funktionieren::
 
+    # interne BIRD Routing-Tabelle
     table ffrl;
 
     # Funktionen, die später aufgerufen werden
@@ -577,7 +579,7 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
         import filter ebgp_ffrl_import_filter;
         export filter ebgp_ffrl_export_filter;
         next hop self;
-        multihop 64;
+        direct;
     };
 
     # P E E R I N G S
