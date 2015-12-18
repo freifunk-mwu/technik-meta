@@ -443,38 +443,38 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
     # P E E R I N G S
 
     # FFRL Berlin bb-a.ak.ber
-    protocol bgp ffrlber1 from ffrl_uplink {
+    protocol bgp ffrl_ber1 from ffrl_uplink {
         source address 100.64.1.191;
         neighbor 100.64.1.190 as 201701;
         default bgp_local_pref 200;
     };
 
     # FFRL Berlin bb-b.ak.ber
-    protocol bgp ffrlber2 from ffrl_uplink {
+    protocol bgp ffrl_ber2 from ffrl_uplink {
         source address 100.64.1.21;
         neighbor 100.64.1.20 as 201701;
     };
 
     # FFRL Duesseldorf bb-ba.ix.dus
-    protocol bgp ffrldus1 from ffrl_uplink {
+    protocol bgp ffrl_dus1 from ffrl_uplink {
         source address 100.64.2.85;
         neighbor 100.64.2.84 as 201701;
     };
 
     # FFRL Duesseldorf bb-b.ix.dus
-    protocol bgp ffrldus2 from ffrl_uplink {
+    protocol bgp ffrl_dus2 from ffrl_uplink {
         source address 100.64.1.23;
         neighbor 100.64.1.22 as 201701;
     };
 
     # FFRL Frankfurt bb-a.fra3
-    protocol bgp ffrlfra1 from ffrl_uplink {
+    protocol bgp ffrl_fra1 from ffrl_uplink {
         source address 100.64.1.193;
         neighbor 100.64.1.192 as 201701;
     };
 
     # FFRL Frankfurt bb-b.fra3
-    protocol bgp ffrlfra2 from ffrl_uplink {
+    protocol bgp ffrl_fra2 from ffrl_uplink {
         source address 100.64.2.87;
         neighbor 100.64.2.86 as 201701;
     };
@@ -585,38 +585,38 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
     # P E E R I N G S
 
     # FFRL Berlin bb-a.ak.ber
-    protocol bgp ffrlber1 from ffrl_uplink {
+    protocol bgp ffrl_ber1 from ffrl_uplink {
         source address 2a03:2260:0:e9::2;
         neighbor 2a03:2260:0:e9::1 as 201701;
     }
 
     # FFRL Berlin bb-b.ak.ber
-    protocol bgp ffrlber2 from ffrl_uplink {
+    protocol bgp ffrl_ber2 from ffrl_uplink {
         source address 2a03:2260:0:91::2;
         neighbor 2a03:2260:0:91::1 as 201701;
         default bgp_local_pref 200;
     }
 
     # FFRL Duesseldorf bb-a.ix.dus
-    protocol bgp ffrldus1 from ffrl_uplink {
+    protocol bgp ffrl_dus1 from ffrl_uplink {
         source address 2a03:2260:0:133::2;
         neighbor 2a03:2260:0:133::1 as 201701;
     }
 
     # FFRL Duesseldorf bb-b.ix.dus
-    protocol bgp ffrldus2 from ffrl_uplink {
+    protocol bgp ffrl_dus2 from ffrl_uplink {
         source address 2a03:2260:0:92::2;
         neighbor 2a03:2260:0:92::1 as 201701;
     }
 
     # FFRL Frankfurt bb-a.fra3.fra
-    protocol bgp ffrlfra1 from ffrl_uplink {
+    protocol bgp ffrl_fra1 from ffrl_uplink {
         source address 2a03:2260:0:ea::2;
         neighbor 2a03:2260:0:ea::1 as 201701;
     }
 
     # FFRL Frankfurt bb-b.fra3.fra
-    protocol bgp ffrlfra2 from ffrl_uplink {
+    protocol bgp ffrl_fra2 from ffrl_uplink {
         source address 2a03:2260:0:134::2;
         neighbor 2a03:2260:0:134::1 as 201701;
     }
