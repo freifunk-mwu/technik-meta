@@ -121,6 +121,7 @@ Pakete aus den Standard-Repos installieren::
         bind9
         bird
         bridge-utils
+        ethtool
         git
         haveged
         iproute
@@ -138,7 +139,6 @@ Pakete aus den Standard-Repos installieren::
         radvd
         rrdtool
         sysfsutils
-        tinc
         vim
         vnstat
         vnstati
@@ -146,7 +146,7 @@ Pakete aus den Standard-Repos installieren::
 
 Pakete aus den eigenen Repositories installieren::
 
-    apt-get install -y alfred alfred-json batadv-vis batctl batman-adv-dkms fastd
+    apt-get install -y alfred alfred-json batadv-vis batctl batman-adv-dkms fastd tinc
 
 Python Pakete via pip::
 
