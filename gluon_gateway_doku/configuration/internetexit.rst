@@ -627,7 +627,7 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
 
 Wenn die BGP-Sessions aufgebaut sind schauen wir uns mal die interne BIRD Routing Table an::
 
-    [root@lotuswurzel ~] bird6c show route table ffrl
+    [root@lotuswurzel ~] birdc6 show route table ffrl
     BIRD 1.5.0 ready.
     ::/0               via 2a03:2260:0:91::1 on ffrl-b-ak-ber [ffrlber2 2015-11-19] * (100/0) [AS201701i]
                        via 2a03:2260:0:92::1 on ffrl-b-ix-dus [ffrldus2 10:13:44] (100/0) [AS201701i]
