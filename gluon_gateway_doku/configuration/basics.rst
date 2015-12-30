@@ -69,6 +69,11 @@ Wichtige Kernel Parameter
     net.ipv6.conf.default.accept_ra = 0
     net.ipv6.conf.eth0.accept_ra = 0
 
+    # decrease nf_conntrack_tcp_timeout_established - default=432000
+    net.netfilter.nf_conntrack_tcp_timeout_established=86400
+    # increase conntrack table size - default=65535
+    net.netfilter.nf_conntrack_max=131070
+
     # <3.18 Kernel noch folgendes hinzufügen:
     net.bridge.bridge-nf-call-arptables = 0
     net.bridge.bridge-nf-call-ip6tables = 0
