@@ -749,8 +749,8 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
 RAdvD
 ~~~~~
 
-Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die IPv6-Prefixe noch per Router Advertisements bekannt gegeben werden.
-Dazu sind noch folgende Anpassungen in der /etc/radvd.conf notwendig::
+Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die Public IPv6-Prefixe zusätzlich zu den ULA-Prefixes per Router Advertisements bekannt gegeben werden.
+Dazu ergänzt man die Public IPv6-Prefixe in der /etc/radvd.conf::
 
     interface mzBR
     {
