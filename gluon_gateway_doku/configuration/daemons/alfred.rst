@@ -122,8 +122,8 @@ Da wir die announce scripte mit einem normalen Benutzer ausführen, das Announce
 
 Nun kann die crontab des Benutzers gefüllt werden (crontab -e). Die Alfred Daten sollten minütlich announced werden::
 
-    * * * * * /home/admin/clones/ffnord-alfred-announce-mz/announce.sh -i mzBR -b mzBAT -f mzVPN -s ffmz -u /var/run/alfred-mz.sock > /dev/null 2>&1
-    * * * * * /home/admin/clones/ffnord-alfred-announce-wi/announce.sh -i wiBR -b wiBAT -f wiVPN -s ffwi -u /var/run/alfred-wi.sock > /dev/null 2>&1
+    * * * * * /home/admin/clones/ffnord-alfred-announce/announce.sh -i mzBR -b mzBAT -f mzVPN -s ffmz -u /var/run/alfred-mz.sock > /dev/null 2>&1
+    * * * * * /home/admin/clones/ffnord-alfred-announce/announce.sh -i wiBR -b wiBAT -f wiVPN -s ffwi -u /var/run/alfred-wi.sock > /dev/null 2>&1
 
 .. _ffnord: https://github.com/ffnord
 .. _ffnord-alfred-announce: https://github.com/ffnord/ffnord-alfred-announce
