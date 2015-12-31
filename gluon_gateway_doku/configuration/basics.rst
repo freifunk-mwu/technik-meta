@@ -162,15 +162,17 @@ Python Pakete via pip::
 Sysfs Parameter
 ---------------
 
-Wir erhöhen auf den Gateways die Hop Penalty auf den Wert 60, damit mehr Traffic über Wifi Links geschickt wird.
+In der Datei ``/etc/sysfs.d/99-freifunk.conf`` nehmen wir die nötigen sysfs-Konfigurationen vor::
 
-Die Datei ``/etc/sysfs.d/99-batman-hop-penalty.conf`` muss mit folgendem Inhalt angelegt werden::
-
+    # increase batman-adv hop penalty (default=15)
     class/net/mzBAT/mesh/hop_penalty = 60
     class/net/wiBAT/mesh/hop_penalty = 60
 
-Diese Einstellung ist prinzipiell für jedes Batman Interface vorzunehmen, hier am Beispiel von ``mzBAT`` und ``wiBAT``.
+    # increase multicast hash table of freifunk bridges (default=512)
+    class/net/mzBR/bridge/hash_max = 2048
+    class/net/wiBR/bridge/hash_max = 2048
 
+Batman-adv Modifikationen müssen für jede batman-adv Instanz vorgenommen werden.
 
 .. _ntp:
 
