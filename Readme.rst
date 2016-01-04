@@ -21,7 +21,7 @@ Aktuelles/In Arbeit
 
 Dokumentation
 
-    * `Gluon Gateway Doku </../../tree/master/gluon_gateway_doku>`_
+    * `Freifunk MWU Gateway Doku </../../tree/master/ffmwu_gateway_doku>`_
 
 Milestones
 ----------

@@ -1,4 +1,4 @@
-Gluon Gateway Doku
+Freifunk MWU Gateway Doku
 ==================
 
 .. include:: Readme.rst

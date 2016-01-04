@@ -16,10 +16,10 @@ Grundsätzlich dienen bei der Konfiguration eines neuen Gateways die bekannte Ko
 
 Geschrieben in Zusammenarbeit von Freifunk-Mainz_ and Freifunk-Wiesbaden_ als freifunk-mwu_ auf GitHub.
 
-Eine augenfreundliche Version dieser Dokumentation findet sich unter gluon-gateway-doku.readthedocs.org_!
+Eine augenfreundliche Version dieser Dokumentation findet sich unter ffmwu-gateway-doku.readthedocs.org_!
 
 .. _gateway-configs.git: https://github.com/freifunk-mwu/gateway-configs/
 .. _Freifunk-Mainz: http://www.freifunk-mainz.de/
 .. _Freifunk-Wiesbaden: http://www.freifunk-wiesbaden.de/
 .. _freifunk-mwu: https://github.com/freifunk-mwu/
-.. _gluon-gateway-doku.readthedocs.org: http://gluon-gateway-doku.readthedocs.org/de/latest/
+.. _ffmwu-gateway-doku.readthedocs.org: http://ffmwu-gateway-doku.readthedocs.org/de/latest/
