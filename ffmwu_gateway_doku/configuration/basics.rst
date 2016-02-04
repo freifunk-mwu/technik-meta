@@ -101,7 +101,7 @@ Benötigte Repositories
 
 * Neoraiders Repository einbinden (für fastd)::
 
-    echo "deb http://repo.universe-factory.net/debian/ sid main" > /etc/apt/sources.list.d/freifunk.list
+    echo "deb https://repo.universe-factory.net/debian/ sid main" > /etc/apt/sources.list.d/freifunk.list
     apt-key adv --keyserver keyserver.ubuntu.com --recv 16EF3F64CB201D9C
 
 * Repo für aktuelle BIRD Version::
@@ -123,6 +123,7 @@ Pakete aus den Standard-Repos installieren::
     xargs apt-get install -y
 
         apache2
+        apt-transport-https
         bind9
         bird
         bridge-utils
