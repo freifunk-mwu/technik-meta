@@ -27,7 +27,7 @@ Einrichten
 
 Um den Backend Scripten (Schreib-) Zugriff auf die benötigten Repos unter GitHub zu gewähren müssen diese erst eingerichtet werden. Dazu dient das Script :file:`bootstrap_git_all.py`::
 
-    python3 ~/clones/backend-scripts/bootstrap_git_all.py.py
+    python3 ~/clones/backend-scripts/bootstrap_git_all.py
 
 Dieses erzeugt ein SSH-Schlüsselpaar und legt es unter :file:`~/.ssh/%hostname%_rsa` ab sofern dieses noch nicht existiert. Die :file:`~/.ssh/config` wird um einen Eintrag erweitert (sofern dieser noch nicht existiert), so dass ein Zugriff auf GitHub mittels frisch erzeugtem Schlüssel möglich ist.
 
