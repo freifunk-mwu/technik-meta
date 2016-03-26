@@ -72,7 +72,7 @@ Wichtige Kernel Parameter
     # decrease nf_conntrack_tcp_timeout_established - default=432000
     net.netfilter.nf_conntrack_tcp_timeout_established=86400
     # increase conntrack table size - default=65535
-    net.netfilter.nf_conntrack_max=131070
+    net.netfilter.nf_conntrack_max=262140
 
     # <3.18 Kernel noch folgendes hinzufügen:
     net.bridge.bridge-nf-call-arptables = 0
