@@ -652,12 +652,6 @@ iptables
 Für IPv4 natten wir weiterhin und legen dafür die entsprechenden iptables Regeln an::
 
     iptables -t nat -N ffrl-nat
-    iptables -t nat -A ffrl-nat -s 100.64.1.20/31 -o ffrl+ -j RETURN
-    iptables -t nat -A ffrl-nat -s 100.64.1.22/31 -o ffrl+ -j RETURN
-    iptables -t nat -A ffrl-nat -s 100.64.1.190/31 -o ffrl+ -j RETURN
-    iptables -t nat -A ffrl-nat -s 100.64.1.192/31 -o ffrl+ -j RETURN
-    iptables -t nat -A ffrl-nat -s 100.64.2.84/31 -o ffrl+ -j RETURN
-    iptables -t nat -A ffrl-nat -s 100.64.2.86/31 -o ffrl+ -j RETURN
     iptables -t nat -A ffrl-nat -s 10.37.0.0/16 -o ffrl+ -j SNAT --to-source 185.66.195.36
     iptables -t nat -A ffrl-nat -s 10.56.0.0/16 -o ffrl+ -j SNAT --to-source 185.66.195.36
     iptables -t nat -A POSTROUTING -s 10.37.0.0/16 -o ffrl+ -j ffrl-nat
