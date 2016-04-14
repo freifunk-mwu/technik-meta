@@ -79,12 +79,19 @@ Wichtige Kernel Parameter
     net.bridge.bridge-nf-call-ip6tables = 0
     net.bridge.bridge-nf-call-iptables = 0
 
-Der letzte Teil sorgt dafür, dass die Firewall (ip(6)tables) und arptables nicht im Bridge-Interface filtern. Wir wollen aber auf OSI Layer 2 nichts filtern.
-In neueren Kerneln gibt es jetzt ein eigenes Modul (brdige_filter) das nicht automatisch geladen wird und somit nicht aktiv ist. Ältere Kernel (<3.18) haben diese Filter per default aktiv.
+Der letzte Teil sorgt dafür, dass die Firewall ip(6)tables und arptables nicht im Bridge-Interface filtern. Wir wollen aber auf OSI Layer 2 nichts filtern.
+In neueren Kerneln gibt es jetzt ein eigenes Modul (bridge_filter) das nicht automatisch geladen wird und somit nicht aktiv ist. Ältere Kernel (<3.18) haben diese Filter per default aktiv.
 
 Danach neuladen::
 
     sysctl -p /etc/sysctl.conf
+
+Damit die Parameter ``net.netfilter.nf_conntrack*`` automatisch beim Booten gesetzt werden muss das Kernel Modul ``nf_conntrack`` geladen werden.
+Um das zu erreichen listen wir es in der Datei ``/etc/modules``::
+
+    ...
+    nf_conntrack
+
 
 .. _repositories:
 
