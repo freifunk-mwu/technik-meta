@@ -21,6 +21,7 @@ Konfiguration
 
    configuration/basics
    configuration/interfaces
+   configuration/firewall
    configuration/policyrouting
    configuration/daemons/ddi
    configuration/daemons/fastd

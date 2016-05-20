@@ -652,8 +652,7 @@ iptables
 Für IPv4 natten wir weiterhin und legen dafür die entsprechenden iptables Regeln an::
 
     iptables -t nat -N ffrl-nat
-    iptables -t nat -A ffrl-nat -s 10.37.0.0/16 -o ffrl+ -j SNAT --to-source 185.66.195.36
-    iptables -t nat -A ffrl-nat -s 10.56.0.0/16 -o ffrl+ -j SNAT --to-source 185.66.195.36
+    iptables -t nat -A ffrl-nat -o ffrl+ -j SNAT --to-source 185.66.195.36
     iptables -t nat -A POSTROUTING -s 10.37.0.0/16 -o ffrl+ -j ffrl-nat
     iptables -t nat -A POSTROUTING -s 10.56.0.0/16 -o ffrl+ -j ffrl-nat
 
@@ -676,6 +675,12 @@ Ohne weiteren Eingriff würde das dazu führen, dass viele TCP Verbindungen einf
 
     ip6tables-save > /etc/iptables/rules.v6
 
+Da wir per iptables invalide Pakete verwerfen müssen wir sicherstellen, dass GRE-Pakete vorher erlaubt werden::
+
+    iptables -I INPUT 1 -d 144.76.209.100/32 -p gre -j ACCEPT
+    iptables -I OUTPUT 1 -s 144.76.209.100/32 -p gre -j ACCEPT
+
+    iptables-save > /etc/iptables/rules.v4
 
 Policy Routing
 ~~~~~~~~~~~~~~
@@ -685,27 +690,19 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
 
     # Priority 7 - lookup rt_table mwu for all incoming traffic of freifunk related interfaces
     ...
-    ip -4 rule add from all iif ffrl-a-fra3-fra lookup mwu priority 7
-    ip -4 rule add from all iif ffrl-b-fra3-fra lookup mwu priority 7
-    ip -4 rule add from all iif ffrl-a-ak-ber lookup mwu priority 7
-    ip -4 rule add from all iif ffrl-b-ak-ber lookup mwu priority 7
-    ip -4 rule add from all iif ffrl-a-ix-dus lookup mwu priority 7
-    ip -4 rule add from all iif ffrl-b-ix-dus lookup mwu priority 7
-    ...
-    ip -6 rule add from all iif ffrl-a-fra3-fra lookup mwu priority 7
-    ip -6 rule add from all iif ffrl-b-fra3-fra lookup mwu priority 7
-    ip -6 rule add from all iif ffrl-a-ak-ber lookup mwu priority 7
-    ip -6 rule add from all iif ffrl-b-ak-ber lookup mwu priority 7
-    ip -6 rule add from all iif ffrl-a-ix-dus lookup mwu priority 7
-    ip -6 rule add from all iif ffrl-b-ix-dus lookup mwu priority 7
     ip -6 rule add from 2a03:2260:11a::/48 lookup mwu priority 7
+    ip -6 rule add to 2a03:2260:11a::/48 lookup mwu priority 7
     ip -6 rule add from 2a03:2260:11b::/48 lookup mwu priority 7
+    ip -6 rule add to 2a03:2260:11b::/48 lookup mwu priority 7
 
     # Priority 41 - lookup rt_table ffinetexit for all incoming traffic of freifunk bridges
     ...
     ip -4 rule add from 185.66.195.36/32 lookup ffinetexit priority 41
+    ip -4 rule add to 185.66.195.36/32 lookup ffinetexit priority 41
     ip -6 rule add from 2a03:2260:11a::/48 lookup ffinetexit priority 41
+    ip -6 rule add to 2a03:2260:11a::/48 lookup ffinetexit priority 41
     ip -6 rule add from 2a03:2260:11b::/48 lookup ffinetexit priority 41
+    ip -6 rule add to 2a03:2260:11b::/48 lookup ffinetexit priority 41
 
     # Priority 61 - at this point this is the end of policy routing for freifunk related routes
     ...
@@ -717,7 +714,9 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
     ip -4 rule add from all iif ffrl-b-ix-dus type unreachable priority 61
     ...
     ip -6 rule add from 2a03:2260:11a::/48 type unreachable priority 61
+    ip -6 rule add to 2a03:2260:11a::/48 type unreachable priority 61
     ip -6 rule add from 2a03:2260:11b::/48 type unreachable priority 61
+    ip -6 rule add to 2a03:2260:11b::/48 type unreachable priority 61
     ...
     ip -6 rule add from all iif ffrl-a-fra3-fra type unreachable priority 61
     ip -6 rule add from all iif ffrl-b-fra3-fra type unreachable priority 61
