@@ -124,7 +124,7 @@ und speichert dann die iptables config einmalig::
 Freifunk Rheinland e.V.
 -----------------------
 
-Der Freifunk Rheinland e.V. war es Leid auf VPN-Provider angewiesen zu sein und hat die Anbindung an das Internet selbst in die Hand genommen. Dazu sind sie RIPE-Mitglied sowie Sub-LIR geworden und haben unter Anderen das IPv6-Prefix 2a03:2260::/29 sowie noch ein IPv4-Netz ergattert: 185.66.192.0/22. 
+Der Freifunk Rheinland e.V. war es Leid auf VPN-Provider angewiesen zu sein und hat die Anbindung an das Internet selbst in die Hand genommen. Dazu sind sie RIPE-Mitglied sowie Sub-LIR geworden und haben unter Anderen das IPv6-Prefix 2a03:2260::/29 sowie noch ein IPv4-Netz ergattert: 185.66.192.0/22.
 
 Im Laufe des Jahres 2015 hat Freifunk Rheinland eine beachtliche Infrastruktur aufgebaut. Sie peeren z.B. in Berlin, Düsseldorf und Frankfurt an sogenannten Internet Exchange Points (IXP), um deren zugewiesenen IP-Netze ins Internet zu "announcen".
 
@@ -236,12 +236,12 @@ Kaschu           185.66.195.37    100.64.2.100/31 -         100.64.2.102/31 -   
                                   2a03:2260:0:13b::/64      2a03:2260:0:13c::/64      2a03:2260:0:13d::/64      2a03:2260:0:13e::/64      2a03:2260:0:13f::/64        2a03:2260:0:140::/64
 Lotuswurzel      185.66.195.36    100.64.1.190/31 -         100.64.1.20/31 -          100.64.2.84/31 -          100.64.1.22/31 -          100.64.1.192/31 -           100.64.2.86/31 -
                                   2a03:2260:0:e9::/64       2a03:2260:0:91::/64       2a03:2260:0:133::/64      2a03:2260:0:92::/64       2a03:2260:0:ea::/64         2a03:2260:0:134::/64
-Zitronengras     185.66.195.39    100.64.2.234/31 -         100.64.2.236/31 -         100.64.2.238/31 -         100.64.2.240/31 -         ¬                           ¬
-                                  2a03:2260:0:17f::/64      2a03:2260:0:180::/64      2a03:2260:0:181::/64      2a03:2260:0:182::/64 
+Ingwer           185.66.195.38    100.64.2.234/31 -         100.64.2.236/31 -         100.64.2.238/31 -         100.64.2.240/31 -         100.64.1.112/31 -           100.64.1.114/31 -
+                                  2a03:2260:0:17f::/64      2a03:2260:0:180::/64      2a03:2260:0:181::/64      2a03:2260:0:182::/64      2a03:2260:0:8f::1/64        2a03:2260:0:90::1/64
 Spinat           185.66.195.32    100.64.2.226/31 -         100.64.2.228/31 -         100.64.2.230/31 -         100.64.2.232/31 -
-                                  2a03:2260:0:17b::1/64     2a03:2260:0:17c::1/64     2a03:2260:0:17d::1/64     2a03:2260:0:17e::1/64     ¬                           ¬                        
+                                  2a03:2260:0:17b::1/64     2a03:2260:0:17c::1/64     2a03:2260:0:17d::1/64     2a03:2260:0:17e::1/64     ¬                           ¬
 Wasserfloh       185.66.195.33    100.64.2.218/31 -         100.64.2.220/31 -         100.64.2.222/31 -         100.64.2.224/31 -
-                                  2a03:2260:0:177::1/64     2a03:2260:0:178::1/64     2a03:2260:0:179::1/6      2a03:2260:0:17a::1/64     ¬                           ¬                         
+                                  2a03:2260:0:177::1/64     2a03:2260:0:178::1/64     2a03:2260:0:179::1/6      2a03:2260:0:17a::1/64     ¬                           ¬
 ================ ================ ========================= ========================= ========================= ========================= =========================== ===========================
 
 Die nachfolgende Konfiguration erfolgt am Beispiel des Gateways ``Lotuswurzel``.
@@ -375,8 +375,8 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
 
     # interne BIRD Routing-Tabelle
     table ffrl;
-    
-    define ffrl_nat_address = 185.66.195.36; #ffrlnat 
+
+    define ffrl_nat_address = 185.66.195.36; #ffrlnat
 
     # Funktionen, die später aufgerufen werden
     function is_ffrl_nat() {
@@ -414,7 +414,7 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
         route 185.66.195.36/32 reject;
     }
 
-    # Wir legen die Transfernetze in die interne BIRD Routing Table 
+    # Wir legen die Transfernetze in die interne BIRD Routing Table
     protocol direct {
         table ffrl;
         interface "ffrl-*";
