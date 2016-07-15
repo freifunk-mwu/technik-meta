@@ -39,7 +39,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.20.0/22`` ``10.X.23.255`` Client DHCP-Range Spinat          in Betrieb
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Ingwer          in Betrieb
 ``10.X.28.0/22`` ``10.X.31.255`` Client DHCP-Range Parmesan        in Betrieb
-``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range Kaschu          in Betrieb
+``10.X.32.0/22`` ``10.X.35.255`` Client DHCP-Range ¬               frei
 ``10.X.36.0/22`` ``10.X.39.255`` Client DHCP-Range Wasserfloh      in Betrieb
 ``10.X.40.0/22`` ``10.X.43.255`` Client DHCP-Range ¬               frei
 ``10.X.44.0/22`` ``10.X.47.255`` Client DHCP-Range ¬               frei
