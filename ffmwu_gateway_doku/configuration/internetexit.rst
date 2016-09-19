@@ -737,10 +737,12 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
     - :ref:`routing_tables`
     - :ref:`policyrouting`
 
+.. _iexit_radvd:
+
 RAdvD
 ~~~~~
 
-Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die Public IPv6-Prefixe zusätzlich zu den ULA-Prefixes per Router Advertisements bekannt gegeben werden.
+Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die Public IPv6-Prefixe zusätzlich zu den ULA-Prefixes per Router Advertisements bekannt gegeben werden. Da bei uns das öffentliche IPv6 mittlerweile aktiv ist, sollte der Block auf jeden Fall in der config vorhanden sein (s.a. dort).
 Dazu ergänzt man die Public IPv6-Prefixe in der /etc/radvd.conf::
 
     interface mzBR

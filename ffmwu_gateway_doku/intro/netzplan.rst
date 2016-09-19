@@ -52,7 +52,7 @@ Netz             (bis)           Verwendung        verteilt durch  status
 IPv6
 ----
 
-Wir nutzen das `IPv6 ULA Prefix`_ ``fdXX:b4dc:4b1e::/48``
+Wir nutzen intern das `IPv6 ULA Prefix`_ ``fdXX:b4dc:4b1e::/48``
 
 Dieses ist bei SixXS_ an zentraler Stelle registriert, siehe `fd37:b4dc:4b1e\:\:/48`_ oder `fd56:b4dc:4b1e\:\:/48`_
 

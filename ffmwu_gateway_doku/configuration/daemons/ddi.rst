@@ -161,7 +161,7 @@ RAdvD
 
 Die Konfigurationsdatei muss manuell angelegt werden.
 
-Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
+Pro Mesh-Wolke verteilen wir jeweils zwei Prefixe: das interne ULA und das öffentliche Netz.
 
 /etc/radvd.conf (z.B. für Mainz)::
 
@@ -182,8 +182,18 @@ Pro Mesh-Wolke verteilen wir jeweils ein Prefix.
         {
                 FlushRDNSS off;
         };
+
+        prefix 2a03:2260:11a::/64
+        {
+                AdvValidLifetime 864000;
+                AdvPreferredLifetime 172800;
+        };
+
     };
 
 Wichtig:
 
 *RDNSS* nur auf das Gate selbst setzen.
+
+.. seealso::
+    - :ref:`iexit_radvd`
