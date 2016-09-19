@@ -7,8 +7,12 @@ Ordnerstruktur::
 
     /etc/fastd/mzVPN - Config für Mainz
     /etc/fastd/mzVPN/peers - Peers für Mainz
+    /etc/fastd/mzVPN/peers/servers - Peer-files für Server&Gates für Mainz
     /etc/fastd/wiVPN - Config für Wiesbaden
     /etc/fastd/wiVPN/peers - Peers für Wiesbaden
+    /etc/fastd/wiVPN/peers/servers - Peer-files für Server&Gates für Wiesbaden
+
+(Die Verzeichnisse peers/servers sollen nicht manuell angelegt werden, sie sind jeweils Teil der repositories.)
 
 Die peers aus dem git klonen::
 
@@ -48,7 +52,15 @@ Konfiguration
     include "secret.conf";
     mtu 1406; # 1492 - IPv4/IPv6 Header - fastd Header...
 
-    include peers from "peers";
+    peer group "vpn_nodes" {
+    #    pe#er limit 123; # preparation for balancing
+        include peers from "peers";
+        # attention: currently additionally include bingen in mz
+    }
+
+    peer group "servers" {
+        include peers from "peers/servers";
+    }
 
     status socket "/var/run/fastd-mainz.status";
 
@@ -66,7 +78,7 @@ Das Schlüsselpaar schreibt man sich am besten in ein Tempfile::
      fastd --generate-key >> /etc/fastd/wiVPN/MEINTEMPFILE
 
 dauert manchmal ein bisschen :) keep calm :)
-Wenn euch das zu langsam ist, installiert euch den haveged daemon um mehr Entropie zu generieren.
+Wenn euch das zu langsam ist, installiert euch den haveged daemon um mehr Entropie zu generieren. (Achtung: das Tempfile am Schluss entweder löschen, oder Zugriffsrechte beschränken.)
 
 Das ganze sieht dann so aus:
 
