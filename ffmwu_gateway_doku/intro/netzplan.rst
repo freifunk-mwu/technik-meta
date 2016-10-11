@@ -34,7 +34,8 @@ Netz             (bis)           Verwendung        verteilt durch  status
 ``10.X.1.0/24``  ``10.X.1.255``  ¬                 ¬               frei
 ``10.X.2.0/23``  ``10.X.3.255``  Backbone          fix             in Betrieb
 ``10.X.4.0/22``  ``10.X.7.255``  User Services     fix             in Betrieb
-``10.X.8.0/21``  ``10.X.15.255`` ¬                 ¬               frei
+``10.X.8.0/22``  ``10.X.11.255`` Backbone          fix             in Betrieb
+``10.X.12.0/22`` ``10.X.15.255`` ¬                 ¬               frei
 ``10.X.16.0/22`` ``10.X.19.255`` Client DHCP-Range Lotuswurzel     in Betrieb
 ``10.X.20.0/22`` ``10.X.23.255`` Client DHCP-Range Spinat          in Betrieb
 ``10.X.24.0/22`` ``10.X.27.255`` Client DHCP-Range Ingwer          in Betrieb
