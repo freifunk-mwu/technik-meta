@@ -1,6 +1,6 @@
 .. _scripts:
 
-Backend Scripte
+Backend Scripts
 ===============
 
 Um sich das Leben einfacher zu machen, werden immer wiederkehrende Probleme mittels Scripte gelöst.
@@ -9,6 +9,9 @@ Diese werden in einem Repository gesammelt und nutzen selbst Photon_ als Backend
 
 :Repository: `freifunk-mwu/backend-scripts <https://github.com/freifunk-mwu/backend-scripts>`_
 :Backend: `Photon <https://github.com/spookey/photon>`_
+
+.. note::
+  Mittelfristig werden wir die Scripts leider ablösen müssen, da offenbar photon nicht mehr verfügbar ist.
 
 Installation
 ------------
@@ -161,3 +164,9 @@ Dabei sollte darauf geachtet werden, dass U so gewählt wird, dass diese sich m�
 +-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
 | autobuild gluon       | x                                                                                                                     | ``#42 5 * * 0,4``     | x                     |
 +-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+-----------------------+
+
+einzelne Sripts: limit_fastd_peers_gw.py
+----------------------------------------
+
+limit_fastd_peers_gw.py nivelliert die Verteilung der VPN-Knoten auf die Gateways. Dazu setzt das Script ein peer limit auf dem Gate, das der Anzahl "gesammt aktive VPN-Knoten / aktive Gates + Puffer" entspricht.
+Falls sich die Anweisung "peer limit ..." in der fastd.conf findet, setzt das Script den entsprechenden Wert dahinter; wenn die Anweisung fehlt, dann nicht. Unter bestimmten Voraussetzungen wird der daemon neu gestartet. (Achtung: selbst wenn die Anweisung auskommentiert ist, wird der Wert geändert und ggfs. der daemon neu gestartet.)
