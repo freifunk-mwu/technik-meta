@@ -218,6 +218,7 @@ Zunächst nochmal die Übersicht über alle benötigten IP-Adressen:
    - Wiesbaden: 2a03:2260:11b::/48
    - aktuell wird immer das erste /64er Subnetz verwendet
    - Die IPv6-Adressen der Gates ergeben sich aus dem Prefix und dem bisherigen Interface-Identifier
+   - je ein Subnetz nach dem Schema <Prefix>:<Gateway Nummer>00::/56 für RAdvD
 
  - öffentliche IPv4-Netze
 
@@ -229,20 +230,20 @@ Zunächst nochmal die Übersicht über alle benötigten IP-Adressen:
 
 In der folgenden Tabelle halten wir die inneren Transfernetze und IPv4-NAT-Adressen der Gateways fest:
 
-================ ================ ========================= ========================= ========================= ========================= =========================== ===========================
-Gateway          IPv4-NAT-Adresse Transfernetze bb-a.ak.ber Transfernetze bb-b.ak.ber Transfernetze bb-a.ix.dus Transfernetze bb-b.ix.dus Transfernetze bb-a.fra3.fra Transfernetze bb-b.fra3.fra
-================ ================ ========================= ========================= ========================= ========================= =========================== ===========================
-Lotuswurzel      185.66.195.36    100.64.1.190/31 -         100.64.1.20/31 -          100.64.2.84/31 -          100.64.1.22/31 -          100.64.1.192/31 -           100.64.2.86/31 -
-                                  2a03:2260:0:e9::/64       2a03:2260:0:91::/64       2a03:2260:0:133::/64      2a03:2260:0:92::/64       2a03:2260:0:ea::/64         2a03:2260:0:134::/64
-Ingwer           185.66.195.38    100.64.2.234/31 -         100.64.2.236/31 -         100.64.2.238/31 -         100.64.2.240/31 -         100.64.1.112/31 -           100.64.1.114/31 -
-                                  2a03:2260:0:17f::/64      2a03:2260:0:180::/64      2a03:2260:0:181::/64      2a03:2260:0:182::/64      2a03:2260:0:8f::/64         2a03:2260:0:90::/64
-Spinat           185.66.195.32    100.64.2.226/31 -         100.64.2.228/31 -         100.64.2.230/31 -         100.64.2.232/31 -         100.64.0.186/31 -           100.64.0.188/31 -
-                                  2a03:2260:0:17b::/64      2a03:2260:0:17c::/64      2a03:2260:0:17d::/64      2a03:2260:0:17e::/64      2a03:2260:0:63::/64         2a03:2260:0:64::/64
-Wasserfloh       185.66.195.33    100.64.2.218/31 -         100.64.2.220/31 -         100.64.2.222/31 -         100.64.2.224/31 -         100.64.0.190/31 -           100.64.0.192/31 -
-                                  2a03:2260:0:177::/64      2a03:2260:0:178::/64      2a03:2260:0:179::/64      2a03:2260:0:17a::/64      2a03:2260:0:65::/64         2a03:2260:0:66::/64
-Viprinet-BB-GW   185.66.195.34    100.64.8.80/31 -          100.64.8.86/31 -          100.64.8.84/31 -          100.64.8.90/31 -          100.64.8.82/31 -            100.64.8.88/31 -
-                                  2a03:2260:0:44b::/64      2a03:2260:0:44e::/64      2a03:2260:0:44d::/64      2a03:2260:0:450::/64      2a03:2260:0:44c::/64        2a03:2260:0:44f::/64        
-================ ================ ========================= ========================= ========================= ========================= =========================== ===========================
+================ ================ ========================= ========================= ========================= ========================= ========================= =========================== ===========================
+Gateway          IPv4-NAT-Adresse IPv6-Subnetze             Transfernetze bb-a.ak.ber Transfernetze bb-b.ak.ber Transfernetze bb-a.ix.dus Transfernetze bb-b.ix.dus Transfernetze bb-a.fra3.fra Transfernetze bb-b.fra3.fra
+================ ================ ========================= ========================= ========================= ========================= ========================= =========================== ===========================
+Lotuswurzel      185.66.195.36    2a03:2260:11a:1700::/56 - 100.64.1.190/31 -         100.64.1.20/31 -          100.64.2.84/31 -          100.64.1.22/31 -          100.64.1.192/31 -           100.64.2.86/31 -
+                                  2a03:2260:11b:1700::/56   2a03:2260:0:e9::/64       2a03:2260:0:91::/64       2a03:2260:0:133::/64      2a03:2260:0:92::/64       2a03:2260:0:ea::/64         2a03:2260:0:134::/64
+Ingwer           185.66.195.38    2a03:2260:11a:a100::/56 - 100.64.2.234/31 -         100.64.2.236/31 -         100.64.2.238/31 -         100.64.2.240/31 -         100.64.1.112/31 -           100.64.1.114/31 -
+                                  2a03:2260:11b:a100::/56   2a03:2260:0:17f::/64      2a03:2260:0:180::/64      2a03:2260:0:181::/64      2a03:2260:0:182::/64      2a03:2260:0:8f::/64         2a03:2260:0:90::/64
+Spinat           185.66.195.32    2a03:2260:11a:0700::/56 - 100.64.2.226/31 -         100.64.2.228/31 -         100.64.2.230/31 -         100.64.2.232/31 -         100.64.0.186/31 -           100.64.0.188/31 -
+                                  2a03:2260:11b:0700::/56   2a03:2260:0:17b::/64      2a03:2260:0:17c::/64      2a03:2260:0:17d::/64      2a03:2260:0:17e::/64      2a03:2260:0:63::/64         2a03:2260:0:64::/64
+Wasserfloh       185.66.195.33    2a03:2260:11a:e700::/56 - 100.64.2.218/31 -         100.64.2.220/31 -         100.64.2.222/31 -         100.64.2.224/31 -         100.64.0.190/31 -           100.64.0.192/31 -
+                                  2a03:2260:11b:e700::/56   2a03:2260:0:177::/64      2a03:2260:0:178::/64      2a03:2260:0:179::/64      2a03:2260:0:17a::/64      2a03:2260:0:65::/64         2a03:2260:0:66::/64
+Extrasahne       185.66.195.34    2a03:2260:11a:2a00::/56 - 100.64.8.80/31 -          100.64.8.86/31 -          100.64.8.84/31 -          100.64.8.90/31 -          100.64.8.82/31 -            100.64.8.88/31 -
+                                                            2a03:2260:0:44b::/64      2a03:2260:0:44e::/64      2a03:2260:0:44d::/64      2a03:2260:0:450::/64      2a03:2260:0:44c::/64        2a03:2260:0:44f::/64        
+================ ================ ========================= ========================= ========================= ========================= ========================= =========================== ===========================
 
 Die nachfolgende Konfiguration erfolgt am Beispiel des Gateways ``Lotuswurzel``.
 
@@ -521,8 +522,9 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
 
     function is_ffrl_public_nets() {
         return net ~ [
-            2a03:2260:11a::/48,
-            2a03:2260:11b::/48
+            2a03:2260:11a::/48{48,56},
+            2a03:2260:11b::/48{48,56}
+
         ];
     }
 
@@ -561,6 +563,9 @@ Deshalb zeigen wir hier nur Ausschnitte, ein einfaches Copy & Paste wird nicht f
         table ffrl;
         route 2a03:2260:11a::/48 reject;
         route 2a03:2260:11b::/48 reject;
+        route 2a03:2260:11a:1700::/56 reject;
+        route 2a03:2260:11b:1700::/56 reject;
+
     }
 
     # Wir exportieren über Rheinland gelernte Routen in die Kernel Table 61 (ffinetexit)
@@ -730,10 +735,12 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
     # static mainz routes for rt_table mwu
     ...
     /sbin/ip -6 route add 2a03:2260:11a::/64 proto static dev mzBR table mwu
+    /sbin/ip -6 route add 2a03:2260:11a:1700::/64 proto static dev mzBR table mwu
 
     # static wiesbaden routes for rt_table mwu
     ...
     /sbin/ip -6 route add 2a03:2260:11b::/64 proto static dev wiBR table mwu
+    /sbin/ip -6 route add 2a03:2260:11b:1700:/64 proto static dev wiBR table mwu
 
 .. seealso::
     - :ref:`routing_tables`
@@ -744,14 +751,15 @@ Für das Internet-Routing über Freifunk Rheinland sind noch folgende IP Rules i
 RAdvD
 ~~~~~
 
-Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die Public IPv6-Prefixe zusätzlich zu den ULA-Prefixes per Router Advertisements bekannt gegeben werden. Da bei uns das öffentliche IPv6 mittlerweile aktiv ist, sollte der Block auf jeden Fall in der config vorhanden sein (s.a. dort).
+Damit die Clients im Netz auch in den **Genuss** von öffentlichem IPv6 kommen, müssen die Public IPv6-Prefixe zusätzlich zu den ULA-Prefixes per Router Advertisements bekannt gegeben werden. Um unnötigen internen Traffic zu vermeiden verwenden wir pro Gateway ein anderes Subnetz. Da bei uns das öffentliche IPv6 mittlerweile aktiv ist, sollte der Block auf jeden Fall in der config vorhanden sein (s.a. dort).
+
 Dazu ergänzt man die Public IPv6-Prefixe in der /etc/radvd.conf::
 
     interface mzBR
     {
             ...
 
-            prefix 2a03:2260:11a::/64
+            prefix 2a03:2260:11a:1700::/64
             {
                     AdvValidLifetime 864000;
                     AdvPreferredLifetime 172800;
@@ -765,7 +773,7 @@ Dazu ergänzt man die Public IPv6-Prefixe in der /etc/radvd.conf::
     {
             ...
 
-            prefix 2a03:2260:11b::/64
+            prefix 2a03:2260:11b:1700::/64
             {
                     AdvValidLifetime 864000;
                     AdvPreferredLifetime 172800;
