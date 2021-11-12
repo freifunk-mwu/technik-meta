@@ -1,5 +1,11 @@
 Freifunk MWU Gateway Doku
-==================
+=========================
+
+.. warning::
+
+   Diese Dokumentation ist **veraltet** und entspricht nicht mehr unserer aktuellen Gateway-Konfiguration. Sie sollte nur als Anhaltspunkt genutzt werden um eigene Konzepte für Freifunk-Gateways zu entwickeln!
+
+   Wir konfigurieren alle unsere Server mittlerweile per Ansible. Die Rollen liegen unter https://github.com/freifunk-mwu/ansible-ffmwu
 
 .. include:: Readme.rst
 
